@@ -1,0 +1,25 @@
+{
+  "name": "leiloes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": "22.11.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "prisma-dev": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "6.4.1",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "prisma": "^6.4.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
