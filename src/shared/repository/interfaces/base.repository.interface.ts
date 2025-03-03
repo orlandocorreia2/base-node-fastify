@@ -1,3 +1,3 @@
 export interface BaseRepositoryInterface {
-  create(): Promise<any>;
+  create(data: any): Promise<any>;
 }
