@@ -1,11 +1,10 @@
 import fastify, { FastifyInstance } from "fastify";
+import { initRoutes } from "./routes";
 
 export const createApp = () => {
   const app: FastifyInstance = fastify({ logger: false });
 
-  app.get("/users", (req, res) => {
-    res.send({ message: "ok" });
-  });
+  initRoutes(app);
 
   return app;
 };

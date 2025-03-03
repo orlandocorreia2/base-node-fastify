@@ -8,6 +8,7 @@
     "node": "22.11.0"
   },
   "scripts": {
+    "start": "node --env-file .env app.js --env-file .env",
     "dev": "tsx watch src/server.ts",
     "prisma-dev": "prisma migrate dev"
   },
