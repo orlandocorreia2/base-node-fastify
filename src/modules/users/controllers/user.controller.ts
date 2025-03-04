@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { inject, injectable } from "tsyringe";
 import { CreateUserUseCaseInterface } from "../interfaces/create.user.use.case.interface";
+import { CreateUser } from "../interfaces/user";
 
 @injectable()
 export class UserController {
@@ -11,8 +12,9 @@ export class UserController {
 
   async create(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const user = this._createUserUseCase.execute;
-      return reply.send({ message: "User created" });
+      const { name, email } = request.body as CreateUser;
+      await this._createUserUseCase.execute({ name, email });
+      return reply.status(201).send();
     } catch (error) {
       console.log("Error:", error);
       throw error;

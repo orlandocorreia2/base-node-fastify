@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import "dotenv/config";
-import "./shared/container";
 
 import { env, envNumber } from "./utils/env";
 import { createApp } from "./app";

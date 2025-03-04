@@ -10,17 +10,28 @@
   "scripts": {
     "start": "node --env-file .env app.js --env-file .env",
     "dev": "tsx watch src/server.ts",
-    "prisma-dev": "prisma migrate dev"
+    "prisma-dev": "prisma migrate dev",
+    "prepare": "husky",
+    "test": "echo test"
   },
   "dependencies": {
+    "@fastify/cors": "^11.0.0",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.2",
     "@prisma/client": "6.4.1",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
+    "fastify-plugin": "^5.0.1",
+    "fastify-type-provider-zod": "^4.0.2",
     "reflect-metadata": "^0.2.2",
-    "tsyringe": "^4.8.0"
+    "tsyringe": "^4.8.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@types/node": "^22.13.5",
+    "husky": "^9.1.7",
     "prisma": "^6.4.1",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"

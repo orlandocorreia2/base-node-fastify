@@ -1,14 +1,15 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { CreateUserUseCaseInterface } from "../interfaces/create.user.use.case.interface";
+import { CreateUser } from "../interfaces/user";
+import { UserRepositoryInterface } from "../interfaces/user.repository..interface";
 
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
-  // constructor(
-  //   @inject("UserRepository") private _repository: UserRepositoryInterface
-  // ) {}
+  constructor(
+    @inject("UserRepository") private _userRepository: UserRepositoryInterface
+  ) {}
 
-  async execute() {
-    return { service: true };
-    // return this._repository.create({ data });
+  public async execute(createUser: CreateUser) {
+    return await this._userRepository.create(createUser);
   }
 }

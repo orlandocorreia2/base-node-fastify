@@ -5,8 +5,6 @@ export class BaseRepository implements BaseRepositoryInterface {
     {} as BaseRepositoryInterface;
 
   async create(data: any): Promise<any> {
-    console.log("criando um registro");
-    this._infraRepositoryInfra.create({ data });
-    return "";
+    return await this._infraRepositoryInfra.create({ data });
   }
 }

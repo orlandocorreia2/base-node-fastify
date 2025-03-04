@@ -1,13 +1,13 @@
-import { FastifyInstance } from "fastify";
 import { UserController } from "../controllers/user.controller";
 import { container } from "tsyringe";
+import { createUserSchema } from "./schemas/create.user.schema";
+import { FastifyTypedInstance } from "@/types/types";
+import { z } from "zod";
 
-export const userRoutes = (app: FastifyInstance) => {
+export const userRoutes = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
 
-  app.post("/users", userController.create);
-  app.get("/users", userController.findAll);
-  app.get("/users/:id", userController.findOne);
-  app.patch("/users/:id", userController.update);
-  app.delete("/users/:id", userController.delete);
+  app.post("/users", { schema: createUserSchema }, (request, reply) =>
+    userController.create(request, reply)
+  );
 };

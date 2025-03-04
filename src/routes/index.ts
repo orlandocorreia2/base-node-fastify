@@ -1,6 +1,6 @@
-import { FastifyInstance } from "fastify";
 import { userRoutes } from "../modules/users/routes";
+import { FastifyTypedInstance } from "@/types/types";
 
-export const initRoutes = (app: FastifyInstance) => {
+export const appRoutes = (app: FastifyTypedInstance) => {
   userRoutes(app);
 };
