@@ -15,12 +15,19 @@ model User {
   id String @id @default(uuid())
   name String
   email String @unique
+  password String
+  status UserStatus @default(active)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
   permissionGroups UsersPermissionGroups[]
 
   @@map("users")
+}
+
+enum UserStatus {
+  active
+  inactive
 }
 
 model PermissionGroup {

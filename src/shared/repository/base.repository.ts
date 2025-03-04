@@ -7,4 +7,8 @@ export class BaseRepository implements BaseRepositoryInterface {
   async create(data: any): Promise<any> {
     return await this._infraRepositoryInfra.create({ data });
   }
+
+  async findOne(data: any): Promise<any> {
+    return await this._infraRepositoryInfra.findOne(data);
+  }
 }

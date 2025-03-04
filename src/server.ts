@@ -2,11 +2,9 @@ import "reflect-metadata";
 import "dotenv/config";
 
 import { env, envNumber } from "./utils/env";
-import { createApp } from "./app";
+import { app } from "./app";
 
 (() => {
-  const app = createApp();
-
   const port = envNumber({ key: "PORT" });
   const host = env({ key: "HOST" });
 

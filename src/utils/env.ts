@@ -1,4 +1,4 @@
-import { EnvProps } from "../@types/env";
+import { EnvProps } from "../types/env";
 
 export const env = ({ key, defaultValue = "" }: EnvProps) => {
   const envValue = process.env[key] || defaultValue;

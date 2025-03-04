@@ -1,5 +1,5 @@
-import { CreateUser } from "./user";
+import { CreateUser, User } from "./user";
 
 export interface CreateUserUseCaseInterface {
-  execute(createUser: CreateUser): Promise<any>;
+  execute(createUser: CreateUser): Promise<User>;
 }
