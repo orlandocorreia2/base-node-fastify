@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { UserRepositoryPrisma } from "@/infra/database/prisma/repositories/user.repository.prisma";
+import { UserRepositoryPrisma } from "@/infra/database/orms/prisma/repositories/user.repository.prisma";
 import { CreateUserUseCaseInterface } from "@/modules/users/interfaces/create.user.use.case.interface";
 import { UserRepositoryInterface } from "@/modules/users/interfaces/user.repository..interface";
 import { UserRepository } from "@/modules/users/repositories/user.repository";

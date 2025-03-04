@@ -1,4 +1,4 @@
-import { BaseRepositoryInterface } from "../../../../shared/repository/interfaces/base.repository.interface";
+import { BaseRepositoryInterface } from "../../../../../shared/repository/interfaces/base.repository.interface";
 import { ModelCreateInterface } from "../interfaces/model.create.interface.prisma";
 
 export class BaseRepositoryPrisma implements BaseRepositoryInterface {

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { CreateUserUseCaseInterface } from "../interfaces/create.user.use.case.interface";
-import { CreateUser } from "../interfaces/user";
 import { UserRepositoryInterface } from "../interfaces/user.repository..interface";
+import { CreateUser } from "../interfaces/user";
 
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
