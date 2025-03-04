@@ -1,0 +1,60 @@
+{
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 20,
+  "editor.lineHeight": 24,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80, 120],
+  "emmet.triggerExpansionOnTab": true,
+  "editor.tabSize": 2,
+  "editor.parameterHints.enabled": false,
+  "editor.renderLineHighlight": "gutter",
+  "terminal.integrated.fontSize": 16,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "editor.suggestSelection": "first",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.renderWhitespace": "none",
+  "files.autoSave": "off",
+  "material-icon-theme.folders.associations": {
+    "infra": "app",
+    "entities": "class",
+    "schemas": "class",
+    "typeorm": "database",
+    "repositories": "mappings",
+    "http": "container",
+    "migrations": "tools",
+    "modules": "components",
+    "implementations": "core",
+    "dtos": "typescript",
+    "fakes": "mock",
+    "websockets": "pipe",
+    "Console": "command",
+    "Exceptions": "error",
+    "Support": "controller",
+    "Bootstrap": "app",
+    "socket": "node",
+    "storage": "server"
+  },
+  "git.autofetch": true,
+  "editor.minimap.enabled": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "prettier.tabWidth": 2,
+  "terminal.integrated.tabs.enabled": false,
+  "json.maxItemsComputed": 500000000,
+  "editor.foldingMaximumRegions": 10000,
+  "editor.formatOnSave": true
+}
