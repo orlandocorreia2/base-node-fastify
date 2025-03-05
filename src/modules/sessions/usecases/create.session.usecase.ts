@@ -26,7 +26,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
       id: user.id,
       email: user.email,
       name: user.name,
-    });
+    }, {expiresIn: '1h'});
     return { token };
   }
 }

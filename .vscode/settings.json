@@ -12,7 +12,7 @@
   "terminal.integrated.fontSize": 16,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
   "emmet.syntaxProfiles": {
@@ -51,10 +51,11 @@
   "editor.minimap.enabled": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.enableMultiLinePasteWarning": "always",
   "prettier.tabWidth": 2,
   "terminal.integrated.tabs.enabled": false,
   "json.maxItemsComputed": 500000000,
   "editor.foldingMaximumRegions": 10000,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "explorer.compactFolders": false
 }

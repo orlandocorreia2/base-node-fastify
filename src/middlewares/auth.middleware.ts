@@ -1,7 +1,7 @@
 import { UnauthorizedError } from "@/error/unauthorized.error";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export const authMiddleware = (
+export const authMiddleware = async (
   request: FastifyRequest,
   _: FastifyReply,
   next: any,
@@ -10,7 +10,7 @@ export const authMiddleware = (
     throw new UnauthorizedError();
   }
   try {
-    request.jwtVerify();
+    await request.jwtVerify();
     next();
   } catch (error) {
     console.log(error);

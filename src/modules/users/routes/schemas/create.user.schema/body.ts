@@ -3,10 +3,10 @@ import { z } from "zod";
 export const body = z.object({
   name: z
     .string({ message: "User name is required." })
-    .min(3, { message: "User name is invalid." })
-    .default("Jonh Doe"),
+    .describe("John Doe")
+    .min(3, { message: "User name is invalid." }),
   email: z
     .string({ message: "User email is required." })
     .email({ message: "User email must be type of email." })
-    .default("jonhdoe@email.com"),
+    .describe("johndoe@email.com")
 });

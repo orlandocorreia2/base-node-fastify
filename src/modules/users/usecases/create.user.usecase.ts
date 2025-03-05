@@ -14,6 +14,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   public async execute(createUser: CreateUser) {
     const token = randomBytes(8).toString("base64url");
     console.log("Password", token);
+
     const hashPassword = await generateHash(token);
     return await this._userRepository.create({
       ...createUser,

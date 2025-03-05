@@ -1,5 +1,5 @@
 import fastify, { FastifyInstance } from "fastify";
-import { appRoutes, sessionRoutes } from "./routes";
+import { appRoutes } from "./routes";
 import "./shared/container";
 import plugins from "plugins";
 import {
@@ -20,7 +20,6 @@ const app: FastifyInstance = fastify({
   app.register(plugins.cors);
   app.register(plugins.swagger);
   app.register(appRoutes);
-  app.register(sessionRoutes);
 })();
 
 export { app };
