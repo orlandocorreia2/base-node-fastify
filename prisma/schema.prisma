@@ -16,33 +16,63 @@ model User {
   name String
   email String @unique
   password String
-  status UserStatus @default(active)
+  address String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
-  permissionGroups UsersPermissionGroups[]
+
+  permissionGroups UserPermissionGroup[]
 
   @@map("users")
 }
 
-enum UserStatus {
-  active
-  inactive
-}
-
 model PermissionGroup {
   id String @id @default(uuid())
-  name String
-  users UsersPermissionGroups[]
+  name String @unique
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  users UserPermissionGroup[]
+  PermissionGroupRule PermissionGroupRule[]
 
   @@map("permission_groups")
 }
 
-model UsersPermissionGroups {
-  user User @relation(fields: [userId], references: [id])
-  userId String
-  permissionGroup PermissionGroup @relation(fields: [permissionGroupId], references: [id])
-  permissionGroupId String
+model PermissionRule {
+  id String @id @default(uuid())
+  rule String
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 
-  @@id([userId, permissionGroupId])
+  PermissionGroupRule PermissionGroupRule[]
+
+  @@map("permission_rules")
 }
+
+model UserPermissionGroup {
+  user_id String
+  permission_group_id String
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  permissionGroup PermissionGroup @relation(fields: [permission_group_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([user_id, permission_group_id])
+  @@map("users_permission_groups")
+}
+
+model PermissionGroupRule {
+  permission_group_id String
+  permission_rule_id String
+
+  permissionGroup PermissionGroup @relation(fields: [permission_group_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  permissionRule PermissionRule @relation(fields: [permission_rule_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([permission_group_id, permission_rule_id])
+  @@map("permission_group_rules")
+}
+
+
