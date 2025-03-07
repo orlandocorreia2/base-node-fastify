@@ -10,9 +10,10 @@
   "scripts": {
     "start": "node --env-file .env app.js --env-file .env",
     "dev": "tsx watch src/server.ts",
-    "prisma-dev": "prisma migrate dev",
     "prepare": "husky",
-    "test": "echo test"
+    "test": "echo test",
+    "migrate": "npx prisma migrate dev",
+    "seed": "npx prisma db seed"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.0",
@@ -49,5 +50,8 @@
     "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.26.0"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
