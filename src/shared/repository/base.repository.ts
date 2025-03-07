@@ -1,4 +1,4 @@
-import { BaseRepositoryInterface } from "./interfaces/base.repository.interface";
+import { BaseRepositoryInterface } from './interfaces/base.repository.interface';
 
 export class BaseRepository implements BaseRepositoryInterface {
   protected _infraRepositoryInfra: BaseRepositoryInterface =
@@ -10,5 +10,9 @@ export class BaseRepository implements BaseRepositoryInterface {
 
   async findOne(data: any): Promise<any> {
     return await this._infraRepositoryInfra.findOne(data);
+  }
+
+  async findMany(): Promise<any> {
+    return await this._infraRepositoryInfra.findMany();
   }
 }

@@ -1,18 +1,6 @@
 import { prisma } from '@/infra/database/orms/prisma/client';
+import { PermissionGroupProps, PermissionRuleProps } from '@/types/db';
 import { generateHash } from '@/utils/hash';
-
-type PermissionRuleProps = {
-  id: string;
-  rule: string;
-  type: 'user' | 'permissionGroup';
-  description?: string;
-};
-
-type PermissionGroupProps = {
-  id: string;
-  name: string;
-  description?: string;
-};
 
 const seedPermissionRules = async () => {
   const permissionRules: PermissionRuleProps[] = [

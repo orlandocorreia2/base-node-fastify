@@ -30,7 +30,8 @@
     "paths": {
       "@/*": ["./*"],
       "@modules/*": ["./modules/*"],
-      "@infra/*": ["./infra/*"]
+      "@infra/*": ["./infra/*"],
+      "@shared/*": ["./shared"]
     }
   },
   "exclude": ["node_modules"]
