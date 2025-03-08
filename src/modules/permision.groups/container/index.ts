@@ -10,6 +10,9 @@ import { FindAllPermissionRulesUseCase } from '../usecases/find.all.permission.r
 import { PermissionRuleRepositoryInterface } from '../interfaces/permission.rule.repository.interface';
 import { PermissionRuleRepository } from '../repositories/permission.rule.repository';
 import { PermissionRuleRepositoryPrisma } from '@/infra/database/orms/prisma/repositories/permission.rule.repository.prisma';
+import { PermissionGroupRuleRepositoryInterface } from '../interfaces/permission.group.rule.repository.interface';
+import { PermissionGroupRuleRepository } from '../repositories/permission.group.rule.repository';
+import { PermissionGroupRuleRepositoryPrisma } from '@/infra/database/orms/prisma/repositories/permission.group.rule.repository.prisma';
 
 container.registerSingleton<CreatePermissionGroupUseCaseInterface>(
   'CreatePermissionGroupUseCase',
@@ -39,4 +42,14 @@ container.registerSingleton<PermissionRuleRepositoryInterface>(
 container.registerSingleton<BaseRepositoryInterface>(
   'PermissionRuleRepositoryInfra',
   PermissionRuleRepositoryPrisma,
+);
+
+container.registerSingleton<PermissionGroupRuleRepositoryInterface>(
+  'PermissionGroupRuleRepository',
+  PermissionGroupRuleRepository,
+);
+
+container.registerSingleton<BaseRepositoryInterface>(
+  'PermissionGroupRuleRepositoryInfra',
+  PermissionGroupRuleRepositoryPrisma,
 );

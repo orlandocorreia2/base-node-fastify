@@ -11,6 +11,13 @@ export class BaseRepositoryPrisma implements BaseRepositoryInterface {
     return result;
   }
 
+  async createMany({ data }: { data: any }): Promise<any> {
+    const result = await this._model.createMany({
+      data,
+    });
+    return result;
+  }
+
   async findOne(data: any): Promise<any> {
     return await this._model.findFirst({ where: data });
   }

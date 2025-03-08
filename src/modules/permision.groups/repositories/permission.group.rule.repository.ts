@@ -3,12 +3,12 @@ import { BaseRepositoryInterface } from '@/shared/repository/interfaces/base.rep
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
-export class PermissionGroupRepository extends BaseRepository {
+export class PermissionGroupRuleRepository extends BaseRepository {
   constructor(
-    @inject('PermissionGroupRepositoryInfra')
-    _permissionGroupRepositoryInfra: BaseRepositoryInterface,
+    @inject('PermissionGroupRuleRepositoryInfra')
+    _permissionGroupRuleRepositoryInfra: BaseRepositoryInterface,
   ) {
     super();
-    this._infraRepositoryInfra = _permissionGroupRepositoryInfra;
+    this._infraRepositoryInfra = _permissionGroupRuleRepositoryInfra;
   }
 }

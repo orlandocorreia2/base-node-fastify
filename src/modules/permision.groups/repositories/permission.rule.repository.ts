@@ -6,9 +6,9 @@ import { inject, injectable } from 'tsyringe';
 export class PermissionRuleRepository extends BaseRepository {
   constructor(
     @inject('PermissionRuleRepositoryInfra')
-    permissionRuleRepositoryInfra: BaseRepositoryInterface,
+    _permissionRuleRepositoryInfra: BaseRepositoryInterface,
   ) {
     super();
-    this._infraRepositoryInfra = permissionRuleRepositoryInfra;
+    this._infraRepositoryInfra = _permissionRuleRepositoryInfra;
   }
 }
