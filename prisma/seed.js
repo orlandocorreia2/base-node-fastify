@@ -200,4 +200,3 @@ seed().then(() => {
     console.log('Database seeded!');
     client_1.prisma.$disconnect();
 });
-//# sourceMappingURL=seed.js.map

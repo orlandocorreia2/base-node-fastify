@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node --env-file .env app.js --env-file .env",
+    "start": "dist/server.js",
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "prepare": "husky",
