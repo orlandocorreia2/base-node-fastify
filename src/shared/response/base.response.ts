@@ -1,12 +1,11 @@
-import { PaginateProps } from '@/types/db';
 import { getVersion } from '@/utils/helper';
 
 export class BaseResponse {
-  static setPaginateData(data: PaginateProps) {
+  static setPaginateData<T>(data: T) {
     return { version: getVersion(), data };
   }
 
-  static setDefaultData(data: any) {
+  static setDefaultData(data: unknown) {
     return { version: getVersion(), data };
   }
 }

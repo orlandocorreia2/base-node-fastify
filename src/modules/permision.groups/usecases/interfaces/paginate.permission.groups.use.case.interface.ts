@@ -1,9 +1,14 @@
 import { PaginateRequestProps } from '@/types/types';
-import { PaginatePermissionGroupProps } from '../../DTOs/permission.group';
+import {
+  PaginatePermissionGroupProps,
+  PermissionGroup,
+} from '../../DTOs/permission.group';
 
 export interface PaginatePermissionGroupsUseCaseInterface {
   execute({
     page,
     qtdItemsPerPage,
-  }: PaginateRequestProps): Promise<PaginatePermissionGroupProps>;
+  }: PaginateRequestProps): Promise<
+    PaginatePermissionGroupProps<PermissionGroup>
+  >;
 }

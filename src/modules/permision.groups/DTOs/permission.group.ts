@@ -17,6 +17,4 @@ export interface CreatePermissionGroupRequest {
   permissionRulesId: string[];
 }
 
-export interface PaginatePermissionGroupProps extends PaginateProps {
-  items: PermissionGroup[];
-}
+export type PaginatePermissionGroupProps<T> = PaginateProps<T>;

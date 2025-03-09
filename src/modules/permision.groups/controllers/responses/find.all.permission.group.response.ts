@@ -1,9 +1,12 @@
 import { FastifyReply } from 'fastify';
-import { PaginatePermissionGroupProps } from '../../DTOs/permission.group';
+import {
+  PaginatePermissionGroupProps,
+  PermissionGroup,
+} from '../../DTOs/permission.group';
 import { BaseResponse } from '@/shared/response/base.response';
 
 type FindAllPermissionGroupResponseProps = {
-  paginatePermissionGroups: PaginatePermissionGroupProps;
+  paginatePermissionGroups: PaginatePermissionGroupProps<PermissionGroup>;
   reply: FastifyReply;
 };
 
@@ -12,7 +15,9 @@ export class FindAllPermissionGroupResponse extends BaseResponse {
     paginatePermissionGroups,
     reply,
   }: FindAllPermissionGroupResponseProps) {
-    const defaultData = this.setPaginateData(paginatePermissionGroups);
+    const defaultData = this.setPaginateData<
+      PaginatePermissionGroupProps<PermissionGroup>
+    >(paginatePermissionGroups);
     return reply.status(200).send(defaultData);
   }
 

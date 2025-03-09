@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node --env-file .env app.js --env-file .env",
     "dev": "tsx watch src/server.ts",
+    "build": "tsc",
     "prepare": "husky",
     "test": "echo test",
     "migrate": "npx prisma migrate dev",

@@ -5,6 +5,7 @@ import { CreateUser } from '../interfaces/user';
 import { generateHash } from '@/utils/hash';
 import { randomBytes } from 'crypto';
 import { UnprocessableError } from '@/error/unprocessable';
+import { User } from '@prisma/client';
 
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
@@ -12,7 +13,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     @inject('UserRepository') private _userRepository: UserRepositoryInterface,
   ) {}
 
-  public async execute(createUser: CreateUser) {
+  public async execute(createUser: CreateUser): Promise<User> {
     const userAlreadyRegistered = await this._userRepository.findOne({
       email: createUser.email,
     });

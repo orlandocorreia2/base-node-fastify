@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import { PermissionGroupRepositoryInterface } from './interfaces/permission.group.repository.interface';
 import { UnprocessableError } from '@/error/unprocessable';
 import {
   CreatePermissionGroup,
@@ -7,7 +6,8 @@ import {
 } from '../DTOs/permission.group';
 import { CreatePermissionGroupUseCaseInterface } from './interfaces/create.permission.group.use.case.interface';
 import { CreatePermissionGroupRule } from '../DTOs/permission.group.rule';
-import { PermissionGroupRuleRepositoryInterface } from './interfaces/permission.group.rule.repository.interface';
+import { PermissionGroupRepositoryInterface } from '../repositories/interfaces/permission.group.repository.interface';
+import { PermissionGroupRuleRepositoryInterface } from '../repositories/interfaces/permission.group.rule.repository.interface';
 
 @injectable()
 export class CreatePermissionGroupUseCase
