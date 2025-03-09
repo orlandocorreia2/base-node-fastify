@@ -145,7 +145,7 @@ const seedUsers = async () => {
     {
       id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
       name: 'Marcelo',
-      email: 'marcelo@gmail.com',
+      email: 'marcelo.fatecpoa@gmail.com',
       password: hashedPassword,
       phone: '11911111111',
       address: '',
