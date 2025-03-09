@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { inject, injectable } from 'tsyringe';
-import { FindAllPermissionRulesUseCaseInterface } from '../interfaces/find.all.permission.rules.use.case.interface';
-import { getVersion } from '@/utils/helper';
+import { FindAllPermissionRulesUseCaseInterface } from '../usecases/interfaces/find.all.permission.rules.use.case.interface';
+import { FindAllPermissionRuleResponse } from './responses/find.all.permission.rule.response';
 
 @injectable()
 export class PermissionRuleController {
@@ -14,12 +14,9 @@ export class PermissionRuleController {
     try {
       const permissionRules =
         await this._findAllPermissionRulesUseCase.execute();
-      return reply
-        .status(200)
-        .send({ version: getVersion(), data: permissionRules });
+      return FindAllPermissionRuleResponse.success({ permissionRules, reply });
     } catch (error) {
-      console.log('Error:', error);
-      throw error;
+      FindAllPermissionRuleResponse.error(error);
     }
   }
 }

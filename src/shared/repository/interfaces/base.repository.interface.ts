@@ -1,6 +1,9 @@
+import { PaginateRequestProps } from '@/types/types';
+
 export interface BaseRepositoryInterface {
-  findOne(data: any): Promise<any>;
-  create(data: any): Promise<any>;
-  createMany(data: any): Promise<any>;
-  findMany(): Promise<any>;
+  findOne<T>(data: unknown): Promise<T>;
+  create<T>(data: unknown): Promise<T>;
+  createMany<T>(data: unknown): Promise<T[]>;
+  findMany<T>(): Promise<T[]>;
+  paginate<T>({ page, qtdItemsPerPage }: PaginateRequestProps): Promise<T>;
 }

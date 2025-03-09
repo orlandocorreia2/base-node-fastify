@@ -5,6 +5,7 @@ import { createPermissionGroupSchema } from './schemas/create.permission.group.s
 import { authMiddleware } from '@/middlewares/auth.middleware';
 import { PermissionRuleController } from '../controllers/permission.rule.controller';
 import { findAllPermissionRulesSchema } from './schemas/find.all.permission.rule.schema';
+import { paginatePermissionGroupSchema } from './schemas/paginate.permission.group.schema';
 
 export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
   const permissionGroupController = container.resolve(
@@ -16,6 +17,12 @@ export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
     '/permission-groups',
     { schema: createPermissionGroupSchema, preHandler: authMiddleware },
     (request, reply) => permissionGroupController.create(request, reply),
+  );
+
+  app.get(
+    '/permission-groups',
+    { schema: paginatePermissionGroupSchema, preHandler: authMiddleware },
+    (request, reply) => permissionGroupController.findAll(request, reply),
   );
 
   app.get(

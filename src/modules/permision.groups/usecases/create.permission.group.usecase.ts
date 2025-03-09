@@ -1,10 +1,13 @@
 import { inject, injectable } from 'tsyringe';
-import { PermissionGroupRepositoryInterface } from '../interfaces/permission.group.repository.interface';
+import { PermissionGroupRepositoryInterface } from './interfaces/permission.group.repository.interface';
 import { UnprocessableError } from '@/error/unprocessable';
-import { CreatePermissionGroup } from '../interfaces/permission.group';
-import { CreatePermissionGroupUseCaseInterface } from '../interfaces/create.permission.group.use.case.interface';
-import { CreatePermissionGroupRule } from '../interfaces/permission.group.rule';
-import { PermissionGroupRuleRepositoryInterface } from '../interfaces/permission.group.rule.repository.interface';
+import {
+  CreatePermissionGroup,
+  PermissionGroup,
+} from '../DTOs/permission.group';
+import { CreatePermissionGroupUseCaseInterface } from './interfaces/create.permission.group.use.case.interface';
+import { CreatePermissionGroupRule } from '../DTOs/permission.group.rule';
+import { PermissionGroupRuleRepositoryInterface } from './interfaces/permission.group.rule.repository.interface';
 
 @injectable()
 export class CreatePermissionGroupUseCase
@@ -28,9 +31,10 @@ export class CreatePermissionGroupUseCase
     if (permissionGroupAlreadyRegistered) {
       throw new UnprocessableError('Permission Group already registered!');
     }
-    const permissionGroup = await this._permissionGroupRepository.create(
-      createPermissionGroup,
-    );
+    const permissionGroup =
+      await this._permissionGroupRepository.create<PermissionGroup>(
+        createPermissionGroup,
+      );
     const permissionGroupRules: CreatePermissionGroupRule[] =
       permissionRulesId.map(permissionRuleId => ({
         permission_group_id: permissionGroup.id,

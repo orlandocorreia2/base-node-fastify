@@ -4,8 +4,8 @@ import {
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
-} from "fastify";
-import { ZodTypeProvider } from "fastify-type-provider-zod";
+} from 'fastify';
+import { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 export type FastifyTypedInstance = FastifyInstance<
   RawServerDefault,
@@ -14,3 +14,8 @@ export type FastifyTypedInstance = FastifyInstance<
   FastifyBaseLogger,
   ZodTypeProvider
 >;
+
+export type PaginateRequestProps = {
+  page: number;
+  qtdItemsPerPage: number;
+};

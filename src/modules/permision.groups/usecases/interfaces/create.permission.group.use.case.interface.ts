@@ -1,4 +1,7 @@
-import { CreatePermissionGroup, PermissionGroup } from './permission.group';
+import {
+  CreatePermissionGroup,
+  PermissionGroup,
+} from '../../DTOs/permission.group';
 
 export interface CreatePermissionGroupUseCaseInterface {
   execute(

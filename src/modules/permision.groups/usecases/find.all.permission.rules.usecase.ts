@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { PermissionRuleRepositoryInterface } from '../interfaces/permission.rule.repository.interface';
-import { FindAllPermissionRulesUseCaseInterface } from '../interfaces/find.all.permission.rules.use.case.interface';
+import { PermissionRuleRepositoryInterface } from '../repositories/interfaces/permission.rule.repository.interface';
+import { FindAllPermissionRulesUseCaseInterface } from './interfaces/find.all.permission.rules.use.case.interface';
+import { PermissionRule } from '../DTOs/permission.rule';
 
 @injectable()
 export class FindAllPermissionRulesUseCase
@@ -12,6 +13,6 @@ export class FindAllPermissionRulesUseCase
   ) {}
 
   public async execute() {
-    return await this._permissionRuleRepository.findMany();
+    return await this._permissionRuleRepository.findMany<PermissionRule>();
   }
 }

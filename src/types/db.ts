@@ -10,3 +10,15 @@ export type PermissionGroupProps = {
   name: string;
   description?: string;
 };
+
+export type FindManyParametersProps = {
+  skip?: number;
+  take?: number;
+};
+
+export type PaginateProps<T> = {
+  items: T[];
+  page: number;
+  qtdItemsPerPage: number;
+  total: number;
+};
