@@ -4,9 +4,6 @@
   "main": "index.js",
   "type": "module",
   "license": "MIT",
-  "engines": {
-    "node": "22.11.0"
-  },
   "scripts": {
     "start": "node --env-file .env app.js --env-file .env",
     "dev": "tsx watch src/server.ts",
