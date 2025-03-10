@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import { CreateSessionUseCaseInterface } from '../interfaces/create.session.usecase.interface';
 import { AuthToken, AuthUser } from '../interfaces/session';
-import { UserRepositoryInterface } from '@/modules/users/interfaces/user.repository..interface';
-import { UnauthorizedError } from '@/error/unauthorized.error';
-import { verifyHash } from '@/utils/hash';
-import { app } from '@/app';
-import { User } from '@/modules/users/interfaces/user';
+import { UserRepositoryInterface } from '../../../modules/users/interfaces/user.repository..interface';
+import { UnauthorizedError } from '../../../error/unauthorized.error';
+import { verifyHash } from '../../../utils/hash';
+import { app } from '../../../app';
+import { User } from '../../../modules/users/interfaces/user';
 
 @injectable()
 export class CreateSessionUseCase implements CreateSessionUseCaseInterface {

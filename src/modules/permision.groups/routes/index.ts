@@ -1,8 +1,8 @@
 import { container } from 'tsyringe';
-import { FastifyTypedInstance } from '@/types/types';
+import { FastifyTypedInstance } from '../../../types/types';
 import { PermissionGroupController } from '../controllers/permission.group.controller';
 import { createPermissionGroupSchema } from './schemas/create.permission.group.schema';
-import { authMiddleware } from '@/middlewares/auth.middleware';
+import { authMiddleware } from '../../../middlewares/auth.middleware';
 import { PermissionRuleController } from '../controllers/permission.rule.controller';
 import { findAllPermissionRulesSchema } from './schemas/find.all.permission.rule.schema';
 import { paginatePermissionGroupSchema } from './schemas/paginate.permission.group.schema';

@@ -1,4 +1,4 @@
-import { getVersion } from '@/utils/helper';
+import { getVersion } from '../../../../../utils/helper';
 import { z } from 'zod';
 
 export const response = {

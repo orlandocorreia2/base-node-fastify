@@ -1,4 +1,4 @@
-import { FindManyParametersProps } from '@/types/db';
+import { FindManyParametersProps } from '../../../../../types/db';
 
 export interface ModelInterface {
   create({ data }: { data: any }): Promise<any>;

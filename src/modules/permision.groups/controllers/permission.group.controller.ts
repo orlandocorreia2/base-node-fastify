@@ -4,7 +4,7 @@ import { CreatePermissionGroupUseCaseInterface } from '../usecases/interfaces/cr
 import { CreatePermissionGroupRequest } from '../DTOs/permission.group';
 import { FindAllPermissionGroupResponse } from './responses/find.all.permission.group.response';
 import { CreatePermissionGroupResponse } from './responses/create.permission.group.response';
-import { PaginateRequestProps } from '@/types/types';
+import { PaginateRequestProps } from '../../../types/types';
 import { PaginatePermissionGroupsUseCaseInterface } from '../usecases/interfaces/paginate.permission.groups.use.case.interface';
 
 @injectable()

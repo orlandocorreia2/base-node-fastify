@@ -1,4 +1,4 @@
-import { PaginateRequestProps } from '@/types/types';
+import { PaginateRequestProps } from '../../types/types';
 import { BaseRepositoryInterface } from './interfaces/base.repository.interface';
 
 export class BaseRepository implements BaseRepositoryInterface {

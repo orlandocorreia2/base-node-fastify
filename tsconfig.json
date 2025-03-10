@@ -2,10 +2,10 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "src",
+    "rootDir": "./src",
     "strict": true,
     "strictPropertyInitialization": false,
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "allowJs": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -26,13 +26,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@/*": ["./*"],
-      "@modules/*": ["./modules/*"],
-      "@infra/*": ["./infra/*"],
-      "@shared/*": ["./shared"]
-    }
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "commitlint.config.js"]

@@ -1,4 +1,4 @@
-import { PermissionRuleProps } from '@/types/db';
+import { PermissionRuleProps } from '../../../types/db';
 
 export interface PermissionRule {
   id: string;

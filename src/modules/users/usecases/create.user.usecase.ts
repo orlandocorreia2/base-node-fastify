@@ -2,9 +2,9 @@ import { inject, injectable } from 'tsyringe';
 import { CreateUserUseCaseInterface } from '../interfaces/create.user.use.case.interface';
 import { UserRepositoryInterface } from '../interfaces/user.repository..interface';
 import { CreateUser } from '../interfaces/user';
-import { generateHash } from '@/utils/hash';
+import { generateHash } from '../../../utils/hash';
 import { randomBytes } from 'crypto';
-import { UnprocessableError } from '@/error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable';
 import { User } from '@prisma/client';
 
 @injectable()

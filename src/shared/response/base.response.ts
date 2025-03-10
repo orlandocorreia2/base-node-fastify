@@ -1,4 +1,4 @@
-import { getVersion } from '@/utils/helper';
+import { getVersion } from '../../utils/helper';
 
 export class BaseResponse {
   static setPaginateData<T>(data: T) {

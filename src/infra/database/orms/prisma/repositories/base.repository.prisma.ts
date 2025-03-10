@@ -1,7 +1,7 @@
-import { BaseRepositoryInterface } from '@/shared/repository/interfaces/base.repository.interface';
+import { PaginateRequestProps } from 'types/types';
+import { BaseRepositoryInterface } from '../../../../../shared/repository/interfaces/base.repository.interface';
 import { ModelInterface } from '../interfaces/model.create.interface.prisma';
-import { PaginateRequestProps } from '@/types/types';
-import { positiveNumber } from '@/utils/helper';
+import { positiveNumber } from '../../../../../utils/helper';
 
 export class BaseRepositoryPrisma implements BaseRepositoryInterface {
   protected _model: ModelInterface = {} as ModelInterface;

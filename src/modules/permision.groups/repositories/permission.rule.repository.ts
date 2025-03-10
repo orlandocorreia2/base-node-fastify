@@ -1,5 +1,5 @@
-import { BaseRepository } from '@/shared/repository/base.repository';
-import { BaseRepositoryInterface } from '@/shared/repository/interfaces/base.repository.interface';
+import { BaseRepository } from '../../../shared/repository/base.repository';
+import { BaseRepositoryInterface } from '../../../shared/repository/interfaces/base.repository.interface';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

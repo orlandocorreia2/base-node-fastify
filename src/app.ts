@@ -1,12 +1,12 @@
-import fastify, { FastifyInstance } from "fastify";
-import { appRoutes } from "./routes";
-import "./shared/container";
-import plugins from "plugins";
+import fastify, { FastifyInstance } from 'fastify';
+import { appRoutes } from './routes';
+import './shared/container';
+import plugins from './plugins';
 import {
   serializerCompiler,
   validatorCompiler,
   ZodTypeProvider,
-} from "fastify-type-provider-zod";
+} from 'fastify-type-provider-zod';
 
 const app: FastifyInstance = fastify({
   logger: false,

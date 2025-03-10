@@ -1,4 +1,4 @@
-import { PaginateProps } from '@/types/db';
+import { PaginateProps } from '../../../types/db';
 
 export interface PermissionGroup {
   id: string;

@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { UnprocessableError } from '@/error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable';
 import {
   CreatePermissionGroup,
   PermissionGroup,

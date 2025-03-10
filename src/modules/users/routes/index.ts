@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import { FastifyTypedInstance } from '@/types/types';
+import { FastifyTypedInstance } from '../../../types/types';
 import { UserController } from '../controllers/user.controller';
 import { createUserSchema } from './schemas/create.user.schema';
 

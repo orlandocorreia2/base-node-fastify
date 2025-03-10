@@ -3,7 +3,7 @@ import {
   PaginatePermissionGroupProps,
   PermissionGroup,
 } from '../../DTOs/permission.group';
-import { BaseResponse } from '@/shared/response/base.response';
+import { BaseResponse } from '../../../../shared/response/base.response';
 
 type FindAllPermissionGroupResponseProps = {
   paginatePermissionGroups: PaginatePermissionGroupProps<PermissionGroup>;

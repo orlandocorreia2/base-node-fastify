@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { PaginatePermissionGroupsUseCaseInterface } from './interfaces/paginate.permission.groups.use.case.interface';
-import { PaginateRequestProps } from '@/types/types';
+import { PaginateRequestProps } from '../../../types/types';
 import {
   PaginatePermissionGroupProps,
   PermissionGroup,

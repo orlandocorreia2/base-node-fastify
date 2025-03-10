@@ -1,4 +1,4 @@
-import { PaginateRequestProps } from '@/types/types';
+import { PaginateRequestProps } from '../../../../types/types';
 import {
   PaginatePermissionGroupProps,
   PermissionGroup,
