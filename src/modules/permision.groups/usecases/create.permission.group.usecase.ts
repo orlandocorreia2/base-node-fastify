@@ -26,21 +26,23 @@ export class CreatePermissionGroupUseCase
   ) {
     const permissionGroupAlreadyRegistered =
       await this._permissionGroupRepository.findOne({
-        name: createPermissionGroup.name,
+        where: { name: createPermissionGroup.name },
       });
     if (permissionGroupAlreadyRegistered) {
       throw new UnprocessableError('Permission Group already registered!');
     }
     const permissionGroup =
-      await this._permissionGroupRepository.create<PermissionGroup>(
-        createPermissionGroup,
-      );
+      await this._permissionGroupRepository.create<PermissionGroup>({
+        data: createPermissionGroup,
+      });
     const permissionGroupRules: CreatePermissionGroupRule[] =
       permissionRulesId.map(permissionRuleId => ({
         permission_group_id: permissionGroup.id,
         permission_rule_id: permissionRuleId,
       }));
-    await this._permissionGroupRuleRepository.createMany(permissionGroupRules);
+    await this._permissionGroupRuleRepository.createMany({
+      data: permissionGroupRules,
+    });
     return permissionGroup;
   }
 }

@@ -1,5 +1,5 @@
-import { UnauthorizedError } from '../error/unauthorized.error';
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { UnauthorizedError } from '../error/unauthorized.error';
 
 export const authMiddleware = async (
   request: FastifyRequest,

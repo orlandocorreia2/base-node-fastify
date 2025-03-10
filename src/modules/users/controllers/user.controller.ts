@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { inject, injectable } from 'tsyringe';
 import { CreateUserUseCaseInterface } from '../interfaces/create.user.use.case.interface';
-import { CreateUser } from '../interfaces/user';
+import { CreateUser } from '../DTOs/user';
 
 @injectable()
 export class UserController {

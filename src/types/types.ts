@@ -19,3 +19,7 @@ export type PaginateRequestProps = {
   page: number;
   qtdItemsPerPage: number;
 };
+
+export type KeyValueProps = {
+  [key: string]: unknown;
+};

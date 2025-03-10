@@ -1,8 +1,13 @@
-import { PermissionRuleProps } from '../../../types/db';
+export type PermissionRuleProps = {
+  id: string;
+  rule: string;
+  type: 'user' | 'permissionGroup';
+  description?: string;
+};
 
-export interface PermissionRule {
+export type PermissionRule = {
   id: string;
   rule: string;
   type: PermissionRuleProps['type'];
   description?: string;
-}
+};

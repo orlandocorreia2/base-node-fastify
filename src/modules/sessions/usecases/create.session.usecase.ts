@@ -5,7 +5,7 @@ import { UserRepositoryInterface } from '../../../modules/users/interfaces/user.
 import { UnauthorizedError } from '../../../error/unauthorized.error';
 import { verifyHash } from '../../../utils/hash';
 import { app } from '../../../app';
-import { User } from '../../../modules/users/interfaces/user';
+import { User } from '../../users/DTOs/user';
 
 @injectable()
 export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
@@ -15,7 +15,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
 
   public async execute(authUser: AuthUser): Promise<AuthToken> {
     const { email, password } = authUser;
-    const user = await this._userRepository.findOne<User>({ email });
+    const user = await this._userRepository.findOne<User>({ where: { email } });
     if (!user) {
       throw new UnauthorizedError();
     }

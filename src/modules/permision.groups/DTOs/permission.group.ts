@@ -1,20 +1,26 @@
-import { PaginateProps } from '../../../types/db';
+import { DBPaginateProps } from '../../../types/db';
 
-export interface PermissionGroup {
+export type PermissionGroupProps = {
   id: string;
   name: string;
   description?: string;
-}
+};
 
-export interface CreatePermissionGroup {
+export type PermissionGroup = {
+  id: string;
   name: string;
   description?: string;
-}
+};
 
-export interface CreatePermissionGroupRequest {
+export type CreatePermissionGroup = {
+  name: string;
+  description?: string;
+};
+
+export type CreatePermissionGroupRequest = {
   name: string;
   description?: string;
   permissionRulesId: string[];
-}
+};
 
-export type PaginatePermissionGroupProps<T> = PaginateProps<T>;
+export type PaginatePermissionGroupProps<T> = DBPaginateProps<T>;

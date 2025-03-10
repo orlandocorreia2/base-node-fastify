@@ -1,11 +1,10 @@
 import { inject, injectable } from 'tsyringe';
+import { randomBytes } from 'crypto';
 import { CreateUserUseCaseInterface } from '../interfaces/create.user.use.case.interface';
 import { UserRepositoryInterface } from '../interfaces/user.repository..interface';
-import { CreateUser } from '../interfaces/user';
+import { CreateUser, User } from '../DTOs/user';
 import { generateHash } from '../../../utils/hash';
-import { randomBytes } from 'crypto';
 import { UnprocessableError } from '../../../error/unprocessable';
-import { User } from '@prisma/client';
 
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
@@ -15,7 +14,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
 
   public async execute(createUser: CreateUser): Promise<User> {
     const userAlreadyRegistered = await this._userRepository.findOne({
-      email: createUser.email,
+      where: { email: createUser.email },
     });
     if (userAlreadyRegistered) {
       throw new UnprocessableError('User already registered!');
@@ -24,8 +23,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     console.log('Password', token);
     const hashPassword = await generateHash(token);
     return await this._userRepository.create({
-      ...createUser,
-      password: hashPassword,
+      data: { ...createUser, password: hashPassword },
     });
   }
 }

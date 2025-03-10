@@ -1,24 +1,41 @@
-export type PermissionRuleProps = {
-  id: string;
-  rule: string;
-  type: 'user' | 'permissionGroup';
-  description?: string;
+import { KeyValueProps } from './types';
+
+export type DBCreateParameterProps = {
+  data: unknown;
 };
 
-export type PermissionGroupProps = {
-  id: string;
-  name: string;
-  description?: string;
+export type DBCreateManyParameterProps = {
+  data: any[];
 };
 
-export type FindManyParametersProps = {
+export type DBFindFirstParameterProps = {
+  where?: KeyValueProps;
+};
+
+export type DBFindManyParametersProps = {
+  where?: KeyValueProps;
   skip?: number;
   take?: number;
 };
 
-export type PaginateProps<T> = {
+export type DBPaginateProps<T> = {
   items: T[];
   page: number;
   qtdItemsPerPage: number;
   total: number;
+};
+
+export type DBPaginateParametersProps = {
+  where?: KeyValueProps;
+  page: number;
+  qtdItemsPerPage: number;
+};
+
+export type DBUpdateParameterProps = {
+  data: unknown;
+  where?: KeyValueProps;
+};
+
+export type DBDeleteParameterProps = {
+  where?: KeyValueProps;
 };

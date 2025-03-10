@@ -1,35 +1,43 @@
-import { PaginateRequestProps } from 'types/types';
 import { BaseRepositoryInterface } from '../../../../../shared/repository/interfaces/base.repository.interface';
 import { ModelInterface } from '../interfaces/model.create.interface.prisma';
 import { positiveNumber } from '../../../../../utils/helper';
+import {
+  DBCreateManyParameterProps,
+  DBCreateParameterProps,
+  DBDeleteParameterProps,
+  DBFindFirstParameterProps,
+  DBFindManyParametersProps,
+  DBPaginateParametersProps,
+  DBUpdateParameterProps,
+} from '../../../../../types/db';
 
 export class BaseRepositoryPrisma implements BaseRepositoryInterface {
   protected _model: ModelInterface = {} as ModelInterface;
 
-  async create<T>({ data }: { data: unknown }): Promise<T> {
+  async create<T>({ data }: DBCreateParameterProps): Promise<T> {
     return (await this._model.create({
       data,
     })) as T;
   }
 
-  async createMany<T>({ data }: { data: unknown }): Promise<T[]> {
+  async createMany<T>({ data }: DBCreateManyParameterProps): Promise<T[]> {
     return (await this._model.createMany({
       data,
     })) as T[];
   }
 
-  async findOne<T>(data: unknown): Promise<T> {
-    return (await this._model.findFirst({ where: data })) as T;
+  async findOne<T>({ where }: DBFindFirstParameterProps): Promise<T> {
+    return (await this._model.findFirst({ where })) as T;
   }
 
-  async findMany<T>(): Promise<T[]> {
-    return (await this._model.findMany({})) as T[];
+  async findMany<T>({ where }: DBFindManyParametersProps): Promise<T[]> {
+    return (await this._model.findMany({ where })) as T[];
   }
 
   async paginate<T>({
     page,
     qtdItemsPerPage,
-  }: PaginateRequestProps): Promise<T> {
+  }: DBPaginateParametersProps): Promise<T> {
     const total = await this._model.count();
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
@@ -40,5 +48,16 @@ export class BaseRepositoryPrisma implements BaseRepositoryInterface {
       take: parseInt(qtdItemsPerPage.toString()),
     });
     return { items: dataResult, page, qtdItemsPerPage, total } as T;
+  }
+
+  async update<T>({ data, where }: DBUpdateParameterProps): Promise<T> {
+    return (await this._model.update({
+      data,
+      where,
+    })) as T;
+  }
+
+  async delete({ where }: DBDeleteParameterProps): Promise<boolean> {
+    return await this._model.delete({ where });
   }
 }
