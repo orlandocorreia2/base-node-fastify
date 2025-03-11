@@ -1,6 +1,9 @@
-import { prisma } from '@/infra/database/orms/prisma/client';
-import { PermissionGroupProps, PermissionRuleProps } from '@/types/db';
-import { generateHash } from '@/utils/hash';
+import { prisma } from '../src/infra/database/orms/prisma/client';
+import { PermissionGroupProps } from '../src/modules/permision.groups/DTOs/permission.group';
+import { PermissionRuleProps } from '../src/modules/permision.groups/DTOs/permission.rule';
+import { User } from '../src/modules/users/DTOs/user';
+import { generateHash } from '../src/utils/hash';
+import { dateFutureDays } from '../src/utils/date';
 
 const seedPermissionRules = async () => {
   const permissionRules: PermissionRuleProps[] = [
@@ -133,12 +136,14 @@ const seedPermissionGroupsRules = async () => {
 
 const seedUsers = async () => {
   const hashedPassword = await generateHash('01020304');
-  const users = [
+  const expiredAt = dateFutureDays(100000);
+  const users: User[] = [
     {
       id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
       name: 'Orlando Nascimento',
       email: 'ocnascimento2@gmail.com',
       password: hashedPassword,
+      expiredAt,
       phone: '11948108855',
       address: 'Rua Solar dos Quevedos, 06',
     },
@@ -146,6 +151,7 @@ const seedUsers = async () => {
       id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
       name: 'Marcelo',
       email: 'marcelo.fatecpoa@gmail.com',
+      expiredAt,
       password: hashedPassword,
       phone: '11911111111',
       address: '',
@@ -155,6 +161,8 @@ const seedUsers = async () => {
       name: 'Dono Sistema',
       email: 'dono@gmail.com',
       password: hashedPassword,
+      expiredAt,
+      phone: '11911111111',
       address: '',
     },
   ];

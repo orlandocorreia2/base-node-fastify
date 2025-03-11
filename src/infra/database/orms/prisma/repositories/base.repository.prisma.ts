@@ -38,7 +38,7 @@ export class BaseRepositoryPrisma implements BaseRepositoryInterface {
     page,
     qtdItemsPerPage,
   }: DBPaginateParametersProps): Promise<T> {
-    const total = await this._model.count();
+    const total = await this._model.count({});
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
     const skip = (page - 1) * qtdItemsPerPage;
@@ -58,6 +58,12 @@ export class BaseRepositoryPrisma implements BaseRepositoryInterface {
   }
 
   async delete({ where }: DBDeleteParameterProps): Promise<boolean> {
-    return await this._model.delete({ where });
+    await this._model.delete({ where });
+    return true;
+  }
+
+  async deleteMany({ where }: DBDeleteParameterProps): Promise<boolean> {
+    await this._model.deleteMany({ where });
+    return true;
   }
 }

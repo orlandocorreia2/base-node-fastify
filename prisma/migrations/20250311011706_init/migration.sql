@@ -29,9 +29,7 @@ CREATE TABLE "permission_groups" (
 -- CreateTable
 CREATE TABLE "permission_group_rules" (
     "permission_group_id" TEXT NOT NULL,
-    "permission_rule_id" TEXT NOT NULL,
-
-    CONSTRAINT "permission_group_rules_pkey" PRIMARY KEY ("permission_group_id","permission_rule_id")
+    "permission_rule_id" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -40,11 +38,11 @@ CREATE TABLE "users" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "expiredAt" TIMESTAMP(3) NOT NULL,
     "phone" TEXT,
     "address" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "expiredAt" TIMESTAMP(3),
     "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
@@ -53,9 +51,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "users_permission_groups" (
     "user_id" TEXT NOT NULL,
-    "permission_group_id" TEXT NOT NULL,
-
-    CONSTRAINT "users_permission_groups_pkey" PRIMARY KEY ("user_id","permission_group_id")
+    "permission_group_id" TEXT NOT NULL
 );
 
 -- CreateIndex
@@ -65,7 +61,13 @@ CREATE UNIQUE INDEX "permission_rules_rule_key" ON "permission_rules"("rule");
 CREATE UNIQUE INDEX "permission_groups_name_key" ON "permission_groups"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "permission_group_rules_permission_group_id_permission_rule__key" ON "permission_group_rules"("permission_group_id", "permission_rule_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_permission_groups_user_id_permission_group_id_key" ON "users_permission_groups"("user_id", "permission_group_id");
 
 -- AddForeignKey
 ALTER TABLE "permission_group_rules" ADD CONSTRAINT "permission_group_rules_permission_group_id_fkey" FOREIGN KEY ("permission_group_id") REFERENCES "permission_groups"("id") ON DELETE CASCADE ON UPDATE NO ACTION;

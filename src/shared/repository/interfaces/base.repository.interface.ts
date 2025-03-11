@@ -16,4 +16,5 @@ export interface BaseRepositoryInterface {
   paginate<T>({ page, qtdItemsPerPage }: DBPaginateParametersProps): Promise<T>;
   update<T>({ data, where }: DBUpdateParameterProps): Promise<T>;
   delete({ where }: DBDeleteParameterProps): Promise<boolean>;
+  deleteMany({ where }: DBDeleteParameterProps): Promise<boolean>;
 }

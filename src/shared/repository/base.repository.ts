@@ -46,4 +46,8 @@ export class BaseRepository implements BaseRepositoryInterface {
   async delete({ where }: DBDeleteParameterProps): Promise<boolean> {
     return await this._infraRepositoryInfra.delete({ where });
   }
+
+  async deleteMany({ where }: DBDeleteParameterProps): Promise<boolean> {
+    return await this._infraRepositoryInfra.deleteMany({ where });
+  }
 }

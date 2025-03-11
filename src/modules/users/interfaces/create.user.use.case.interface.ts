@@ -1,5 +1,5 @@
-import { CreateUser, User } from '../DTOs/user';
+import { CreateUserRequest, User } from '../DTOs/user';
 
 export interface CreateUserUseCaseInterface {
-  execute(createUser: CreateUser): Promise<User>;
+  execute(createUser: CreateUserRequest): Promise<User>;
 }

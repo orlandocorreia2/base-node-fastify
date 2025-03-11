@@ -52,7 +52,7 @@ model PermissionGroupRule {
   permissionGroup PermissionGroup @relation(fields: [permission_group_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   permissionRule PermissionRule @relation(fields: [permission_rule_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@id([permission_group_id, permission_rule_id])
+  @@unique([permission_group_id, permission_rule_id])
   @@map("permission_group_rules")
 }
 
@@ -61,11 +61,11 @@ model User {
   name String
   email String @unique
   password String
+  expiredAt DateTime
   phone String?
   address String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  expiredAt DateTime?
   deletedAt DateTime?
 
   permissionGroups UserPermissionGroup[]
@@ -80,7 +80,7 @@ model UserPermissionGroup {
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   permissionGroup PermissionGroup @relation(fields: [permission_group_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@id([user_id, permission_group_id])
+  @@unique([user_id, permission_group_id])
   @@map("users_permission_groups")
 }
 
