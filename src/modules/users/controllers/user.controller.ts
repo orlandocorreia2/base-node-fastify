@@ -1,14 +1,18 @@
-import { FastifyReply } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { inject, injectable } from 'tsyringe';
 import { CreateUserRequestProps } from '../DTOs/user';
 import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
-import { FastifyAuthRequest } from '../../../types/types';
+import { FastifyAuthRequest, PaginateRequestProps } from '../../../types/types';
+import { PaginateUsersUseCaseInterface } from '../usecases/interfaces/paginate.users.use.case.interface';
+import { PaginateUserResponse } from './responses/paginate.user.response';
 
 @injectable()
 export class UserController {
   constructor(
     @inject('CreateUserUseCase')
     private _createUserUseCase: CreateUserUseCaseInterface,
+    @inject('PaginateUsersUseCase')
+    private _paginateUsersUseCase: PaginateUsersUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -29,6 +33,19 @@ export class UserController {
     } catch (error) {
       console.log('Error:', error);
       throw error;
+    }
+  }
+
+  async findAll(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { page, qtdItemsPerPage } = request.query as PaginateRequestProps;
+      const result = await this._paginateUsersUseCase.execute({
+        page,
+        qtdItemsPerPage,
+      });
+      return PaginateUserResponse.success({ result, reply });
+    } catch (error) {
+      PaginateUserResponse.error(error);
     }
   }
 }

@@ -1,3 +1,6 @@
+import { DBPaginateProps } from '../../../types/db';
+import { PermissionGroup } from '../../permision.groups/DTOs/permission.group';
+
 export type User = {
   id: string;
   name: string;
@@ -6,6 +9,9 @@ export type User = {
   expired_at: Date;
   phone?: string;
   address?: string;
+  created_at?: Date;
+  updated_at?: Date;
+  permissionGroups?: { permissionGroup: PermissionGroup }[];
 };
 
 export type CreateUser = {
@@ -36,3 +42,5 @@ export type CreateUserRequestProps = {
   address?: string;
   permissionGroupsId?: string[];
 };
+
+export type PaginateUserProps<T> = DBPaginateProps<T>;

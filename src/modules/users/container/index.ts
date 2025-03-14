@@ -7,10 +7,17 @@ import { UserPermissionGroupRepositoryInterface } from '../repositories/interfac
 import { UserPermissionGroupRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/user.permission.group.repository.prisma';
 import { GetUserProfileUseCaseInterface } from '../usecases/interfaces/get.user.profile.use.case.interface';
 import { GetUserProfileUserUseCase } from '../usecases/get.user.profile.usecase';
+import { PaginateUsersUseCase } from '../usecases/paginate.users.usecase';
+import { PaginateUsersUseCaseInterface } from '../usecases/interfaces/paginate.users.use.case.interface';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
   CreateUserUseCase,
+);
+
+container.registerSingleton<PaginateUsersUseCaseInterface>(
+  'PaginateUsersUseCase',
+  PaginateUsersUseCase,
 );
 
 container.registerSingleton<GetUserProfileUseCaseInterface>(

@@ -5,6 +5,7 @@ import { createUserSchema } from './schemas/create.user.schema';
 import { authMiddleware } from '../../../middlewares/auth.middleware';
 import { UserProfileController } from '../controllers/user.profile.controller';
 import { profileUserSchema } from './schemas/profile.user.schema';
+import { paginateUsersSchema } from './schemas/paginate.user.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
@@ -15,6 +16,13 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
     { schema: createUserSchema, preHandler: authMiddleware },
     (request, reply) =>
       userController.create(request as FastifyAuthRequest, reply),
+  );
+
+  app.get(
+    '/users',
+    { schema: paginateUsersSchema, preHandler: authMiddleware },
+    (request, reply) =>
+      userController.findAll(request as FastifyAuthRequest, reply),
   );
 
   app.get(

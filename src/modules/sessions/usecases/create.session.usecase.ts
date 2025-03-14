@@ -5,7 +5,7 @@ import { UnauthorizedError } from '../../../error/unauthorized.error';
 import { verifyHash } from '../../../utils/hash';
 import { app } from '../../../app';
 import { User } from '../../users/DTOs/user';
-import { UserRepositoryInterface } from 'modules/users/repositories/interfaces/user.repository.interface';
+import { UserRepositoryInterface } from '../../users/repositories/interfaces/user.repository.interface';
 
 @injectable()
 export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
@@ -17,6 +17,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
     const { email, password } = authUser;
     const user = await this._userRepository.findOne<User>({
       filter: { email },
+      relationships: { rules: true },
     });
     if (!user) {
       throw new UnauthorizedError();
@@ -25,14 +26,37 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
     if (!isPassword) {
       throw new UnauthorizedError();
     }
-    const token = app.jwt.sign(
-      {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-      },
-      { expiresIn: '1h' },
-    );
+    const userInfoToken = this.generateUserInfoToken(user);
+    const token = app.jwt.sign(userInfoToken, { expiresIn: '1h' });
     return { token };
+  }
+
+  private generateUserInfoToken(user: User) {
+    const permissionGroups: { id: string; name: string }[] = [];
+    const permissionRules: { id: string; rule: string }[] = [];
+    user.permissionGroups?.forEach(permissionGroupItem => {
+      permissionGroups.push({
+        id: permissionGroupItem.permissionGroup.id,
+        name: permissionGroupItem.permissionGroup.name,
+      });
+      permissionGroupItem.permissionGroup.rules?.forEach(permissionRuleItem => {
+        permissionRules.push({
+          id: permissionRuleItem.permissionRule.id,
+          rule: permissionRuleItem.permissionRule.rule,
+        });
+      });
+    });
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      expiredAt: user.expired_at,
+      phone: user.phone,
+      address: user.address,
+      createdAt: user.created_at,
+      updatedAt: user.updated_at,
+      permissionGroups,
+      permissionRules,
+    };
   }
 }
