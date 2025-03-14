@@ -1,3 +1,8 @@
-import { BaseRepositoryInterface } from '../../../../shared/repository/interfaces/base.repository.interface';
+import { CreateManyPermissionGroupRulesRepositoryProps } from '../types';
 
-export type PermissionGroupRuleRepositoryInterface = BaseRepositoryInterface;
+export interface PermissionGroupRuleRepositoryInterface {
+  deleteMany(permissionGroupId: string): Promise<void>;
+  createMany<T>(
+    data: CreateManyPermissionGroupRulesRepositoryProps,
+  ): Promise<T>;
+}

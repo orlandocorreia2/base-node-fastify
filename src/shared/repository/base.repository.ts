@@ -25,17 +25,22 @@ export class BaseRepository implements BaseRepositoryInterface {
     return await this._infraRepositoryInfra.findOne({ where });
   }
 
-  async findMany<T>({ where }: DBFindManyParametersProps): Promise<T[]> {
-    return await this._infraRepositoryInfra.findMany<T>({ where });
+  async findMany<T>({
+    where,
+    include,
+  }: DBFindManyParametersProps): Promise<T[]> {
+    return await this._infraRepositoryInfra.findMany<T>({ where, include });
   }
 
   async paginate<T>({
     page,
     qtdItemsPerPage,
+    relationships,
   }: DBPaginateParametersProps): Promise<T> {
     return await this._infraRepositoryInfra.paginate<T>({
       page,
       qtdItemsPerPage,
+      relationships,
     });
   }
 

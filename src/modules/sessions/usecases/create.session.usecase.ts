@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
-import { CreateSessionUseCaseInterface } from '../interfaces/create.session.usecase.interface';
-import { AuthToken, AuthUser } from '../interfaces/session';
-import { UserRepositoryInterface } from '../../../modules/users/interfaces/user.repository..interface';
+import { CreateSessionUseCaseInterface } from './interfaces/create.session.usecase.interface';
+import { AuthToken, AuthUser } from '../DTOs/session';
 import { UnauthorizedError } from '../../../error/unauthorized.error';
 import { verifyHash } from '../../../utils/hash';
 import { app } from '../../../app';
 import { User } from '../../users/DTOs/user';
+import { UserRepositoryInterface } from 'modules/users/repositories/interfaces/user.repository.interface';
 
 @injectable()
 export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
@@ -15,7 +15,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
 
   public async execute(authUser: AuthUser): Promise<AuthToken> {
     const { email, password } = authUser;
-    const user = await this._userRepository.findOne<User>({ where: { email } });
+    const user = await this._userRepository.findOne<User>({ email });
     if (!user) {
       throw new UnauthorizedError();
     }

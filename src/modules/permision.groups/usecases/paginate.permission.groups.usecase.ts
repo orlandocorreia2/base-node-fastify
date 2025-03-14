@@ -22,11 +22,13 @@ export class PaginatePermissionGroupsUseCase
   }: PaginateRequestProps): Promise<
     PaginatePermissionGroupProps<PermissionGroup>
   > {
-    return await this._permissionGroupRepository.paginate<
+    const result = await this._permissionGroupRepository.paginate<
       PaginatePermissionGroupProps<PermissionGroup>
     >({
       page,
       qtdItemsPerPage,
+      relationships: { users: true, rules: true },
     });
+    return result;
   }
 }

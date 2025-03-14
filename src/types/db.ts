@@ -29,6 +29,7 @@ export type DBPaginateParametersProps = {
   where?: KeyValueProps;
   page: number;
   qtdItemsPerPage: number;
+  relationships?: DBRelationships;
 };
 
 export type DBUpdateParameterProps = {
@@ -38,4 +39,10 @@ export type DBUpdateParameterProps = {
 
 export type DBDeleteParameterProps = {
   where?: KeyValueProps;
+};
+
+export type DBRelationships = {
+  users?: boolean;
+  rules?: boolean;
+  permissionGroups?: boolean;
 };

@@ -1,11 +1,6 @@
-import {
-  CreatePermissionGroup,
-  PermissionGroup,
-} from '../../DTOs/permission.group';
+import { PermissionGroup } from '../../DTOs/permission.group';
+import { CreatePermissionGroupUseCaseProps } from '../types';
 
 export interface CreatePermissionGroupUseCaseInterface {
-  execute(
-    createUser: CreatePermissionGroup,
-    permissionRulesId: string[],
-  ): Promise<PermissionGroup>;
+  execute(data: CreatePermissionGroupUseCaseProps): Promise<PermissionGroup>;
 }

@@ -5,6 +5,49 @@ import { User } from '../src/modules/users/DTOs/user';
 import { generateHash } from '../src/utils/hash';
 import { dateFutureDays } from '../src/utils/date';
 
+const seedUsers = async () => {
+  const hashedPassword = await generateHash('01020304');
+  const expired_at = dateFutureDays(100000);
+  const users: User[] = [
+    {
+      id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
+      name: 'Orlando Nascimento',
+      email: 'ocnascimento2@gmail.com',
+      password: hashedPassword,
+      expired_at,
+      phone: '11948108855',
+      address: 'Rua Solar dos Quevedos, 06',
+    },
+    {
+      id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
+      name: 'Marcelo',
+      email: 'marcelo.fatecpoa@gmail.com',
+      expired_at,
+      password: hashedPassword,
+      phone: '11911111111',
+      address: '',
+    },
+    {
+      id: '8e23b399-dede-47d8-aa04-3bb2885f43d8',
+      name: 'Dono Sistema',
+      email: 'dono@gmail.com',
+      password: hashedPassword,
+      expired_at,
+      phone: '11911111111',
+      address: '',
+    },
+  ];
+
+  for (const user of users) {
+    const hasPermission = await prisma.user.findFirst({
+      where: { email: user.email },
+    });
+    if (!hasPermission) {
+      await prisma.user.create({ data: user });
+    }
+  }
+};
+
 const seedPermissionRules = async () => {
   const permissionRules: PermissionRuleProps[] = [
     {
@@ -71,6 +114,7 @@ const seedPermissionGroups = async () => {
   const permissionGroups: PermissionGroupProps[] = [
     {
       id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
+      created_by_id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
       name: 'Administrador',
       description: 'Grupo com todas as permissões',
     },
@@ -81,6 +125,35 @@ const seedPermissionGroups = async () => {
     });
     if (!hasPermission) {
       await prisma.permissionGroup.create({ data: permissionGroup });
+    }
+  }
+};
+
+const seedUsersPermissionGroups = async () => {
+  const usersPermissionGroup = [
+    {
+      user_id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
+      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
+    },
+    {
+      user_id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
+      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
+    },
+    {
+      user_id: '8e23b399-dede-47d8-aa04-3bb2885f43d8',
+      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
+    },
+  ];
+
+  for (const userPermissionGroup of usersPermissionGroup) {
+    const hasPermission = await prisma.userPermissionGroup.findFirst({
+      where: {
+        user_id: userPermissionGroup.user_id,
+        permission_group_id: userPermissionGroup.permission_group_id,
+      },
+    });
+    if (!hasPermission) {
+      await prisma.userPermissionGroup.create({ data: userPermissionGroup });
     }
   }
 };
@@ -134,84 +207,12 @@ const seedPermissionGroupsRules = async () => {
   }
 };
 
-const seedUsers = async () => {
-  const hashedPassword = await generateHash('01020304');
-  const expiredAt = dateFutureDays(100000);
-  const users: User[] = [
-    {
-      id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
-      name: 'Orlando Nascimento',
-      email: 'ocnascimento2@gmail.com',
-      password: hashedPassword,
-      expiredAt,
-      phone: '11948108855',
-      address: 'Rua Solar dos Quevedos, 06',
-    },
-    {
-      id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
-      name: 'Marcelo',
-      email: 'marcelo.fatecpoa@gmail.com',
-      expiredAt,
-      password: hashedPassword,
-      phone: '11911111111',
-      address: '',
-    },
-    {
-      id: '8e23b399-dede-47d8-aa04-3bb2885f43d8',
-      name: 'Dono Sistema',
-      email: 'dono@gmail.com',
-      password: hashedPassword,
-      expiredAt,
-      phone: '11911111111',
-      address: '',
-    },
-  ];
-
-  for (const user of users) {
-    const hasPermission = await prisma.user.findFirst({
-      where: { email: user.email },
-    });
-    if (!hasPermission) {
-      await prisma.user.create({ data: user });
-    }
-  }
-};
-
-const seedUsersPermissionGroup = async () => {
-  const usersPermissionGroup = [
-    {
-      user_id: 'f3ea4819-0955-4839-815f-a92e13aadbb3',
-      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
-    },
-    {
-      user_id: '3117fdcb-2b3c-4814-a2a8-137df20b9b5d',
-      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
-    },
-    {
-      user_id: '8e23b399-dede-47d8-aa04-3bb2885f43d8',
-      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
-    },
-  ];
-
-  for (const userPermissionGroup of usersPermissionGroup) {
-    const hasPermission = await prisma.userPermissionGroup.findFirst({
-      where: {
-        user_id: userPermissionGroup.user_id,
-        permission_group_id: userPermissionGroup.permission_group_id,
-      },
-    });
-    if (!hasPermission) {
-      await prisma.userPermissionGroup.create({ data: userPermissionGroup });
-    }
-  }
-};
-
 const seed = async () => {
+  await seedUsers();
   await seedPermissionRules();
   await seedPermissionGroups();
+  await seedUsersPermissionGroups();
   await seedPermissionGroupsRules();
-  await seedUsers();
-  await seedUsersPermissionGroup();
 };
 
 seed().then(() => {

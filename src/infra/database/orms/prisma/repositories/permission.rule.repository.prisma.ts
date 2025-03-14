@@ -1,15 +1,19 @@
 import { injectable } from 'tsyringe';
-import { BaseRepositoryPrisma } from './base.repository.prisma';
 import { prisma } from '../client';
-import { BaseRepositoryInterface } from '../../../../../shared/repository/interfaces/base.repository.interface';
+import { PermissionRuleRepositoryInterface } from 'modules/permision.groups/repositories/interfaces/permission.rule.repository.interface';
+import { KeyValueProps } from 'types/types';
 
 @injectable()
 export class PermissionRuleRepositoryPrisma
-  extends BaseRepositoryPrisma
-  implements BaseRepositoryInterface
+  implements PermissionRuleRepositoryInterface
 {
-  constructor() {
-    super();
-    this._model = prisma.permissionRule;
+  constructor(private _model = prisma.permissionRule) {}
+
+  async findOne<T>(filter: KeyValueProps): Promise<T> {
+    return (await this._model.findFirst({ where: filter })) as T;
+  }
+
+  async findMany<T>(): Promise<T[]> {
+    return (await this._model.findMany()) as T[];
   }
 }

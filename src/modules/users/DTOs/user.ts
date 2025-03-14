@@ -3,20 +3,32 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  expiredAt: Date;
+  expired_at: Date;
   phone?: string;
   address?: string;
 };
 
 export type CreateUser = {
+  created_by_id?: string;
   name: string;
   email: string;
-  expiredAt: Date;
+  password: string;
+  expiredAt: string;
   phone?: string;
   address?: string;
 };
 
-export type CreateUserRequest = {
+export type CreateUserUseCaseProps = {
+  created_by_id: string;
+  name: string;
+  email: string;
+  expiredAt: string;
+  phone?: string;
+  address?: string;
+  permissionGroupsId?: string[];
+};
+
+export type CreateUserRequestProps = {
   name: string;
   email: string;
   expiredAt: string;

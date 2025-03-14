@@ -1,6 +1,7 @@
 import {
   FastifyBaseLogger,
   FastifyInstance,
+  FastifyRequest,
   RawReplyDefaultExpression,
   RawRequestDefaultExpression,
   RawServerDefault,
@@ -23,3 +24,10 @@ export type PaginateRequestProps = {
 export type KeyValueProps = {
   [key: string]: unknown;
 };
+
+export interface FastifyAuthRequest extends FastifyRequest {
+  user: {
+    id: string;
+    name: string;
+  };
+}

@@ -1,12 +1,12 @@
-import { FastifyReply, FastifyRequest } from "fastify";
-import { inject, injectable } from "tsyringe";
-import { AuthUser } from "../interfaces/session";
-import { CreateSessionUseCaseInterface } from "../interfaces/create.session.usecase.interface";
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { inject, injectable } from 'tsyringe';
+import { AuthUser } from '../DTOs/session';
+import { CreateSessionUseCaseInterface } from '../usecases/interfaces/create.session.usecase.interface';
 
 @injectable()
 export class SessionController {
   constructor(
-    @inject("CreateSessionUseCase")
+    @inject('CreateSessionUseCase')
     private _createSessionUseCase: CreateSessionUseCaseInterface,
   ) {}
 
@@ -19,7 +19,7 @@ export class SessionController {
       });
       return reply.status(200).send(session);
     } catch (error) {
-      console.log("Error:", error);
+      console.log('Error:', error);
       throw error;
     }
   }

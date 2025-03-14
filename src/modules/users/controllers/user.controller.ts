@@ -1,7 +1,8 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyReply } from 'fastify';
 import { inject, injectable } from 'tsyringe';
-import { CreateUserUseCaseInterface } from '../interfaces/create.user.use.case.interface';
-import { CreateUserRequest } from '../DTOs/user';
+import { CreateUserRequestProps } from '../DTOs/user';
+import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
+import { FastifyAuthRequest } from '../../../types/types';
 
 @injectable()
 export class UserController {
@@ -10,11 +11,13 @@ export class UserController {
     private _createUserUseCase: CreateUserUseCaseInterface,
   ) {}
 
-  async create(request: FastifyRequest, reply: FastifyReply) {
+  async create(request: FastifyAuthRequest, reply: FastifyReply) {
     try {
+      const created_by_id = request.user.id;
       const { name, email, expiredAt, phone, address, permissionGroupsId } =
-        request.body as CreateUserRequest;
+        request.body as CreateUserRequestProps;
       await this._createUserUseCase.execute({
+        created_by_id,
         name,
         email,
         expiredAt,

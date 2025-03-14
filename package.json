@@ -9,8 +9,9 @@
     "build": "tsc -p tsconfig.json",
     "prepare": "husky",
     "test": "echo test",
-    "migrate": "npx prisma migrate dev",
-    "seed": "npx prisma db seed"
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:seed": "npx prisma db seed",
+    "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.0",

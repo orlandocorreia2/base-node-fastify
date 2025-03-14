@@ -13,6 +13,6 @@ export class FindAllPermissionRulesUseCase
   ) {}
 
   public async execute() {
-    return await this._permissionRuleRepository.findMany<PermissionRule>({});
+    return await this._permissionRuleRepository.findMany<PermissionRule>();
   }
 }
