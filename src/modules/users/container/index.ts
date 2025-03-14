@@ -4,7 +4,7 @@ import { CreateUserUseCase } from '../../../modules/users/usecases/create.user.u
 import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
-import { UserPermissionGroupRepositoryPrisma } from 'infra/database/orms/prisma/repositories/user.permission.group.repository.prisma';
+import { UserPermissionGroupRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/user.permission.group.repository.prisma';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',

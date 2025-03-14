@@ -10,10 +10,8 @@ import { KeyValueProps } from 'types/types';
 export class PermissionGroupRepositoryPrisma
   implements PermissionGroupRepositoryInterface
 {
-  constructor(private _model = prisma.permissionGroup) {}
-
   async findOne<T>(filter: KeyValueProps): Promise<T> {
-    return (await this._model.findFirst({ where: filter })) as T;
+    return (await prisma.permissionGroup.findFirst({ where: filter })) as T;
   }
 
   async paginate<T>({
@@ -21,7 +19,7 @@ export class PermissionGroupRepositoryPrisma
     qtdItemsPerPage,
     relationships,
   }: DBPaginateParametersProps): Promise<T> {
-    const total = await this._model.count({});
+    const total = await prisma.permissionGroup.count({});
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
     const skip = (page - 1) * qtdItemsPerPage;
@@ -36,7 +34,7 @@ export class PermissionGroupRepositoryPrisma
         include: { permissionRule: { select: { id: true, rule: true } } },
       };
     }
-    const result = await this._model.findMany({
+    const result = await prisma.permissionGroup.findMany({
       skip,
       take: parseInt(qtdItemsPerPage.toString()),
       include,
@@ -49,7 +47,7 @@ export class PermissionGroupRepositoryPrisma
     name,
     description,
   }: CreatePermissionGroupRepositoryProps): Promise<T> {
-    return (await this._model.create({
+    return (await prisma.permissionGroup.create({
       data: { created_by_id, name, description },
     })) as T;
   }

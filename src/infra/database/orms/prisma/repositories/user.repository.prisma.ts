@@ -2,16 +2,14 @@ import { injectable } from 'tsyringe';
 import { prisma } from '../client';
 import { UserRepositoryInterface } from '../../../../../modules/users/repositories/interfaces/user.repository.interface';
 import { DBPaginateParametersProps } from '../../../../../types/db';
-import { positiveNumber } from 'utils/helper';
+import { positiveNumber } from '../../../../../utils/helper';
 import { CreateUserRepositoryProps } from '../../../../../modules/users/repositories/types';
-import { KeyValueProps } from 'types/types';
+import { KeyValueProps } from '../../../../../types/types';
 
 @injectable()
 export class UserRepositoryPrisma implements UserRepositoryInterface {
-  constructor(private _model = prisma.user) {}
-
   async findOne<T>(filter: KeyValueProps): Promise<T> {
-    return (await this._model.findFirst({ where: filter })) as T;
+    return (await prisma.user.findFirst({ where: filter })) as T;
   }
 
   async paginate<T>({
@@ -19,7 +17,7 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
     qtdItemsPerPage,
     relationships,
   }: DBPaginateParametersProps): Promise<T> {
-    const total = await this._model.count({});
+    const total = await prisma.user.count({});
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
     const skip = (page - 1) * qtdItemsPerPage;
@@ -29,7 +27,7 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
         include: { permissionGroup: { select: { id: true, name: true } } },
       };
     }
-    const result = await this._model.findMany({
+    const result = await prisma.user.findMany({
       skip,
       take: parseInt(qtdItemsPerPage.toString()),
       include,
@@ -38,6 +36,6 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
   }
 
   async create<T>(data: CreateUserRepositoryProps): Promise<T> {
-    return (await this._model.create({ data })) as T;
+    return (await prisma.user.create({ data })) as T;
   }
 }

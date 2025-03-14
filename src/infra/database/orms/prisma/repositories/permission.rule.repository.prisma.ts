@@ -7,13 +7,11 @@ import { KeyValueProps } from 'types/types';
 export class PermissionRuleRepositoryPrisma
   implements PermissionRuleRepositoryInterface
 {
-  constructor(private _model = prisma.permissionRule) {}
-
   async findOne<T>(filter: KeyValueProps): Promise<T> {
-    return (await this._model.findFirst({ where: filter })) as T;
+    return (await prisma.permissionRule.findFirst({ where: filter })) as T;
   }
 
   async findMany<T>(): Promise<T[]> {
-    return (await this._model.findMany()) as T[];
+    return (await prisma.permissionRule.findMany()) as T[];
   }
 }

@@ -7,9 +7,8 @@ import { CreateManyPermissionGroupRulesRepositoryProps } from '../../../../../mo
 export class PermissionGroupRuleRepositoryPrisma
   implements PermissionGroupRuleRepositoryInterface
 {
-  constructor(private _model = prisma.permissionGroupRule) {}
   async deleteMany(permissionGroupId: string): Promise<void> {
-    await this._model.deleteMany({
+    await prisma.permissionGroupRule.deleteMany({
       where: { permission_group_id: permissionGroupId },
     });
   }
@@ -22,7 +21,7 @@ export class PermissionGroupRuleRepositoryPrisma
       permission_group_id: permissionGroupId,
       permission_rule_id: permissionRuleId,
     }));
-    const result = await this._model.createMany({
+    const result = await prisma.permissionGroupRule.createMany({
       data: dataPermissionGroupRule,
     });
     return result as T;

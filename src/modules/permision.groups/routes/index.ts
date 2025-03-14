@@ -1,5 +1,5 @@
 import { container } from 'tsyringe';
-import { FastifyTypedInstance } from '../../../types/types';
+import { FastifyAuthRequest, FastifyTypedInstance } from '../../../types/types';
 import { PermissionGroupController } from '../controllers/permission.group.controller';
 import { createPermissionGroupSchema } from './schemas/create.permission.group.schema';
 import { authMiddleware } from '../../../middlewares/auth.middleware';
@@ -16,7 +16,8 @@ export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
   app.post(
     '/permission-groups',
     { schema: createPermissionGroupSchema, preHandler: authMiddleware },
-    (request, reply) => permissionGroupController.create(request, reply),
+    (request, reply) =>
+      permissionGroupController.create(request as FastifyAuthRequest, reply),
   );
 
   app.get(

@@ -9,7 +9,7 @@ import { PaginatePermissionGroupsUseCase } from '../usecases/paginate.permission
 import { PaginatePermissionGroupsUseCaseInterface } from '../usecases/interfaces/paginate.permission.groups.use.case.interface';
 import { PermissionGroupRepositoryInterface } from '../repositories/interfaces/permission.group.repository.interface';
 import { PermissionRuleRepositoryInterface } from '../repositories/interfaces/permission.rule.repository.interface';
-import { PermissionGroupRuleRepositoryPrisma } from 'infra/database/orms/prisma/repositories/permission.group.rule.repository.prisma';
+import { PermissionGroupRuleRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/permission.group.rule.repository.prisma';
 import { PermissionGroupRuleRepositoryInterface } from '../repositories/interfaces/permission.group.rule.repository.interface';
 
 container.registerSingleton<CreatePermissionGroupUseCaseInterface>(

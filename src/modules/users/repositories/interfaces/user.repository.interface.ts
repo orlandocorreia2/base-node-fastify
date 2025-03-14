@@ -1,5 +1,4 @@
-import { CreateUser } from 'modules/users/DTOs/user';
-import { DBPaginateParametersProps } from 'types/db';
+import { DBPaginateParametersProps } from '../../../../types/db';
 import { CreateUserRepositoryProps } from '../types';
 import { KeyValueProps } from '../../../../types/types';
 
