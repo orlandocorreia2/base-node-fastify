@@ -1,6 +1,8 @@
-import { DBPaginateParametersProps } from '../../../../types/db';
+import {
+  DBFindOneUserRepositoryProps,
+  DBPaginateParametersProps,
+} from '../../../../types/db';
 import { CreateUserRepositoryProps } from '../types';
-import { KeyValueProps } from '../../../../types/types';
 
 export interface UserRepositoryInterface {
   create<T>(data: CreateUserRepositoryProps): Promise<T>;
@@ -9,5 +11,5 @@ export interface UserRepositoryInterface {
     qtdItemsPerPage,
     relationships,
   }: DBPaginateParametersProps): Promise<T>;
-  findOne<T>(filter: KeyValueProps): Promise<T>;
+  findOne<T>(data: DBFindOneUserRepositoryProps): Promise<T>;
 }

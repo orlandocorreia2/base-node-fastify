@@ -47,7 +47,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
 
   private async verifyUserAlreadyRegistered(email: string) {
     const userAlreadyRegistered = await this._userRepository.findOne({
-      email,
+      filter: { email },
     });
     if (userAlreadyRegistered) {
       throw new UnprocessableError('User already registered!');

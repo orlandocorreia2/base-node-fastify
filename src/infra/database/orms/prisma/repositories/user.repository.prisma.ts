@@ -1,15 +1,39 @@
 import { injectable } from 'tsyringe';
 import { prisma } from '../client';
 import { UserRepositoryInterface } from '../../../../../modules/users/repositories/interfaces/user.repository.interface';
-import { DBPaginateParametersProps } from '../../../../../types/db';
+import {
+  DBFindOneUserRepositoryProps,
+  DBPaginateParametersProps,
+} from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
 import { CreateUserRepositoryProps } from '../../../../../modules/users/repositories/types';
-import { KeyValueProps } from '../../../../../types/types';
 
 @injectable()
 export class UserRepositoryPrisma implements UserRepositoryInterface {
-  async findOne<T>(filter: KeyValueProps): Promise<T> {
-    return (await prisma.user.findFirst({ where: filter })) as T;
+  async findOne<T>({
+    filter,
+    relationships,
+  }: DBFindOneUserRepositoryProps): Promise<T> {
+    const include: any = {};
+    if (relationships?.rules) {
+      include.permissionGroups = {
+        include: {
+          permissionGroup: {
+            include: {
+              rules: {
+                include: {
+                  permissionRule: { select: { id: true, rule: true } },
+                },
+              },
+            },
+          },
+        },
+      };
+    }
+    return (await prisma.user.findFirst({
+      where: filter,
+      include,
+    })) as T;
   }
 
   async paginate<T>({

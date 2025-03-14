@@ -5,10 +5,17 @@ import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.u
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
 import { UserPermissionGroupRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/user.permission.group.repository.prisma';
+import { GetUserProfileUseCaseInterface } from '../usecases/interfaces/get.user.profile.use.case.interface';
+import { GetUserProfileUserUseCase } from '../usecases/get.user.profile.usecase';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
   CreateUserUseCase,
+);
+
+container.registerSingleton<GetUserProfileUseCaseInterface>(
+  'GetUserProfileUseCase',
+  GetUserProfileUserUseCase,
 );
 
 container.registerSingleton<UserRepositoryInterface>(

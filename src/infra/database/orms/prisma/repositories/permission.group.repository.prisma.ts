@@ -1,16 +1,18 @@
 import { injectable } from 'tsyringe';
 import { prisma } from '../client';
-import { PermissionGroupRepositoryInterface } from 'modules/permision.groups/repositories/interfaces/permission.group.repository.interface';
-import { DBPaginateParametersProps } from '../../../../../types/db';
+import { PermissionGroupRepositoryInterface } from '../../../../../modules/permision.groups/repositories/interfaces/permission.group.repository.interface';
+import {
+  DBFindOneUserRepositoryProps,
+  DBPaginateParametersProps,
+} from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
 import { CreatePermissionGroupRepositoryProps } from '../../../../../modules/permision.groups/repositories/types';
-import { KeyValueProps } from 'types/types';
 
 @injectable()
 export class PermissionGroupRepositoryPrisma
   implements PermissionGroupRepositoryInterface
 {
-  async findOne<T>(filter: KeyValueProps): Promise<T> {
+  async findOne<T>({ filter }: DBFindOneUserRepositoryProps): Promise<T> {
     return (await prisma.permissionGroup.findFirst({ where: filter })) as T;
   }
 

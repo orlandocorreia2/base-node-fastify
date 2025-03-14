@@ -1,13 +1,13 @@
 import { injectable } from 'tsyringe';
 import { prisma } from '../client';
-import { PermissionRuleRepositoryInterface } from 'modules/permision.groups/repositories/interfaces/permission.rule.repository.interface';
-import { KeyValueProps } from 'types/types';
+import { PermissionRuleRepositoryInterface } from '../../../../../modules/permision.groups/repositories/interfaces/permission.rule.repository.interface';
+import { DBFindOneUserRepositoryProps } from 'types/db';
 
 @injectable()
 export class PermissionRuleRepositoryPrisma
   implements PermissionRuleRepositoryInterface
 {
-  async findOne<T>(filter: KeyValueProps): Promise<T> {
+  async findOne<T>({ filter }: DBFindOneUserRepositoryProps): Promise<T> {
     return (await prisma.permissionRule.findFirst({ where: filter })) as T;
   }
 

@@ -24,7 +24,7 @@ export class CreatePermissionGroupUseCase
     permissionRulesId,
   }: CreatePermissionGroupUseCaseProps) {
     const permissionGroupAlreadyRegistered =
-      await this._permissionGroupRepository.findOne({ name });
+      await this._permissionGroupRepository.findOne({ filter: { name } });
     if (permissionGroupAlreadyRegistered) {
       throw new UnprocessableError('Permission Group already registered!');
     }
