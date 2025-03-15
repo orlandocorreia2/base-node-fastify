@@ -13,6 +13,8 @@ import { PermissionGroupRuleRepositoryPrisma } from '../../../infra/database/orm
 import { PermissionGroupRuleRepositoryInterface } from '../repositories/interfaces/permission.group.rule.repository.interface';
 import { FindOnePermissionGroupUseCase } from '../usecases/find.one.permission.group.usecase';
 import { FindOnePermissionGroupUseCaseInterface } from '../usecases/interfaces/find.one.permission.group.use.case.interface';
+import { UpdatePermissionGroupUseCaseInterface } from '../usecases/interfaces/update.permission.group.use.case.interface';
+import { UpdatePermissionGroupUseCase } from '../usecases/update.permission.group.usecase';
 
 container.registerSingleton<CreatePermissionGroupUseCaseInterface>(
   'CreatePermissionGroupUseCase',
@@ -27,6 +29,11 @@ container.registerSingleton<PaginatePermissionGroupsUseCaseInterface>(
 container.registerSingleton<FindOnePermissionGroupUseCaseInterface>(
   'FindOnePermissionGroupUseCase',
   FindOnePermissionGroupUseCase,
+);
+
+container.registerSingleton<UpdatePermissionGroupUseCaseInterface>(
+  'UpdatePermissionGroupUseCase',
+  UpdatePermissionGroupUseCase,
 );
 
 container.registerSingleton<FindAllPermissionRulesUseCaseInterface>(

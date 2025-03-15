@@ -33,6 +33,13 @@ export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
     (request, reply) => permissionGroupController.findOne(request, reply),
   );
 
+  app.patch(
+    '/permission-groups/:id',
+    { preHandler: authMiddleware },
+    (request, reply) =>
+      permissionGroupController.update(request as FastifyAuthRequest, reply),
+  );
+
   app.get(
     '/permission-rules',
     { schema: findAllPermissionRulesSchema, preHandler: authMiddleware },

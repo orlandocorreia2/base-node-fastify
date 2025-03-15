@@ -6,7 +6,10 @@ import {
   DBPaginateParametersProps,
 } from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
-import { CreatePermissionGroupRepositoryProps } from '../../../../../modules/permision.groups/repositories/types';
+import {
+  CreatePermissionGroupRepositoryProps,
+  UpdatePermissionGroupRepositoryProps,
+} from '../../../../../modules/permision.groups/repositories/types';
 
 @injectable()
 export class PermissionGroupRepositoryPrisma
@@ -72,6 +75,17 @@ export class PermissionGroupRepositoryPrisma
   }: CreatePermissionGroupRepositoryProps): Promise<T> {
     return (await prisma.permissionGroup.create({
       data: { created_by_id, name, description },
+    })) as T;
+  }
+
+  async update<T>({
+    id,
+    name,
+    description,
+  }: UpdatePermissionGroupRepositoryProps): Promise<T> {
+    return (await prisma.permissionGroup.update({
+      where: { id },
+      data: { name, description },
     })) as T;
   }
 }

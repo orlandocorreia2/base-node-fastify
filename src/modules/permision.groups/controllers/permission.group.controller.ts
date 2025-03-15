@@ -12,6 +12,8 @@ import {
 import { PaginatePermissionGroupsUseCaseInterface } from '../usecases/interfaces/paginate.permission.groups.use.case.interface';
 import { FindOnePermissionGroupUseCaseInterface } from '../usecases/interfaces/find.one.permission.group.use.case.interface';
 import { FindOnePermissionGroupResponse } from './responses/find.one.permission.group.response';
+import { UpdatePermissionGroupUseCaseInterface } from '../usecases/interfaces/update.permission.group.use.case.interface';
+import { UpdatePermissionGroupResponse } from './responses/update.permission.group.response';
 
 @injectable()
 export class PermissionGroupController {
@@ -22,6 +24,8 @@ export class PermissionGroupController {
     private _paginatePermissionGroupsUseCase: PaginatePermissionGroupsUseCaseInterface,
     @inject('FindOnePermissionGroupUseCase')
     private _findOnePermissionGroupUseCase: FindOnePermissionGroupUseCaseInterface,
+    @inject('UpdatePermissionGroupUseCase')
+    private _updatePermissionGroupUseCase: UpdatePermissionGroupUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -61,6 +65,23 @@ export class PermissionGroupController {
       return FindOnePermissionGroupResponse.success({ result, reply });
     } catch (error) {
       PaginatePermissionGroupResponse.error(error);
+    }
+  }
+
+  async update(request: FastifyAuthRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      const { name, description, permissionRulesId } =
+        request.body as CreatePermissionGroupRequest;
+      const result = await this._updatePermissionGroupUseCase.execute({
+        id,
+        name,
+        description,
+        permissionRulesId,
+      });
+      return UpdatePermissionGroupResponse.success({ result, reply });
+    } catch (error) {
+      CreatePermissionGroupResponse.error(error);
     }
   }
 }
