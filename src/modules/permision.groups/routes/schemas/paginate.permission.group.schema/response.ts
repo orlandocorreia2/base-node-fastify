@@ -14,19 +14,19 @@ export const response = {
           }),
           createdAt: z.date({ description: '2025-03-08T00:45:12.815Z' }),
           updatedAt: z.date({ description: '2025-03-08T00:45:12.815Z' }),
-          users: z.optional(
-            z.array(
-              z.object({
-                id: z.string(),
-                name: z.string(),
-              }),
-            ),
-          ),
           rules: z.optional(
             z.array(
               z.object({
                 id: z.string(),
                 rule: z.string(),
+              }),
+            ),
+          ),
+          users: z.optional(
+            z.array(
+              z.object({
+                id: z.string(),
+                name: z.string(),
               }),
             ),
           ),

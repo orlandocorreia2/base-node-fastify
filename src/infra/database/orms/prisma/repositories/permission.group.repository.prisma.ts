@@ -12,8 +12,29 @@ import { CreatePermissionGroupRepositoryProps } from '../../../../../modules/per
 export class PermissionGroupRepositoryPrisma
   implements PermissionGroupRepositoryInterface
 {
-  async findOne<T>({ filter }: DBFindOneUserRepositoryProps): Promise<T> {
-    return (await prisma.permissionGroup.findFirst({ where: filter })) as T;
+  async findOne<T>({
+    filter,
+    relationships,
+  }: DBFindOneUserRepositoryProps): Promise<T> {
+    const include: any = {};
+    if (relationships?.rules) {
+      include.rules = {
+        include: {
+          permissionRule: {
+            select: { id: true, rule: true, type: true, description: true },
+          },
+        },
+      };
+    }
+    if (relationships?.users) {
+      include.users = {
+        include: { user: { select: { id: true, name: true } } },
+      };
+    }
+    return (await prisma.permissionGroup.findFirst({
+      where: filter,
+      include,
+    })) as T;
   }
 
   async paginate<T>({

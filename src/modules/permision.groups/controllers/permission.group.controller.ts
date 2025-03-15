@@ -4,8 +4,14 @@ import { CreatePermissionGroupUseCaseInterface } from '../usecases/interfaces/cr
 import { CreatePermissionGroupRequest } from '../DTOs/permission.group';
 import { PaginatePermissionGroupResponse } from './responses/paginate.permission.group.response';
 import { CreatePermissionGroupResponse } from './responses/create.permission.group.response';
-import { FastifyAuthRequest, PaginateRequestProps } from '../../../types/types';
+import {
+  FastifyAuthRequest,
+  PaginateRequestProps,
+  ParamRequestProps,
+} from '../../../types/types';
 import { PaginatePermissionGroupsUseCaseInterface } from '../usecases/interfaces/paginate.permission.groups.use.case.interface';
+import { FindOnePermissionGroupUseCaseInterface } from '../usecases/interfaces/find.one.permission.group.use.case.interface';
+import { FindOnePermissionGroupResponse } from './responses/find.one.permission.group.response';
 
 @injectable()
 export class PermissionGroupController {
@@ -14,6 +20,8 @@ export class PermissionGroupController {
     private _createPermissionGroupUseCase: CreatePermissionGroupUseCaseInterface,
     @inject('PaginatePermissionGroupsUseCase')
     private _paginatePermissionGroupsUseCase: PaginatePermissionGroupsUseCaseInterface,
+    @inject('FindOnePermissionGroupUseCase')
+    private _findOnePermissionGroupUseCase: FindOnePermissionGroupUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -41,6 +49,16 @@ export class PermissionGroupController {
         qtdItemsPerPage,
       });
       return PaginatePermissionGroupResponse.success({ result, reply });
+    } catch (error) {
+      PaginatePermissionGroupResponse.error(error);
+    }
+  }
+
+  async findOne(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      const result = await this._findOnePermissionGroupUseCase.execute(id);
+      return FindOnePermissionGroupResponse.success({ result, reply });
     } catch (error) {
       PaginatePermissionGroupResponse.error(error);
     }
