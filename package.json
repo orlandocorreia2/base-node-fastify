@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "rm -rf dist &&  yarn build && node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "build": "rm -rf dist && tsc -p tsconfig.json && yarn start",
+    "build": "tsc -p tsconfig.json",
     "prepare": "husky",
     "test": "echo test",
     "prisma:migrate": "npx prisma migrate dev",
