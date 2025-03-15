@@ -1,9 +1,9 @@
 import { params } from './params';
 import { response } from './response';
 
-export const findOnePermissionGroupSchema = {
+export const deletePermissionGroupSchema = {
   tags: ['Permission Group'],
-  description: 'Find one permission group',
+  description: 'Delete permission group',
   params,
   response,
 };

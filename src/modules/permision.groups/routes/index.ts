@@ -7,6 +7,8 @@ import { PermissionRuleController } from '../controllers/permission.rule.control
 import { findAllPermissionRulesSchema } from './schemas/find.all.permission.rule.schema';
 import { paginatePermissionGroupSchema } from './schemas/paginate.permission.group.schema';
 import { findOnePermissionGroupSchema } from './schemas/find.one.permission..group.schema';
+import { updatePermissionGroupSchema } from './schemas/update.permission.group.schema';
+import { deletePermissionGroupSchema } from './schemas/delete.permission.group.schema';
 
 export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
   const permissionGroupController = container.resolve(
@@ -35,9 +37,16 @@ export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
 
   app.patch(
     '/permission-groups/:id',
-    { preHandler: authMiddleware },
+    { schema: updatePermissionGroupSchema, preHandler: authMiddleware },
     (request, reply) =>
       permissionGroupController.update(request as FastifyAuthRequest, reply),
+  );
+
+  app.delete(
+    '/permission-groups/:id',
+    { schema: deletePermissionGroupSchema, preHandler: authMiddleware },
+    (request, reply) =>
+      permissionGroupController.delete(request as FastifyAuthRequest, reply),
   );
 
   app.get(

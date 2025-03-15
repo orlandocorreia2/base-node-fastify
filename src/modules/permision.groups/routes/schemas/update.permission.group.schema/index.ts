@@ -2,9 +2,9 @@ import { body } from './body';
 import { params } from './params';
 import { response } from './response';
 
-export const createPermissionGroupSchema = {
+export const updatePermissionGroupSchema = {
   tags: ['Permission Group'],
-  description: 'Create a new permission group',
+  description: 'Update permission group',
   params,
   body,
   response,

@@ -88,4 +88,8 @@ export class PermissionGroupRepositoryPrisma
       data: { name, description },
     })) as T;
   }
+
+  async delete(id: string): Promise<void> {
+    await prisma.permissionGroup.delete({ where: { id } });
+  }
 }

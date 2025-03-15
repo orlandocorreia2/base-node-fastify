@@ -12,4 +12,5 @@ export interface PermissionGroupRepositoryInterface {
   paginate<T>(data: DBPaginateParametersProps): Promise<T>;
   findOne<T>(data: DBFindOneUserRepositoryProps): Promise<T>;
   update<T>(data: UpdatePermissionGroupRepositoryProps): Promise<T>;
+  delete(id: string): Promise<void>;
 }

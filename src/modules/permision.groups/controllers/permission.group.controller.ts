@@ -4,16 +4,18 @@ import { CreatePermissionGroupUseCaseInterface } from '../usecases/interfaces/cr
 import { CreatePermissionGroupRequest } from '../DTOs/permission.group';
 import { PaginatePermissionGroupResponse } from './responses/paginate.permission.group.response';
 import { CreatePermissionGroupResponse } from './responses/create.permission.group.response';
-import {
-  FastifyAuthRequest,
-  PaginateRequestProps,
-  ParamRequestProps,
-} from '../../../types/types';
 import { PaginatePermissionGroupsUseCaseInterface } from '../usecases/interfaces/paginate.permission.groups.use.case.interface';
 import { FindOnePermissionGroupUseCaseInterface } from '../usecases/interfaces/find.one.permission.group.use.case.interface';
 import { FindOnePermissionGroupResponse } from './responses/find.one.permission.group.response';
 import { UpdatePermissionGroupUseCaseInterface } from '../usecases/interfaces/update.permission.group.use.case.interface';
 import { UpdatePermissionGroupResponse } from './responses/update.permission.group.response';
+import { DeletePermissionGroupUseCaseInterface } from '../usecases/interfaces/delete.permission.group.use.case.interface';
+import { DeletePermissionGroupResponse } from './responses/delete.permission.group.response';
+import {
+  FastifyAuthRequest,
+  PaginateRequestProps,
+  ParamRequestProps,
+} from '../../../types/types';
 
 @injectable()
 export class PermissionGroupController {
@@ -26,6 +28,8 @@ export class PermissionGroupController {
     private _findOnePermissionGroupUseCase: FindOnePermissionGroupUseCaseInterface,
     @inject('UpdatePermissionGroupUseCase')
     private _updatePermissionGroupUseCase: UpdatePermissionGroupUseCaseInterface,
+    @inject('DeletePermissionGroupUseCase')
+    private _deletePermissionGroupUseCase: DeletePermissionGroupUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -64,7 +68,7 @@ export class PermissionGroupController {
       const result = await this._findOnePermissionGroupUseCase.execute(id);
       return FindOnePermissionGroupResponse.success({ result, reply });
     } catch (error) {
-      PaginatePermissionGroupResponse.error(error);
+      FindOnePermissionGroupResponse.error(error);
     }
   }
 
@@ -81,7 +85,17 @@ export class PermissionGroupController {
       });
       return UpdatePermissionGroupResponse.success({ result, reply });
     } catch (error) {
-      CreatePermissionGroupResponse.error(error);
+      UpdatePermissionGroupResponse.error(error);
+    }
+  }
+
+  async delete(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      await this._deletePermissionGroupUseCase.execute(id);
+      return DeletePermissionGroupResponse.success({ reply });
+    } catch (error) {
+      DeletePermissionGroupResponse.error(error);
     }
   }
 }

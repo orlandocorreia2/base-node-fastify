@@ -15,6 +15,8 @@ import { FindOnePermissionGroupUseCase } from '../usecases/find.one.permission.g
 import { FindOnePermissionGroupUseCaseInterface } from '../usecases/interfaces/find.one.permission.group.use.case.interface';
 import { UpdatePermissionGroupUseCaseInterface } from '../usecases/interfaces/update.permission.group.use.case.interface';
 import { UpdatePermissionGroupUseCase } from '../usecases/update.permission.group.usecase';
+import { DeletePermissionGroupUseCase } from '../usecases/delete.permission.group.usecase';
+import { DeletePermissionGroupUseCaseInterface } from '../usecases/interfaces/delete.permission.group.use.case.interface';
 
 container.registerSingleton<CreatePermissionGroupUseCaseInterface>(
   'CreatePermissionGroupUseCase',
@@ -34,6 +36,11 @@ container.registerSingleton<FindOnePermissionGroupUseCaseInterface>(
 container.registerSingleton<UpdatePermissionGroupUseCaseInterface>(
   'UpdatePermissionGroupUseCase',
   UpdatePermissionGroupUseCase,
+);
+
+container.registerSingleton<DeletePermissionGroupUseCaseInterface>(
+  'DeletePermissionGroupUseCase',
+  DeletePermissionGroupUseCase,
 );
 
 container.registerSingleton<FindAllPermissionRulesUseCaseInterface>(
