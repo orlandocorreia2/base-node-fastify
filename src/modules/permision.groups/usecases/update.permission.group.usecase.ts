@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { UnprocessableError } from '../../../error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable.error';
 import { PermissionGroup } from '../DTOs/permission.group';
 import { PermissionGroupRepositoryInterface } from '../repositories/interfaces/permission.group.repository.interface';
 import { UpdatePermissionGroupUseCaseProps } from './types';

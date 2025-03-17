@@ -8,6 +8,15 @@ export type CreateUserRepositoryProps = {
   address?: string;
 };
 
+export type UpdateUserRepositoryProps = {
+  id: string;
+  name: string;
+  password: string;
+  expired_at: Date;
+  phone?: string;
+  address?: string;
+};
+
 export type CreateManyUserPermissionGroupsRepositoryProps = {
   userId: string;
   permissionGroupsId: string[];

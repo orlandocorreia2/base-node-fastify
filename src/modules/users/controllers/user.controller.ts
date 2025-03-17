@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { inject, injectable } from 'tsyringe';
-import { CreateUserRequestProps } from '../DTOs/user';
+import { CreateUserRequestProps, UpdateUserRequestProps } from '../DTOs/user';
 import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
 import {
   FastifyAuthRequest,
@@ -11,6 +11,7 @@ import { PaginateUsersUseCaseInterface } from '../usecases/interfaces/paginate.u
 import { PaginateUserResponse } from './responses/paginate.user.response';
 import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.user.use.case.interface';
 import { FindOneUserResponse } from './responses/find.one.user.response';
+import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
 
 @injectable()
 export class UserController {
@@ -21,6 +22,8 @@ export class UserController {
     private _paginateUsersUseCase: PaginateUsersUseCaseInterface,
     @inject('FindOneUserUseCase')
     private _findOneUserUseCase: FindOneUserUseCaseInterface,
+    @inject('UpdateUserUseCase')
+    private _updateUserUseCase: UpdateUserUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -63,7 +66,28 @@ export class UserController {
       const result = await this._findOneUserUseCase.execute(id);
       return FindOneUserResponse.success({ result, reply });
     } catch (error) {
-      PaginateUserResponse.error(error);
+      FindOneUserResponse.error(error);
+    }
+  }
+
+  async update(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      const { name, password, expiredAt, phone, address, permissionGroupsId } =
+        request.body as UpdateUserRequestProps;
+      const result = await this._updateUserUseCase.execute({
+        id,
+        name,
+        password,
+        expiredAt,
+        phone,
+        address,
+        permissionGroupsId,
+      });
+      return FindOneUserResponse.success({ result, reply });
+    } catch (error) {
+      console.log('Error:', error);
+      throw error;
     }
   }
 }

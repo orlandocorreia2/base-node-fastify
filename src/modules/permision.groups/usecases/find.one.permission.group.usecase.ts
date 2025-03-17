@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { PermissionGroup } from '../DTOs/permission.group';
 import { PermissionGroupRepositoryInterface } from '../repositories/interfaces/permission.group.repository.interface';
 import { FindOnePermissionGroupUseCaseInterface } from './interfaces/find.one.permission.group.use.case.interface';
-import { UnprocessableError } from '../../../error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable.error';
 
 @injectable()
 export class FindOnePermissionGroupUseCase

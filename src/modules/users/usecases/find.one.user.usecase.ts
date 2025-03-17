@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { FindOneUserUseCaseInterface } from './interfaces/find.one.user.use.case.interface';
 import { User } from '../DTOs/user';
-import { UnprocessableError } from '../../../error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable.error';
 
 @injectable()
 export class FindOneUserUseCase implements FindOneUserUseCaseInterface {

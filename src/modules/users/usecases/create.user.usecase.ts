@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 // import { randomBytes } from 'crypto';
 import { CreateUserUseCaseProps, User } from '../DTOs/user';
 import { generateHash } from '../../../utils/hash';
-import { UnprocessableError } from '../../../error/unprocessable';
+import { UnprocessableError } from '../../../error/unprocessable.error';
 import { CreateUserUseCaseInterface } from './interfaces/create.user.use.case.interface';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
@@ -26,7 +26,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   }: CreateUserUseCaseProps): Promise<User> {
     await this.verifyUserAlreadyRegistered(email);
     const password = await this.generatePassword(email);
-    const user = await this._userRepository.create<User>({
+    const user = await this._userRepository.create({
       created_by_id,
       name,
       email,

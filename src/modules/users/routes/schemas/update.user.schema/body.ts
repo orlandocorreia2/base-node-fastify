@@ -6,10 +6,11 @@ export const body = z.object({
     .string({ message: 'User name is required.' })
     .min(3, { message: 'User name is invalid.' })
     .describe('John Doe'),
-  email: z
-    .string({ message: 'User email is required.' })
-    .email({ message: 'User email must be type of email.' })
-    .describe('johndoe@email.com'),
+  password: z.optional(
+    z
+      .string({ message: 'User password is required.' })
+      .min(8, { message: 'User password is invalid.' }),
+  ),
   phone: z.optional(z.string()).describe('11911111111'),
   address: z.optional(z.string()).describe('Avenida Paulista, 1000'),
   expiredAt: z.string().describe(dateFutureDays(30).toISOString()),

@@ -15,7 +15,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
 
   public async execute(authUser: AuthUser): Promise<AuthToken> {
     const { email, password } = authUser;
-    const user = await this._userRepository.findOne<User>({
+    const user = await this._userRepository.findOne({
       filter: { email },
       relationships: { rules: true },
     });

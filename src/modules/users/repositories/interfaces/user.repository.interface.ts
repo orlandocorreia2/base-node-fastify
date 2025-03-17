@@ -1,15 +1,17 @@
+import { PaginateUserProps, User } from '../../DTOs/user';
 import {
   DBFindOneUserRepositoryProps,
   DBPaginateParametersProps,
 } from '../../../../types/db';
-import { CreateUserRepositoryProps } from '../types';
+import { CreateUserRepositoryProps, UpdateUserRepositoryProps } from '../types';
 
 export interface UserRepositoryInterface {
-  create<T>(data: CreateUserRepositoryProps): Promise<T>;
-  paginate<T>({
+  create(data: CreateUserRepositoryProps): Promise<User>;
+  paginate({
     page,
     qtdItemsPerPage,
     relationships,
-  }: DBPaginateParametersProps): Promise<T>;
-  findOne<T>(data: DBFindOneUserRepositoryProps): Promise<T>;
+  }: DBPaginateParametersProps): Promise<PaginateUserProps<User>>;
+  findOne(data: DBFindOneUserRepositoryProps): Promise<User>;
+  update(data: UpdateUserRepositoryProps): Promise<User>;
 }

@@ -9,6 +9,8 @@ import { PaginateUsersUseCase } from '../usecases/paginate.users.usecase';
 import { PaginateUsersUseCaseInterface } from '../usecases/interfaces/paginate.users.use.case.interface';
 import { FindOneUserUseCase } from '../usecases/find.one.user.usecase';
 import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.user.use.case.interface';
+import { UpdateUserUseCase } from '../usecases/update.user.usecase';
+import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -23,6 +25,11 @@ container.registerSingleton<PaginateUsersUseCaseInterface>(
 container.registerSingleton<FindOneUserUseCaseInterface>(
   'FindOneUserUseCase',
   FindOneUserUseCase,
+);
+
+container.registerSingleton<UpdateUserUseCaseInterface>(
+  'UpdateUserUseCase',
+  UpdateUserUseCase,
 );
 
 container.registerSingleton<UserRepositoryInterface>(

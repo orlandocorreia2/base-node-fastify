@@ -6,7 +6,10 @@ import {
   DBPaginateParametersProps,
 } from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
-import { CreateUserRepositoryProps } from '../../../../../modules/users/repositories/types';
+import {
+  CreateUserRepositoryProps,
+  UpdateUserRepositoryProps,
+} from '../../../../../modules/users/repositories/types';
 
 @injectable()
 export class UserRepositoryPrisma implements UserRepositoryInterface {
@@ -67,5 +70,9 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
 
   async create<T>(data: CreateUserRepositoryProps): Promise<T> {
     return (await prisma.user.create({ data })) as T;
+  }
+
+  async update<T>(data: UpdateUserRepositoryProps): Promise<T> {
+    return (await prisma.user.update({ where: { id: data.id }, data })) as T;
   }
 }

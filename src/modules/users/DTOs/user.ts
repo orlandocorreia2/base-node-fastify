@@ -34,9 +34,28 @@ export type CreateUserUseCaseProps = {
   permissionGroupsId?: string[];
 };
 
+export type UpdateUserUseCaseProps = {
+  id?: string;
+  name: string;
+  expiredAt: string;
+  password?: string;
+  phone?: string;
+  address?: string;
+  permissionGroupsId?: string[];
+};
+
 export type CreateUserRequestProps = {
   name: string;
   email: string;
+  expiredAt: string;
+  phone?: string;
+  address?: string;
+  permissionGroupsId?: string[];
+};
+
+export type UpdateUserRequestProps = {
+  name: string;
+  password?: string;
   expiredAt: string;
   phone?: string;
   address?: string;
