@@ -30,6 +30,12 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
         },
       };
     }
+
+    if (relationships?.permissionGroups) {
+      include.permissionGroups = {
+        include: { permissionGroup: { select: { id: true, name: true } } },
+      };
+    }
     return (await prisma.user.findFirst({
       where: filter,
       include,

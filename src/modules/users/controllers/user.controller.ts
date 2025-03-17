@@ -2,9 +2,15 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { inject, injectable } from 'tsyringe';
 import { CreateUserRequestProps } from '../DTOs/user';
 import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
-import { FastifyAuthRequest, PaginateRequestProps } from '../../../types/types';
+import {
+  FastifyAuthRequest,
+  PaginateRequestProps,
+  ParamRequestProps,
+} from '../../../types/types';
 import { PaginateUsersUseCaseInterface } from '../usecases/interfaces/paginate.users.use.case.interface';
 import { PaginateUserResponse } from './responses/paginate.user.response';
+import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.user.use.case.interface';
+import { FindOneUserResponse } from './responses/find.one.user.response';
 
 @injectable()
 export class UserController {
@@ -13,6 +19,8 @@ export class UserController {
     private _createUserUseCase: CreateUserUseCaseInterface,
     @inject('PaginateUsersUseCase')
     private _paginateUsersUseCase: PaginateUsersUseCaseInterface,
+    @inject('FindOneUserUseCase')
+    private _findOneUserUseCase: FindOneUserUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -44,6 +52,16 @@ export class UserController {
         qtdItemsPerPage,
       });
       return PaginateUserResponse.success({ result, reply });
+    } catch (error) {
+      PaginateUserResponse.error(error);
+    }
+  }
+
+  async findOne(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      const result = await this._findOneUserUseCase.execute(id);
+      return FindOneUserResponse.success({ result, reply });
     } catch (error) {
       PaginateUserResponse.error(error);
     }
