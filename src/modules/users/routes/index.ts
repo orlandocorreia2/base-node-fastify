@@ -7,6 +7,7 @@ import { paginateUsersSchema } from './schemas/paginate.user.schema';
 import { canMiddleware } from '../../../middlewares/can.middleware';
 import { findOneUserSchema } from './schemas/find.one.user.schema';
 import { updateUserSchema } from './schemas/update.user.schema';
+import { deleteUserSchema } from './schemas/delete.user.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
@@ -37,5 +38,11 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
     '/users/:id',
     { schema: updateUserSchema, preHandler: [authMiddleware] },
     (request, reply) => userController.update(request, reply),
+  );
+
+  app.delete(
+    '/users/:id',
+    { schema: deleteUserSchema, preHandler: [authMiddleware] },
+    (request, reply) => userController.delete(request, reply),
   );
 };

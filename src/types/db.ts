@@ -26,10 +26,11 @@ export type DBPaginateProps<T> = {
 };
 
 export type DBPaginateParametersProps = {
-  where?: KeyValueProps;
+  filter?: KeyValueProps;
   page: number;
   qtdItemsPerPage: number;
   relationships?: DBRelationships;
+  withDeleted?: boolean;
 };
 
 export type DBUpdateParameterProps = {
@@ -50,4 +51,5 @@ export type DBRelationships = {
 export type DBFindOneUserRepositoryProps = {
   filter: KeyValueProps;
   relationships?: DBRelationships;
+  withDeleted?: boolean;
 };

@@ -15,10 +15,18 @@ export class UserPermissionGroupRepositoryPrisma
     userId,
     permissionGroupsId,
   }: CreateManyUserPermissionGroupsRepositoryProps): Promise<T> {
-    const data = permissionGroupsId.map(permissionGroupId => ({
-      user_id: userId,
-      permission_group_id: permissionGroupId,
-    }));
+    const data: { user_id: string; permission_group_id: string }[] = [];
+    for (let permissionGroupId of permissionGroupsId) {
+      const hasPermissionGroup = await prisma.permissionGroup.findFirst({
+        where: { id: permissionGroupId },
+      });
+      if (hasPermissionGroup) {
+        data.push({
+          user_id: userId,
+          permission_group_id: permissionGroupId,
+        });
+      }
+    }
     return (await prisma.userPermissionGroup.createMany({ data })) as T;
   }
 }

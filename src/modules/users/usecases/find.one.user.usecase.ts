@@ -3,6 +3,7 @@ import { UserRepositoryInterface } from '../repositories/interfaces/user.reposit
 import { FindOneUserUseCaseInterface } from './interfaces/find.one.user.use.case.interface';
 import { User } from '../DTOs/user';
 import { UnprocessableError } from '../../../error/unprocessable.error';
+import { NotFoundError } from '../../../error/not.found.error';
 
 @injectable()
 export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
@@ -14,9 +15,13 @@ export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
     if (!id) {
       throw new UnprocessableError('O id do usuário é obrigatório!');
     }
-    return await this._userRepository.findOne({
+    const user = await this._userRepository.findOne({
       filter: { id },
       relationships: { permissionGroups: true },
     });
+    if (!user) {
+      throw new NotFoundError('Usuário não encontrado!');
+    }
+    return user;
   }
 }

@@ -12,6 +12,7 @@ import { PaginateUserResponse } from './responses/paginate.user.response';
 import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.user.use.case.interface';
 import { FindOneUserResponse } from './responses/find.one.user.response';
 import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
+import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.use.case.interface';
 
 @injectable()
 export class UserController {
@@ -24,6 +25,8 @@ export class UserController {
     private _findOneUserUseCase: FindOneUserUseCaseInterface,
     @inject('UpdateUserUseCase')
     private _updateUserUseCase: UpdateUserUseCaseInterface,
+    @inject('DeleteUserUseCase')
+    private _deleteUserUseCase: DeleteUserUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -85,6 +88,17 @@ export class UserController {
         permissionGroupsId,
       });
       return FindOneUserResponse.success({ result, reply });
+    } catch (error) {
+      console.log('Error:', error);
+      throw error;
+    }
+  }
+
+  async delete(request: FastifyRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.params as ParamRequestProps;
+      await this._deleteUserUseCase.execute(id);
+      return reply.status(200).send();
     } catch (error) {
       console.log('Error:', error);
       throw error;

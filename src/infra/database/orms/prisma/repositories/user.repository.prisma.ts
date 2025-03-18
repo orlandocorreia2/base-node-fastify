@@ -16,7 +16,10 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
   async findOne<T>({
     filter,
     relationships,
+    withDeleted,
   }: DBFindOneUserRepositoryProps): Promise<T> {
+    const where = { ...filter };
+    if (!withDeleted) where.deleted_at = null;
     const include: any = {};
     if (relationships?.rules) {
       include.permissionGroups = {
@@ -33,24 +36,24 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
         },
       };
     }
-
     if (relationships?.permissionGroups) {
       include.permissionGroups = {
         include: { permissionGroup: { select: { id: true, name: true } } },
       };
     }
-    return (await prisma.user.findFirst({
-      where: filter,
-      include,
-    })) as T;
+    return (await prisma.user.findFirst({ where, include })) as T;
   }
 
   async paginate<T>({
+    filter,
     page,
     qtdItemsPerPage,
     relationships,
+    withDeleted,
   }: DBPaginateParametersProps): Promise<T> {
-    const total = await prisma.user.count({});
+    const where = { ...filter };
+    if (!withDeleted) where.deleted_at = null;
+    const total = await prisma.user.count({ where });
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
     const skip = (page - 1) * qtdItemsPerPage;
@@ -61,9 +64,11 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
       };
     }
     const result = await prisma.user.findMany({
+      where,
       skip,
       take: parseInt(qtdItemsPerPage.toString()),
       include,
+      orderBy: { created_at: 'desc' },
     });
     return { items: result, page, qtdItemsPerPage, total } as T;
   }
@@ -74,5 +79,12 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
 
   async update<T>(data: UpdateUserRepositoryProps): Promise<T> {
     return (await prisma.user.update({ where: { id: data.id }, data })) as T;
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.user.update({
+      where: { id },
+      data: { deleted_at: new Date() },
+    });
   }
 }

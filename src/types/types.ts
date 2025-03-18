@@ -22,7 +22,7 @@ export type PaginateRequestProps = {
 };
 
 export type ParamRequestProps = {
-  id?: string;
+  id: string;
 };
 
 export type KeyValueProps = {

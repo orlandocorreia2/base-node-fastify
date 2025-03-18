@@ -11,6 +11,8 @@ import { FindOneUserUseCase } from '../usecases/find.one.user.usecase';
 import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.user.use.case.interface';
 import { UpdateUserUseCase } from '../usecases/update.user.usecase';
 import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
+import { DeleteUserUseCase } from '../usecases/delete.user.usecase';
+import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.use.case.interface';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -30,6 +32,11 @@ container.registerSingleton<FindOneUserUseCaseInterface>(
 container.registerSingleton<UpdateUserUseCaseInterface>(
   'UpdateUserUseCase',
   UpdateUserUseCase,
+);
+
+container.registerSingleton<DeleteUserUseCaseInterface>(
+  'DeleteUserUseCase',
+  DeleteUserUseCase,
 );
 
 container.registerSingleton<UserRepositoryInterface>(

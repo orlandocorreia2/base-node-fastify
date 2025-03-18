@@ -14,4 +14,5 @@ export interface UserRepositoryInterface {
   }: DBPaginateParametersProps): Promise<PaginateUserProps<User>>;
   findOne(data: DBFindOneUserRepositoryProps): Promise<User>;
   update(data: UpdateUserRepositoryProps): Promise<User>;
+  delete(id: string): Promise<void>;
 }
