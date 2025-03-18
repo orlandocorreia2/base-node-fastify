@@ -3,6 +3,7 @@ import { FastifyAuthRequest, FastifyTypedInstance } from '../../../types/types';
 import { PermissionGroupController } from '../controllers/permission.group.controller';
 import { createPermissionGroupSchema } from './schemas/create.permission.group.schema';
 import { authMiddleware } from '../../../middlewares/auth.middleware';
+import { canMiddleware } from '../../../middlewares/can.middleware';
 import { PermissionRuleController } from '../controllers/permission.rule.controller';
 import { findAllPermissionRulesSchema } from './schemas/find.all.permission.rule.schema';
 import { paginatePermissionGroupSchema } from './schemas/paginate.permission.group.schema';
@@ -18,40 +19,58 @@ export const permissionGroupRoutesModule = (app: FastifyTypedInstance) => {
 
   app.post(
     '/permission-groups',
-    { schema: createPermissionGroupSchema, preHandler: authMiddleware },
+    {
+      schema: createPermissionGroupSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) =>
       permissionGroupController.create(request as FastifyAuthRequest, reply),
   );
 
   app.get(
     '/permission-groups',
-    { schema: paginatePermissionGroupSchema, preHandler: authMiddleware },
+    {
+      schema: paginatePermissionGroupSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) => permissionGroupController.findAll(request, reply),
   );
 
   app.get(
     '/permission-groups/:id',
-    { schema: findOnePermissionGroupSchema, preHandler: authMiddleware },
+    {
+      schema: findOnePermissionGroupSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) => permissionGroupController.findOne(request, reply),
   );
 
   app.patch(
     '/permission-groups/:id',
-    { schema: updatePermissionGroupSchema, preHandler: authMiddleware },
+    {
+      schema: updatePermissionGroupSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) =>
       permissionGroupController.update(request as FastifyAuthRequest, reply),
   );
 
   app.delete(
     '/permission-groups/:id',
-    { schema: deletePermissionGroupSchema, preHandler: authMiddleware },
+    {
+      schema: deletePermissionGroupSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) =>
       permissionGroupController.delete(request as FastifyAuthRequest, reply),
   );
 
   app.get(
     '/permission-rules',
-    { schema: findAllPermissionRulesSchema, preHandler: authMiddleware },
+    {
+      schema: findAllPermissionRulesSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) => permissionRuleController.findAll(request, reply),
   );
 };

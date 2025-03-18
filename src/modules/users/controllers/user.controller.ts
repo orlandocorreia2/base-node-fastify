@@ -66,7 +66,10 @@ export class UserController {
   async findOne(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { id } = request.params as ParamRequestProps;
-      const result = await this._findOneUserUseCase.execute(id);
+      const result = await this._findOneUserUseCase.execute({
+        id,
+        relationships: { permissionGroups: true },
+      });
       return FindOneUserResponse.success({ result, reply });
     } catch (error) {
       FindOneUserResponse.error(error);

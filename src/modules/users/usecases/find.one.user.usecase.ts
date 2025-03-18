@@ -4,6 +4,7 @@ import { FindOneUserUseCaseInterface } from './interfaces/find.one.user.use.case
 import { User } from '../DTOs/user';
 import { UnprocessableError } from '../../../error/unprocessable.error';
 import { NotFoundError } from '../../../error/not.found.error';
+import { FindOneUserUseCaseExecuteProps } from './types';
 
 @injectable()
 export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
@@ -11,13 +12,16 @@ export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
     @inject('UserRepository') private _userRepository: UserRepositoryInterface,
   ) {}
 
-  async execute(id?: string): Promise<User> {
+  async execute({
+    id,
+    relationships,
+  }: FindOneUserUseCaseExecuteProps): Promise<User> {
     if (!id) {
       throw new UnprocessableError('O id do usuário é obrigatório!');
     }
     const user = await this._userRepository.findOne({
       filter: { id },
-      relationships: { permissionGroups: true },
+      relationships,
     });
     if (!user) {
       throw new NotFoundError('Usuário não encontrado!');
