@@ -16,7 +16,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   ) {}
 
   public async execute({
-    created_by_id,
+    createdById,
     name,
     email,
     expiredAt,
@@ -27,7 +27,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     await this.verifyUserAlreadyRegistered(email);
     const password = await this.generatePassword(email);
     const user = await this._userRepository.create({
-      created_by_id,
+      created_by_id: createdById,
       name,
       email,
       password,

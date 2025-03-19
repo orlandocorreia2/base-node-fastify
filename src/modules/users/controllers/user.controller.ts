@@ -31,11 +31,11 @@ export class UserController {
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
     try {
-      const created_by_id = request.user.id;
+      const createdById = request.user.id;
       const { name, email, expiredAt, phone, address, permissionGroupsId } =
         request.body as CreateUserRequestProps;
       await this._createUserUseCase.execute({
-        created_by_id,
+        createdById,
         name,
         email,
         expiredAt,
