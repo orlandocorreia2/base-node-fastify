@@ -13,10 +13,17 @@ import { UpdateUserUseCase } from '../usecases/update.user.usecase';
 import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
 import { DeleteUserUseCase } from '../usecases/delete.user.usecase';
 import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.use.case.interface';
+import { CreateUsersBatchUseCase } from '../usecases/create.users.batch.usecase';
+import { CreateUsersBatchUseCaseInterface } from '../usecases/interfaces/create.users.batch.use.case.interface';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
   CreateUserUseCase,
+);
+
+container.registerSingleton<CreateUsersBatchUseCaseInterface>(
+  'CreateUsersBatchUseCase',
+  CreateUsersBatchUseCase,
 );
 
 container.registerSingleton<PaginateUsersUseCaseInterface>(

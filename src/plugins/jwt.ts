@@ -1,5 +1,4 @@
 import fp from 'fastify-plugin';
-
 import fastifyJwt, { FastifyJwtSignOptions } from '@fastify/jwt';
 import { env } from '../utils/env';
 

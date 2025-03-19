@@ -1,4 +1,5 @@
 import fastify, { FastifyInstance } from 'fastify';
+import multipart from '@fastify/multipart';
 import { appRoutes } from './routes';
 import './shared/container';
 import plugins from './plugins';
@@ -19,6 +20,7 @@ const app: FastifyInstance = fastify({
   app.register(plugins.jwt);
   app.register(plugins.cors);
   app.register(plugins.swagger);
+  app.register(plugins.multipart);
   app.register(appRoutes);
 })();
 

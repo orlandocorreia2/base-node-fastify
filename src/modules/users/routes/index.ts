@@ -8,15 +8,24 @@ import { paginateUsersSchema } from './schemas/paginate.user.schema';
 import { findOneUserSchema } from './schemas/find.one.user.schema';
 import { updateUserSchema } from './schemas/update.user.schema';
 import { deleteUserSchema } from './schemas/delete.user.schema';
+import { UsersBatchController } from '../controllers/users.batch.controller';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
+  const usersBatchController = container.resolve(UsersBatchController);
 
   app.post(
     '/users',
     { schema: createUserSchema, preHandler: [authMiddleware, canMiddleware] },
     (request, reply) =>
       userController.create(request as FastifyAuthRequest, reply),
+  );
+
+  app.post(
+    '/users/batch',
+    { preHandler: [authMiddleware, canMiddleware] },
+    (request, reply) =>
+      usersBatchController.create(request as FastifyAuthRequest, reply),
   );
 
   app.get(

@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
 import { UnauthorizedError } from '../error/unauthorized.error';
-import { FindOneUserUseCase } from 'modules/users/usecases/find.one.user.usecase';
-import { FastifyAuthRequest, KeyValueProps } from '../types/types';
+import { FindOneUserUseCase } from '../modules/users/usecases/find.one.user.usecase';
+import { KeyValueProps } from '../types/types';
 
 export const canMiddleware = async (
   request: FastifyRequest,
@@ -12,6 +12,7 @@ export const canMiddleware = async (
     let hasPermission = false;
     const permissionKeys: KeyValueProps = {
       'POST/users': 'createUser',
+      'POST/users/batch': 'createUser',
       'GET/users': 'listUsers',
       'GET/users/:id': 'editUser',
       'PATCH/users/:id': 'editUser',

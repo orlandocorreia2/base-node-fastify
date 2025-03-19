@@ -1,3 +1,4 @@
+import { MultipartFile } from '@fastify/multipart';
 import { DBPaginateProps } from '../../../types/db';
 import { PermissionGroup } from '../../permision.groups/DTOs/permission.group';
 
@@ -15,7 +16,7 @@ export type User = {
 };
 
 export type CreateUser = {
-  created_by_id?: string;
+  createdById?: string;
   name: string;
   email: string;
   password: string;
@@ -25,13 +26,18 @@ export type CreateUser = {
 };
 
 export type CreateUserUseCaseProps = {
-  created_by_id: string;
+  createdById: string;
   name: string;
   email: string;
   expiredAt: string;
   phone?: string;
   address?: string;
   permissionGroupsId?: string[];
+};
+
+export type CreateUsersBatchUseCaseProps = {
+  createdById: string;
+  multipartData?: MultipartFile;
 };
 
 export type UpdateUserUseCaseProps = {
