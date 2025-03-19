@@ -22,21 +22,23 @@ export class CreateUsersBatchUseCase
     const rows = await getRows(multipartData);
     for (let row of rows) {
       const { Cliente: name, Email: email, Celular: phone } = row;
+      console.log('uuuuuuuuu', row);
       const userAlreadyRegisteredByEmail =
         await this.userAlreadyRegistered(email);
+      console.log(createdById);
       if (!userAlreadyRegisteredByEmail) {
-        const password = await this.generatePassword(email);
-        const { value: expiredAtValue } = multipartData?.fields
-          ?.expiredAt as any;
-        const user = await this._userRepository.create({
-          created_by_id: createdById,
-          name,
-          email,
-          password,
-          expired_at: new Date(expiredAtValue),
-          phone,
-        });
-        users.push(user);
+        // const password = await this.generatePassword(email);
+        // const { value: expiredAtValue } = multipartData?.fields
+        //   ?.expiredAt as any;
+        // const user = await this._userRepository.create({
+        //   created_by_id: createdById,
+        //   name,
+        //   email,
+        //   password,
+        //   expired_at: new Date(expiredAtValue),
+        //   phone,
+        // });
+        // users.push(user);
       }
     }
     return users;
