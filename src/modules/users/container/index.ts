@@ -15,6 +15,8 @@ import { DeleteUserUseCase } from '../usecases/delete.user.usecase';
 import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.use.case.interface';
 import { CreateUsersBatchUseCase } from '../usecases/create.users.batch.usecase';
 import { CreateUsersBatchUseCaseInterface } from '../usecases/interfaces/create.users.batch.use.case.interface';
+import { GetUserProfileUseCaseInterface } from '../usecases/interfaces/get.user.profile.use.case.interface';
+import { GetUserProfileUseCase } from '../usecases/get.user.profile.usecase';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -44,6 +46,11 @@ container.registerSingleton<UpdateUserUseCaseInterface>(
 container.registerSingleton<DeleteUserUseCaseInterface>(
   'DeleteUserUseCase',
   DeleteUserUseCase,
+);
+
+container.registerSingleton<GetUserProfileUseCaseInterface>(
+  'GetUserProfileUseCase',
+  GetUserProfileUseCase,
 );
 
 container.registerSingleton<UserRepositoryInterface>(

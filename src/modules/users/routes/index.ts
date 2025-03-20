@@ -10,10 +10,13 @@ import { updateUserSchema } from './schemas/update.user.schema';
 import { deleteUserSchema } from './schemas/delete.user.schema';
 import { UsersBatchController } from '../controllers/users.batch.controller';
 import { createUsersBatchSchema } from './schemas/create.users.batch.schema';
+import { UserProfileController } from '../controllers/user.profile.controller';
+import { getUserProfileSchema } from './schemas/get.user.profile.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
   const usersBatchController = container.resolve(UsersBatchController);
+  const userProfileController = container.resolve(UserProfileController);
 
   app.post(
     '/users',
@@ -57,5 +60,12 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
     '/users/:id',
     { schema: deleteUserSchema, preHandler: [authMiddleware, canMiddleware] },
     (request, reply) => userController.delete(request, reply),
+  );
+
+  app.get(
+    '/users/profile',
+    { schema: getUserProfileSchema, preHandler: [authMiddleware] },
+    (request, reply) =>
+      userProfileController.findOne(request as FastifyAuthRequest, reply),
   );
 };
