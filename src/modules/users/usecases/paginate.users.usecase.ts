@@ -14,11 +14,13 @@ export class PaginateUsersUseCase implements PaginateUsersUseCaseInterface {
   public async execute({
     page,
     qtdItemsPerPage,
+    filter,
   }: PaginateRequestProps): Promise<PaginateUserProps<User>> {
     const result = await this._userRepository.paginate({
       page,
       qtdItemsPerPage,
       relationships: { permissionGroups: true },
+      filter,
     });
     return result;
   }

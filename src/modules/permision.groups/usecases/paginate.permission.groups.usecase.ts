@@ -19,6 +19,7 @@ export class PaginatePermissionGroupsUseCase
   public async execute({
     page,
     qtdItemsPerPage,
+    filter,
   }: PaginateRequestProps): Promise<
     PaginatePermissionGroupProps<PermissionGroup>
   > {
@@ -28,6 +29,7 @@ export class PaginatePermissionGroupsUseCase
       page,
       qtdItemsPerPage,
       relationships: { users: true, rules: true },
+      filter,
     });
     return result;
   }

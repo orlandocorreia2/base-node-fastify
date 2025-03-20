@@ -7,11 +7,7 @@ import { CreateUserRepositoryProps, UpdateUserRepositoryProps } from '../types';
 
 export interface UserRepositoryInterface {
   create(data: CreateUserRepositoryProps): Promise<User>;
-  paginate({
-    page,
-    qtdItemsPerPage,
-    relationships,
-  }: DBPaginateParametersProps): Promise<PaginateUserProps<User>>;
+  paginate(data: DBPaginateParametersProps): Promise<PaginateUserProps<User>>;
   findOne(data: DBFindOneUserRepositoryProps): Promise<User>;
   update(data: UpdateUserRepositoryProps): Promise<User>;
   delete(id: string): Promise<void>;

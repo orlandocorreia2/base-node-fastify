@@ -10,6 +10,7 @@ import {
   CreatePermissionGroupRepositoryProps,
   UpdatePermissionGroupRepositoryProps,
 } from '../../../../../modules/permision.groups/repositories/types';
+import { KeyValueProps } from 'types/types';
 
 @injectable()
 export class PermissionGroupRepositoryPrisma
@@ -41,10 +42,19 @@ export class PermissionGroupRepositoryPrisma
   }
 
   async paginate<T>({
+    filter,
     page,
     qtdItemsPerPage,
     relationships,
   }: DBPaginateParametersProps): Promise<T> {
+    const where: KeyValueProps = filter
+      ? {
+          OR: [
+            { name: { contains: filter, mode: 'insensitive' } },
+            { description: { contains: filter, mode: 'insensitive' } },
+          ],
+        }
+      : {};
     const total = await prisma.permissionGroup.count({});
     page = positiveNumber(page);
     qtdItemsPerPage = positiveNumber(qtdItemsPerPage);
@@ -61,6 +71,7 @@ export class PermissionGroupRepositoryPrisma
       };
     }
     const result = await prisma.permissionGroup.findMany({
+      where,
       skip,
       take: parseInt(qtdItemsPerPage.toString()),
       include,

@@ -51,10 +51,12 @@ export class PermissionGroupController {
 
   async findAll(request: FastifyRequest, reply: FastifyReply) {
     try {
-      const { page, qtdItemsPerPage } = request.query as PaginateRequestProps;
+      const { page, qtdItemsPerPage, filter } =
+        request.query as PaginateRequestProps;
       const result = await this._paginatePermissionGroupsUseCase.execute({
         page,
         qtdItemsPerPage,
+        filter,
       });
       return PaginatePermissionGroupResponse.success({ result, reply });
     } catch (error) {

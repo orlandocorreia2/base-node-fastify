@@ -19,6 +19,7 @@ export type FastifyTypedInstance = FastifyInstance<
 export type PaginateRequestProps = {
   page: number;
   qtdItemsPerPage: number;
+  filter?: string;
 };
 
 export type ParamRequestProps = {

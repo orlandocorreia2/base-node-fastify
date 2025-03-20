@@ -26,7 +26,7 @@ export type DBPaginateProps<T> = {
 };
 
 export type DBPaginateParametersProps = {
-  filter?: KeyValueProps;
+  filter?: string;
   page: number;
   qtdItemsPerPage: number;
   relationships?: DBRelationships;

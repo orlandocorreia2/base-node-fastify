@@ -41,7 +41,8 @@ export class CreateUsersBatchUseCase
         await this.userAlreadyRegistered(email);
       if (!userAlreadyRegisteredByEmail) {
         const password = await this.generatePassword(email);
-        const address = `${Endereço || ''}, ${Numero || ''}, ${Complemento || ''}, ${Bairro || ''}, ${Cidade || ''}, ${Estado || ''}, ${País || ''}, ${CEP || ''}`;
+        let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
+        address = address.substring(0, address.length - 2);
         const user = await this._userRepository.create({
           created_by_id: createdById,
           name,

@@ -10,6 +10,7 @@ import {
   CreateUserRepositoryProps,
   UpdateUserRepositoryProps,
 } from '../../../../../modules/users/repositories/types';
+import { KeyValueProps } from '../../../../../types/types';
 
 @injectable()
 export class UserRepositoryPrisma implements UserRepositoryInterface {
@@ -51,7 +52,16 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
     relationships,
     withDeleted,
   }: DBPaginateParametersProps): Promise<T> {
-    const where = { ...filter };
+    const where: KeyValueProps = filter
+      ? {
+          OR: [
+            { name: { contains: filter, mode: 'insensitive' } },
+            { email: { contains: filter, mode: 'insensitive' } },
+            { phone: { contains: filter, mode: 'insensitive' } },
+            { address: { contains: filter, mode: 'insensitive' } },
+          ],
+        }
+      : {};
     if (!withDeleted) where.deleted_at = null;
     const total = await prisma.user.count({ where });
     page = positiveNumber(page);
