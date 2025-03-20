@@ -9,6 +9,7 @@ import { findOneUserSchema } from './schemas/find.one.user.schema';
 import { updateUserSchema } from './schemas/update.user.schema';
 import { deleteUserSchema } from './schemas/delete.user.schema';
 import { UsersBatchController } from '../controllers/users.batch.controller';
+import { createUsersBatchSchema } from './schemas/create.users.batch.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
@@ -23,7 +24,10 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
 
   app.post(
     '/users/batch',
-    { preHandler: [authMiddleware, canMiddleware] },
+    {
+      schema: createUsersBatchSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
     (request, reply) =>
       usersBatchController.create(request as FastifyAuthRequest, reply),
   );

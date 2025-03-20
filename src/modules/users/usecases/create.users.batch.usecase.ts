@@ -5,6 +5,7 @@ import { generateHash } from '../../../utils/hash';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { CreateUsersBatchUseCaseInterface } from './interfaces/create.users.batch.use.case.interface';
 import { getRows } from '../../../utils/xlsx';
+import { UnprocessableError } from '../../../error/unprocessable.error';
 
 @injectable()
 export class CreateUsersBatchUseCase
@@ -18,30 +19,58 @@ export class CreateUsersBatchUseCase
     createdById: string,
     multipartData: MultipartFile,
   ): Promise<User[]> {
+    this.validateMultipartDataForm(multipartData);
+    const { value: expiredAtValue } = multipartData?.fields?.expiredAt as any;
     const users: User[] = [];
     const rows = await getRows(multipartData);
     for (let row of rows) {
-      const { Cliente: name, Email: email, Celular: phone } = row;
-      console.log('uuuuuuuuu', row);
+      const {
+        Cliente: name,
+        Email: email,
+        Celular: phone,
+        Endereço,
+        Numero,
+        Complemento,
+        Bairro,
+        Cidade,
+        Estado,
+        CEP,
+        País,
+      } = row;
       const userAlreadyRegisteredByEmail =
         await this.userAlreadyRegistered(email);
-      console.log(createdById);
       if (!userAlreadyRegisteredByEmail) {
-        // const password = await this.generatePassword(email);
-        // const { value: expiredAtValue } = multipartData?.fields
-        //   ?.expiredAt as any;
-        // const user = await this._userRepository.create({
-        //   created_by_id: createdById,
-        //   name,
-        //   email,
-        //   password,
-        //   expired_at: new Date(expiredAtValue),
-        //   phone,
-        // });
-        // users.push(user);
+        const password = await this.generatePassword(email);
+        const address = `${Endereço || ''}, ${Numero || ''}, ${Complemento || ''}, ${Bairro || ''}, ${Cidade || ''}, ${Estado || ''}, ${País || ''}, ${CEP || ''}`;
+        const user = await this._userRepository.create({
+          created_by_id: createdById,
+          name,
+          email,
+          password,
+          expired_at: new Date(expiredAtValue),
+          phone,
+          address,
+        });
+        users.push(user);
       }
     }
     return users;
+  }
+
+  private validateMultipartDataForm(multipartData: MultipartFile) {
+    if (
+      !multipartData ||
+      multipartData.mimetype !==
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    ) {
+      throw new UnprocessableError(
+        'Arquivo com extensão .xlsx não encontrado ou inválido!',
+      );
+    }
+    const expiredAt = multipartData?.fields?.expiredAt as any;
+    if (!expiredAt || !expiredAt.value) {
+      throw new UnprocessableError('O campo expiredAt é obrigatório!');
+    }
   }
 
   private async userAlreadyRegistered(email: string) {

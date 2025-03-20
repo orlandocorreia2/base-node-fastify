@@ -15,11 +15,11 @@ export class UsersBatchController {
     try {
       const multipartData = (await request.file()) as MultipartFile;
       const createdById = request.user.id;
-      const result = await this._createUsersBatchUseCaseInterface.execute(
+      this._createUsersBatchUseCaseInterface.execute(
         createdById,
         multipartData,
       );
-      return reply.status(201).send(result);
+      return reply.status(201).send();
     } catch (error) {
       console.log('Error:', error);
       throw error;
