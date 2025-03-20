@@ -1,11 +1,13 @@
 import { inject, injectable } from 'tsyringe';
 import { MultipartFile } from '@fastify/multipart';
-import { User } from '../DTOs/user';
+import { CreateUserRequestProps, User } from '../DTOs/user';
 import { generateHash } from '../../../utils/hash';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { CreateUsersBatchUseCaseInterface } from './interfaces/create.users.batch.use.case.interface';
 import { getRows } from '../../../utils/xlsx';
 import { UnprocessableError } from '../../../error/unprocessable.error';
+
+import { body } from '../routes/schemas/create.user.schema/body';
 
 @injectable()
 export class CreateUsersBatchUseCase
@@ -43,16 +45,23 @@ export class CreateUsersBatchUseCase
         const password = await this.generatePassword(email);
         let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
         address = address.substring(0, address.length - 2);
-        const user = await this._userRepository.create({
-          created_by_id: createdById,
+        const validateUser = this.validateUserData({
           name,
           email,
-          password,
-          expired_at: new Date(expiredAtValue),
-          phone,
-          address,
+          expiredAt: expiredAtValue,
         });
-        users.push(user);
+        if (validateUser) {
+          const user = await this._userRepository.create({
+            created_by_id: createdById,
+            name,
+            email,
+            password,
+            expired_at: new Date(expiredAtValue),
+            phone,
+            address,
+          });
+          users.push(user);
+        }
       }
     }
     return users;
@@ -72,6 +81,10 @@ export class CreateUsersBatchUseCase
     if (!expiredAt || !expiredAt.value) {
       throw new UnprocessableError('O campo expiredAt é obrigatório!');
     }
+  }
+
+  private validateUserData(user: CreateUserRequestProps): boolean {
+    return body.safeParse(user).success;
   }
 
   private async userAlreadyRegistered(email: string) {
