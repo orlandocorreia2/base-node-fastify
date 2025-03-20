@@ -46,14 +46,14 @@ export class CreateUsersBatchUseCase
         let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
         address = address.substring(0, address.length - 2);
         const validateUser = this.validateUserData({
-          name,
+          name: name || email,
           email,
           expiredAt: expiredAtValue,
         });
         if (validateUser) {
           const user = await this._userRepository.create({
             created_by_id: createdById,
-            name,
+            name: name || email,
             email,
             password,
             expired_at: new Date(expiredAtValue),
