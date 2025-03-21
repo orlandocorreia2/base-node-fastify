@@ -11,10 +11,10 @@ export const response = {
           name: z.string({ description: 'Administrador' }),
           email: z.string({ description: 'jonhdoe@email.com' }),
           expiredAt: z.date({ description: '2298-12-28T01:05:14.688Z' }),
-          phone: z.optional(z.string({ description: '11911111111' })),
-          address: z.optional(
-            z.string({ description: 'Avenida Paulista, 1000' }),
-          ),
+          phone: z.string({ description: '11911111111' }).nullable(),
+          address: z
+            .string({ description: 'Avenida Paulista, 1000' })
+            .nullable(),
           createdAt: z.date({ description: '2025-03-08T00:45:12.815Z' }),
           updatedAt: z.date({ description: '2025-03-08T00:45:12.815Z' }),
           permissionGroups: z.optional(
