@@ -1,5 +1,4 @@
 import fastify, { FastifyInstance } from 'fastify';
-import multipart from '@fastify/multipart';
 import { appRoutes } from './routes';
 import './shared/container';
 import plugins from './plugins';

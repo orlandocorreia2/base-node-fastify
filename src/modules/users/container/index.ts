@@ -17,6 +17,12 @@ import { CreateUsersBatchUseCase } from '../usecases/create.users.batch.usecase'
 import { CreateUsersBatchUseCaseInterface } from '../usecases/interfaces/create.users.batch.use.case.interface';
 import { GetUserProfileUseCaseInterface } from '../usecases/interfaces/get.user.profile.use.case.interface';
 import { GetUserProfileUseCase } from '../usecases/get.user.profile.usecase';
+import { MailInterface } from '../../../shared/email/mail.interface';
+import { TokenRepositoryInterface } from 'shared/interfaces/token.repository.interface';
+import { TokenRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/token.repository.prisma';
+import { CreateUserMail } from '../../../infra/mail/nodemailer/create.user.mail';
+import { ResetUserPasswordUseCaseInterface } from '../usecases/interfaces/reset.user.password.use.case.interface';
+import { ResetUserPasswordUseCase } from '../usecases/reset.user.password.usecase';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -53,6 +59,11 @@ container.registerSingleton<GetUserProfileUseCaseInterface>(
   GetUserProfileUseCase,
 );
 
+container.registerSingleton<ResetUserPasswordUseCaseInterface>(
+  'ResetUserPasswordUseCase',
+  ResetUserPasswordUseCase,
+);
+
 container.registerSingleton<UserRepositoryInterface>(
   'UserRepository',
   UserRepositoryPrisma,
@@ -62,3 +73,10 @@ container.registerSingleton<UserPermissionGroupRepositoryInterface>(
   'UserPermissionGroupRepository',
   UserPermissionGroupRepositoryPrisma,
 );
+
+container.registerSingleton<TokenRepositoryInterface>(
+  'TokenRepository',
+  TokenRepositoryPrisma,
+);
+
+container.registerSingleton<MailInterface>('CreateUserMail', CreateUserMail);

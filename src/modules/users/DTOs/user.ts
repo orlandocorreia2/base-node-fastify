@@ -35,6 +35,11 @@ export type CreateUserUseCaseProps = {
   permissionGroupsId?: string[];
 };
 
+export type ResetUserPasswordUseCaseProps = {
+  token: string;
+  password: string;
+};
+
 export type CreateUsersBatchUseCaseProps = {
   createdById: string;
   multipartData?: MultipartFile;
@@ -57,6 +62,11 @@ export type CreateUserRequestProps = {
   phone?: string;
   address?: string;
   permissionGroupsId?: string[];
+};
+
+export type ResetUserPasswordRequestProps = {
+  token: string;
+  password: string;
 };
 
 export type UpdateUserRequestProps = {

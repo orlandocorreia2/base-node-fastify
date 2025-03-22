@@ -84,3 +84,10 @@ model PermissionGroupRule {
   @@unique([permission_group_id, permission_rule_id])
   @@map("permission_groups_rules")
 }
+
+model Token {
+  id    String @id @default(uuid())
+  token String
+
+  @@map("tokens")
+}

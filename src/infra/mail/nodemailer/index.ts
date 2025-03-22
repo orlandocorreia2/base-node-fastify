@@ -1,24 +1,28 @@
 import nodemailer from 'nodemailer';
+import { env } from '../../../utils/env';
+import { SendMailProps } from '../../../types/email';
+import { isEnvironmentProduction } from '../../../utils/helper';
 
-const transport = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+export const transport = nodemailer.createTransport({
+  service: env({ key: 'MAIL_SERVICE' }),
   auth: {
-    user: 'ocnascimento2@gmail.com',
-    pass: '',
+    user: env({ key: 'MAIL_AUTH_USER' }),
+    pass: env({ key: 'MAIL_AUTH_PASS' }),
   },
 });
 
-transport
-  .sendMail({
-    from: 'ocnascimento2@gmail.com',
-    to: 'orlandocorreia2@hotmail.com',
-    subject: 'Enviando email com Nodemailer',
-    html: '<h1>Olá sistema de leiloes da caixa economica federal.</h1>',
-    text: 'Texto alternativo',
-  })
-  .then(response => {
-    console.log('Email enviado com sucesso!', response);
-  })
-  .catch(error => console.log('Erro ao enviar o email', error));
+export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
+  const sendTo = isEnvironmentProduction ? to : env({ key: 'MAIL_FROM_DEVS' });
+  transport
+    .sendMail({
+      from: env({ key: 'MAIL_FROM' }),
+      to: sendTo,
+      subject,
+      html,
+      text,
+    })
+    .then(response => {
+      console.log('Email enviado com sucesso!', response);
+    })
+    .catch(error => console.log('Erro ao enviar o email', error));
+};
