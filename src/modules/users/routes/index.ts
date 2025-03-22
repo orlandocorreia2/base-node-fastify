@@ -13,6 +13,7 @@ import { createUsersBatchSchema } from './schemas/create.users.batch.schema';
 import { UserProfileController } from '../controllers/user.profile.controller';
 import { getUserProfileSchema } from './schemas/get.user.profile.schema';
 import { UserPasswordController } from '../controllers/user.password.controller';
+import { resetUserPasswrodSchema } from './schemas/reset.user.password.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
@@ -71,7 +72,9 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
       userProfileController.findOne(request as FastifyAuthRequest, reply),
   );
 
-  app.patch('/users/reset-password', {}, (request, reply) =>
-    userPasswordController.update(request, reply),
+  app.patch(
+    '/users/reset-password',
+    { schema: resetUserPasswrodSchema },
+    (request, reply) => userPasswordController.update(request, reply),
   );
 };

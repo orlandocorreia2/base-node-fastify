@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { env } from '../../../utils/env';
 import { SendMailProps } from '../../../types/email';
 import { isEnvironmentProduction } from '../../../utils/helper';
+import path from 'path';
 
 export const transport = nodemailer.createTransport({
   service: env({ key: 'MAIL_SERVICE' }),
@@ -20,6 +21,16 @@ export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
       subject,
       html,
       text,
+
+      attachments: [
+        {
+          filename: 'logo.png',
+          path: path.resolve(`${__dirname}/views/logo.png`),
+          contentDisposition: 'inline',
+          cid: 'logo.png',
+          contentType: 'image/png',
+        },
+      ],
     })
     .then(response => {
       console.log('Email enviado com sucesso!', response);

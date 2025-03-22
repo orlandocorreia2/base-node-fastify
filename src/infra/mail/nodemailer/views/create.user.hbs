@@ -1,21 +1,132 @@
-<style>
-  .message-content {
-    font-family: Arial, Helvetica, sans-serif;
-    max-width: 600px;
-    font-size: 18px;
-    line-height: 21px;
-  }
-</style>
-
-<div class='message-content'>
-  <p>Olá seja bem vindo ao Meu Leilão Online, {{name}}</p>
-  <p>Clique no link abaixo para cadastrar uma nova senha.</p>
-  <p>
-    <a href='{{link}}'>Cadastrar nova senha</a>
-  </p>
-  <p>
-    Obrigado!
-    <br />
-    <strong>Equipe Meu Leilão Online</strong>
-  </p>
-</div>
+<html lang='pt-BR' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Bem-vindo(a) ao JARVIS Leilões</title>
+    <!--[if mso]>
+      <style type="text/css">
+        body,
+        table,
+        td {
+          font-family: Arial, sans-serif !important;
+        }
+      </style>
+    <![endif]-->
+  </head>
+  <body
+    style='
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+    '
+  >
+    <!-- Container principal -->
+    <table
+      border='0'
+      cellpadding='0'
+      cellspacing='0'
+      width='100%'
+      style='background-color: #f7f7f7; margin: 0; padding: 0'
+    >
+      <tr>
+        <td align='center' style='padding: 20px'>
+          <!-- Tabela de conteúdo -->
+          <table
+            border='0'
+            cellpadding='0'
+            cellspacing='0'
+            width='600'
+            style='max-width: 600px; width: 100%; background-color: #ffffff'
+          >
+            <!-- Logo -->
+            <tr>
+              <td align='center' style='padding: 20px'>
+                <img
+                  src='cid:logo.png'
+                  alt='JARVIS Leilões'
+                  width='220'
+                  style='
+                    display: block;
+                    border: 0;
+                    max-width: 100%;
+                    height: auto;
+                  '
+                />
+              </td>
+            </tr>
+            <!-- Saudação -->
+            <tr>
+              <td
+                style='
+                  padding: 20px;
+                  color: #222222;
+                  font-size: 16px;
+                  line-height: 1.5;
+                '
+              >
+                <h2
+                  style='
+                    margin-top: 0;
+                    margin-bottom: 16px;
+                    color: #222222;
+                    font-weight: normal;
+                    font-size: 24px;
+                  '
+                >
+                  Bem-vindo(a) ao
+                  <strong>JARVIS Leilões</strong>!
+                </h2>
+                <p style='margin: 0 0 16px'>
+                  Olá,
+                  <strong style='color: #222222'>{{name}}</strong>!
+                </p>
+                <p style='margin: 0 0 16px'>
+                  Clique no botão abaixo para cadastrar uma nova senha e começar
+                  a usar a nossa plataforma.
+                </p>
+              </td>
+            </tr>
+            <!-- Botão de Ação -->
+            <tr>
+              <td align='center' style='padding: 0 20px 20px 20px'>
+                <a
+                  href='{{link}}'
+                  style='
+                    display: inline-block;
+                    background-color: #9e6805;
+                    color: #ffffff;
+                    text-decoration: none;
+                    padding: 12px 24px;
+                    border-radius: 4px;
+                    font-size: 16px;
+                  '
+                >
+                  Cadastrar Nova Senha
+                </a>
+              </td>
+            </tr>
+            <!-- Rodapé -->
+            <tr>
+              <td
+                style='
+                  padding: 20px;
+                  color: #222222;
+                  font-size: 14px;
+                  line-height: 1.5;
+                '
+              >
+                <p style='margin: 0'>
+                  Obrigado!<br />
+                  Equipe Meu Leilão Online
+                </p>
+              </td>
+            </tr>
+          </table>
+          <!-- Fim tabela de conteúdo -->
+        </td>
+      </tr>
+    </table>
+    <!-- Fim container principal -->
+  </body>
+</html>
