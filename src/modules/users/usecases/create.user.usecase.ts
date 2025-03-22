@@ -77,7 +77,8 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   }
 
   private async generateNewPasswordLink(user: User) {
-    const jwt = app.jwt.sign(user, { expiresIn: '1h' });
+    const expiresIn = env({ key: 'TOKEN_EXPIRES_IN' });
+    const jwt = app.jwt.sign(user, { expiresIn });
     const { token } = await this._tokenRepository.create(jwt);
     return `${env({ key: 'FRONT_URL' })}/reset-password/${token}`;
   }

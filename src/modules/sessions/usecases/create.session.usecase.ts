@@ -6,6 +6,7 @@ import { verifyHash } from '../../../utils/hash';
 import { app } from '../../../app';
 import { User } from '../../users/DTOs/user';
 import { UserRepositoryInterface } from '../../users/repositories/interfaces/user.repository.interface';
+import { env } from '../../../utils/env';
 
 @injectable()
 export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
@@ -27,7 +28,8 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
       throw new UnauthorizedError();
     }
     const userInfoToken = this.generateUserInfoToken(user);
-    const token = app.jwt.sign(userInfoToken, { expiresIn: '1h' });
+    const expiresIn = env({ key: 'TOKEN_EXPIRES_IN' });
+    const token = app.jwt.sign(userInfoToken, { expiresIn });
     return { token };
   }
 

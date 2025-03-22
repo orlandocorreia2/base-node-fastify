@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "rm -rf dist && yarn build && yarn copy:files && node dist/server.js",
+    "start": "yarn build && node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "rm -rf dist && tsc -p tsconfig.json && sh ./build-copy-files",
     "prepare": "husky",
     "test": "echo test",
     "copy:files": "cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer",
