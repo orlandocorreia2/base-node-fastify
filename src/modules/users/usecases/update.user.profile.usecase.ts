@@ -17,7 +17,6 @@ export class UpdateUserProfileUseCase
     id,
     name,
     password,
-    expiredAt,
     phone,
     address,
   }: UpdateUserProfileUseCaseProps): Promise<User> {
@@ -32,7 +31,7 @@ export class UpdateUserProfileUseCase
       id,
       name,
       password: newPassword,
-      expired_at: new Date(expiredAt),
+      expired_at: authUser.expired_at,
       phone,
       address,
     });

@@ -25,7 +25,7 @@ export class CreateUserForgotPasswordUseCase
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
-    const link = this.generatePasswordLink(user);
+    const link = await this.generatePasswordLink(user);
     this._createUserForgotPasswordMail.send({ name: user.name, email, link });
     return user;
   }

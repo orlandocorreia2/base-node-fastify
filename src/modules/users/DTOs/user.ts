@@ -57,7 +57,6 @@ export type UpdateUserUseCaseProps = {
 export type UpdateUserProfileUseCaseProps = {
   id: string;
   name: string;
-  expiredAt: string;
   password?: string;
   phone?: string;
   address?: string;
@@ -92,7 +91,6 @@ export type UpdateUserRequestProps = {
 export type UpdateUserProfileRequestProps = {
   name: string;
   password?: string;
-  expiredAt: string;
   phone?: string;
   address?: string;
 };

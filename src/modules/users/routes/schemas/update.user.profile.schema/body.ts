@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { dateFutureDays } from '../../../../../utils/date';
 
 export const body = z.object({
   name: z
@@ -13,5 +12,4 @@ export const body = z.object({
   ),
   phone: z.optional(z.string()).describe('11911111111'),
   address: z.optional(z.string()).describe('Avenida Paulista, 1000'),
-  expiredAt: z.string().describe(dateFutureDays(30).toISOString()),
 });

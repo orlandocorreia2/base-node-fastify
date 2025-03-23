@@ -28,13 +28,12 @@ export class UserProfileController {
   async update(request: FastifyAuthRequest, reply: FastifyReply) {
     try {
       const { id } = request.user as AuthRequestProps;
-      const { name, password, expiredAt, phone, address } =
+      const { name, password, phone, address } =
         request.body as UpdateUserProfileRequestProps;
       const result = await this._updateUserProfileUseCase.execute({
         id,
         name,
         password,
-        expiredAt,
         phone,
         address,
       });
