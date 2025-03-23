@@ -6,7 +6,7 @@ export type CreatePermissionGroupUseCaseProps = {
 };
 
 export type UpdatePermissionGroupUseCaseProps = {
-  id?: string;
+  id: string;
   name: string;
   description?: string;
   permissionRulesId: string[];

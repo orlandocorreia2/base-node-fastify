@@ -23,14 +23,11 @@ export class UpdatePermissionGroupUseCase
     description,
     permissionRulesId,
   }: UpdatePermissionGroupUseCaseProps) {
-    if (!id) {
-      throw new UnprocessableError('Permission group id is required!');
-    }
     const permissionGroup = await this._permissionGroupRepository.findOne({
       filter: { id },
     });
     if (!permissionGroup) {
-      throw new UnprocessableError('Permission group not found!');
+      throw new UnprocessableError('Grupo de permissão não encontrado.');
     }
     const anotherPermissionGroupWithSameName =
       await this._permissionGroupRepository.findOne({
