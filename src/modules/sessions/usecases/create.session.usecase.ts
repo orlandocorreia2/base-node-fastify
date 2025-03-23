@@ -20,7 +20,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
       filter: { email },
       relationships: { rules: true },
     });
-    if (!user) {
+    if (!user || user.expired_at < new Date()) {
       throw new UnauthorizedError();
     }
     const isPassword = await verifyHash(password, user.password);

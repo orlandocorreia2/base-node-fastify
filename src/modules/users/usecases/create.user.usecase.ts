@@ -10,6 +10,7 @@ import { MailInterface } from '../../../shared/email/mail.interface';
 import { app } from '../../../app';
 import { TokenRepositoryInterface } from '../../../shared/interfaces/token.repository.interface';
 import { env } from '../../../utils/env';
+import { generateExpiredAtDate } from '../../../utils/date';
 
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
@@ -34,12 +35,13 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   }: CreateUserUseCaseProps): Promise<User> {
     await this.verifyUserAlreadyRegistered(email);
     const password = await this.generatePassword();
+    const expired_at = generateExpiredAtDate(expiredAt);
     const user = await this._userRepository.create({
       created_by_id: createdById,
       name,
       email,
       password,
-      expired_at: new Date(expiredAt),
+      expired_at,
       phone,
       address,
     });

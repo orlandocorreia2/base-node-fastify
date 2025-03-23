@@ -8,6 +8,7 @@ import { getRows } from '../../../utils/xlsx';
 import { UnprocessableError } from '../../../error/unprocessable.error';
 
 import { body } from '../routes/schemas/create.user.schema/body';
+import { generateExpiredAtDate } from '../../../utils/date';
 
 @injectable()
 export class CreateUsersBatchUseCase
@@ -51,12 +52,13 @@ export class CreateUsersBatchUseCase
           expiredAt: expiredAtValue,
         });
         if (validateUser) {
+          const expired_at = generateExpiredAtDate(expiredAtValue);
           const user = await this._userRepository.create({
             created_by_id: createdById,
             name: name || email,
             email,
             password,
-            expired_at: new Date(expiredAtValue),
+            expired_at,
             phone,
             address,
           });

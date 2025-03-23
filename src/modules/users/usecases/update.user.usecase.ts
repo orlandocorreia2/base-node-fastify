@@ -5,6 +5,7 @@ import { UserRepositoryInterface } from '../repositories/interfaces/user.reposit
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
 import { UpdateUserUseCaseInterface } from './interfaces/update.user.use.case.interface';
 import { NotFoundError } from '../../../error/not.found.error';
+import { generateExpiredAtDate } from '../../../utils/date';
 
 @injectable()
 export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
@@ -29,11 +30,12 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
     if (!savedUser) {
       throw new NotFoundError('Usuário não encontrado!');
     }
+    const expired_at = generateExpiredAtDate(expiredAt);
     const user = await this._userRepository.update({
       id,
       name,
       password: savedUser.password,
-      expired_at: new Date(expiredAt),
+      expired_at,
       phone,
       address,
     });
