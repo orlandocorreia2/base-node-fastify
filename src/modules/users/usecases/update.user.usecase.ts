@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import { UpdateUserUseCaseProps, User } from '../DTOs/user';
-import { generateHash } from '../../../utils/hash';
 import { UnprocessableError } from '../../../error/unprocessable.error';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
@@ -18,7 +17,6 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
   public async execute({
     id,
     name,
-    password,
     expiredAt,
     phone,
     address,
@@ -31,13 +29,10 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
     if (!savedUser) {
       throw new NotFoundError('Usuário não encontrado!');
     }
-    const newPassword = password
-      ? await generateHash(password)
-      : savedUser.password;
     const user = await this._userRepository.update({
       id,
       name,
-      password: newPassword,
+      password: savedUser.password,
       expired_at: new Date(expiredAt),
       phone,
       address,

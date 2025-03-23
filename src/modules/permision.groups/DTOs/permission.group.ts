@@ -1,4 +1,4 @@
-import { User } from '../../../modules/users/DTOs/user';
+import { User } from '../../users/DTOs/user';
 import { DBPaginateProps } from '../../../types/db';
 import { PermissionRule } from './permission.rule';
 

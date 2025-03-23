@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 import { UserRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/user.repository.prisma';
-import { CreateUserUseCase } from '../../../modules/users/usecases/create.user.usecase';
+import { CreateUserUseCase } from '../usecases/create.user.usecase';
 import { CreateUserUseCaseInterface } from '../usecases/interfaces/create.user.use.case.interface';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
@@ -26,6 +26,8 @@ import { ResetUserPasswordUseCase } from '../usecases/reset.user.password.usecas
 import { CreateUserForgotPasswordUseCase } from '../usecases/create.user.forgot.password.usecase';
 import { CreateUserForgotPasswordUseCaseInterface } from '../usecases/interfaces/create.user.forgot.password.use.case.interface';
 import { CreateUserForgotPasswordMailNodemailer } from '../../../infra/mail/nodemailer/create.user.forgot.password.mail.nodemailer';
+import { UpdateUserProfileUseCase } from '../usecases/update.user.profile.usecase';
+import { UpdateUserProfileUseCaseInterface } from '../usecases/interfaces/update.user.profile.use.case.interface';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -70,6 +72,11 @@ container.registerSingleton<ResetUserPasswordUseCaseInterface>(
 container.registerSingleton<CreateUserForgotPasswordUseCaseInterface>(
   'CreateUserForgotPasswordUseCase',
   CreateUserForgotPasswordUseCase,
+);
+
+container.registerSingleton<UpdateUserProfileUseCaseInterface>(
+  'UpdateUserProfileUseCase',
+  UpdateUserProfileUseCase,
 );
 
 container.registerSingleton<UserRepositoryInterface>(

@@ -46,13 +46,21 @@ export type CreateUsersBatchUseCaseProps = {
 };
 
 export type UpdateUserUseCaseProps = {
-  id?: string;
+  id: string;
+  name: string;
+  expiredAt: string;
+  phone?: string;
+  address?: string;
+  permissionGroupsId?: string[];
+};
+
+export type UpdateUserProfileUseCaseProps = {
+  id: string;
   name: string;
   expiredAt: string;
   password?: string;
   phone?: string;
   address?: string;
-  permissionGroupsId?: string[];
 };
 
 export type CreateUserRequestProps = {
@@ -75,11 +83,18 @@ export type CreateUserForgotPasswordRequestProps = {
 
 export type UpdateUserRequestProps = {
   name: string;
-  password?: string;
   expiredAt: string;
   phone?: string;
   address?: string;
   permissionGroupsId?: string[];
+};
+
+export type UpdateUserProfileRequestProps = {
+  name: string;
+  password?: string;
+  expiredAt: string;
+  phone?: string;
+  address?: string;
 };
 
 export type PaginateUserProps<T> = DBPaginateProps<T>;

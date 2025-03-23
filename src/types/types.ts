@@ -26,6 +26,10 @@ export type ParamRequestProps = {
   id: string;
 };
 
+export type AuthRequestProps = {
+  id: string;
+};
+
 export type KeyValueProps = {
   [key: string]: unknown;
 };

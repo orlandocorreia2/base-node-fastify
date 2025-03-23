@@ -16,6 +16,7 @@ import { UserPasswordController } from '../controllers/user.password.controller'
 import { resetUserPasswrodSchema } from './schemas/reset.user.password.schema';
 import { createUserForgotPasswrodSchema } from './schemas/create.user.forgot.password.schema';
 import { UserForgotPasswordController } from '../controllers/user.forgot.password.controller';
+import { updateUserProfileSchema } from './schemas/update.user.profile.schema';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
@@ -75,6 +76,13 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
     { schema: getUserProfileSchema, preHandler: [authMiddleware] },
     (request, reply) =>
       userProfileController.findOne(request as FastifyAuthRequest, reply),
+  );
+
+  app.patch(
+    '/users/profile',
+    { schema: updateUserProfileSchema, preHandler: [authMiddleware] },
+    (request, reply) =>
+      userProfileController.update(request as FastifyAuthRequest, reply),
   );
 
   app.patch(

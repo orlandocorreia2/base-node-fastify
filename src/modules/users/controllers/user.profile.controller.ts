@@ -1,15 +1,19 @@
 import { FastifyReply } from 'fastify';
 import { inject, injectable } from 'tsyringe';
-import { FastifyAuthRequest } from '../../../types/types';
-import { FindOneUserResponse } from './responses/find.one.user.response';
+import { AuthRequestProps, FastifyAuthRequest } from '../../../types/types';
 import { GetUserProfileUseCaseInterface } from '../usecases/interfaces/get.user.profile.use.case.interface';
 import { GetUserProfileResponse } from './responses/get.user.profile.response';
+import { UpdateUserProfileUseCaseInterface } from '../usecases/interfaces/update.user.profile.use.case.interface';
+import { UpdateUserProfileRequestProps } from '../DTOs/user';
+import { UpdateUserProfileResponse } from './responses/update.user.profile.response';
 
 @injectable()
 export class UserProfileController {
   constructor(
     @inject('GetUserProfileUseCase')
     private _getUserProfileUseCase: GetUserProfileUseCaseInterface,
+    @inject('UpdateUserProfileUseCase')
+    private _updateUserProfileUseCase: UpdateUserProfileUseCaseInterface,
   ) {}
 
   async findOne(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -17,7 +21,26 @@ export class UserProfileController {
       const result = await this._getUserProfileUseCase.execute(request.user.id);
       return GetUserProfileResponse.success({ result, reply });
     } catch (error) {
-      FindOneUserResponse.error(error);
+      GetUserProfileResponse.error(error);
+    }
+  }
+
+  async update(request: FastifyAuthRequest, reply: FastifyReply) {
+    try {
+      const { id } = request.user as AuthRequestProps;
+      const { name, password, expiredAt, phone, address } =
+        request.body as UpdateUserProfileRequestProps;
+      const result = await this._updateUserProfileUseCase.execute({
+        id,
+        name,
+        password,
+        expiredAt,
+        phone,
+        address,
+      });
+      return UpdateUserProfileResponse.success({ result, reply });
+    } catch (error) {
+      UpdateUserProfileResponse.error(error);
     }
   }
 }
