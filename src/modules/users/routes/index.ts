@@ -14,12 +14,17 @@ import { UserProfileController } from '../controllers/user.profile.controller';
 import { getUserProfileSchema } from './schemas/get.user.profile.schema';
 import { UserPasswordController } from '../controllers/user.password.controller';
 import { resetUserPasswrodSchema } from './schemas/reset.user.password.schema';
+import { createUserForgotPasswrodSchema } from './schemas/create.user.forgot.password.schema';
+import { UserForgotPasswordController } from '../controllers/user.forgot.password.controller';
 
 export const userRoutesModule = (app: FastifyTypedInstance) => {
   const userController = container.resolve(UserController);
   const usersBatchController = container.resolve(UsersBatchController);
   const userProfileController = container.resolve(UserProfileController);
   const userPasswordController = container.resolve(UserPasswordController);
+  const userForgotPasswordController = container.resolve(
+    UserForgotPasswordController,
+  );
 
   app.post(
     '/users',
@@ -76,5 +81,11 @@ export const userRoutesModule = (app: FastifyTypedInstance) => {
     '/users/reset-password',
     { schema: resetUserPasswrodSchema },
     (request, reply) => userPasswordController.update(request, reply),
+  );
+
+  app.post(
+    '/users/forgot-password',
+    { schema: createUserForgotPasswrodSchema },
+    (request, reply) => userForgotPasswordController.create(request, reply),
   );
 };

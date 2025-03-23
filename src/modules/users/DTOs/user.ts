@@ -69,6 +69,10 @@ export type ResetUserPasswordRequestProps = {
   password: string;
 };
 
+export type CreateUserForgotPasswordRequestProps = {
+  email: string;
+};
+
 export type UpdateUserRequestProps = {
   name: string;
   password?: string;

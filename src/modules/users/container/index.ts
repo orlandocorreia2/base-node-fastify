@@ -20,9 +20,12 @@ import { GetUserProfileUseCase } from '../usecases/get.user.profile.usecase';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { TokenRepositoryInterface } from 'shared/interfaces/token.repository.interface';
 import { TokenRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/token.repository.prisma';
-import { CreateUserMail } from '../../../infra/mail/nodemailer/create.user.mail';
+import { CreateUserMailNodemailer } from '../../../infra/mail/nodemailer/create.user.mail.nodemailer';
 import { ResetUserPasswordUseCaseInterface } from '../usecases/interfaces/reset.user.password.use.case.interface';
 import { ResetUserPasswordUseCase } from '../usecases/reset.user.password.usecase';
+import { CreateUserForgotPasswordUseCase } from '../usecases/create.user.forgot.password.usecase';
+import { CreateUserForgotPasswordUseCaseInterface } from '../usecases/interfaces/create.user.forgot.password.use.case.interface';
+import { CreateUserForgotPasswordMailNodemailer } from '../../../infra/mail/nodemailer/create.user.forgot.password.mail.nodemailer';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -64,6 +67,11 @@ container.registerSingleton<ResetUserPasswordUseCaseInterface>(
   ResetUserPasswordUseCase,
 );
 
+container.registerSingleton<CreateUserForgotPasswordUseCaseInterface>(
+  'CreateUserForgotPasswordUseCase',
+  CreateUserForgotPasswordUseCase,
+);
+
 container.registerSingleton<UserRepositoryInterface>(
   'UserRepository',
   UserRepositoryPrisma,
@@ -79,4 +87,12 @@ container.registerSingleton<TokenRepositoryInterface>(
   TokenRepositoryPrisma,
 );
 
-container.registerSingleton<MailInterface>('CreateUserMail', CreateUserMail);
+container.registerSingleton<MailInterface>(
+  'CreateUserMail',
+  CreateUserMailNodemailer,
+);
+
+container.registerSingleton<MailInterface>(
+  'CreateUserForgotPasswordMail',
+  CreateUserForgotPasswordMailNodemailer,
+);

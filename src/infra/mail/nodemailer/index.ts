@@ -21,7 +21,6 @@ export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
       subject,
       html,
       text,
-
       attachments: [
         {
           filename: 'logo.png',

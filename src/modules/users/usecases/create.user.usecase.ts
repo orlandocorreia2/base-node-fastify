@@ -44,7 +44,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
       address,
     });
     this.attachPermissionGroups(permissionGroupsId, user.id);
-    const link = await this.generateNewPasswordLink(user);
+    const link = await this.generatePasswordLink(user);
     this._createUserMail.send({ name, email, link });
     return user;
   }
@@ -76,7 +76,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     }
   }
 
-  private async generateNewPasswordLink(user: User) {
+  private async generatePasswordLink(user: User) {
     const expiresIn = env({ key: 'TOKEN_EXPIRES_IN' });
     const jwt = app.jwt.sign(user, { expiresIn });
     const { token } = await this._tokenRepository.create(jwt);
