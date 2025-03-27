@@ -12,6 +12,7 @@ export type User = {
   address?: string;
   created_at?: Date;
   updated_at?: Date;
+  deleted_at?: Date;
   permissionGroups?: { permissionGroup: PermissionGroup }[];
 };
 
@@ -48,6 +49,7 @@ export type CreateUsersBatchUseCaseProps = {
 export type UpdateUserUseCaseProps = {
   id: string;
   name: string;
+  email: string;
   expiredAt: string;
   phone?: string;
   address?: string;
@@ -82,6 +84,7 @@ export type CreateUserForgotPasswordRequestProps = {
 
 export type UpdateUserRequestProps = {
   name: string;
+  email: string;
   expiredAt: string;
   phone?: string;
   address?: string;

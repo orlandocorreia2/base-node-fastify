@@ -14,20 +14,17 @@ export class DeletePermissionGroupUseCase
   ) {}
 
   public async execute(id: string) {
-    if (!id) {
-      throw new UnprocessableError('Permission group id is required!');
-    }
     const permissionGroup =
       await this._permissionGroupRepository.findOne<PermissionGroup>({
         filter: { id },
         relationships: { users: true },
       });
     if (!permissionGroup) {
-      throw new UnprocessableError('Permission group not found!');
+      throw new UnprocessableError('Grupo de permissão não encontrado!');
     }
     if (permissionGroup.users?.length) {
       throw new UnprocessableError(
-        'This permission group has users added, remove users from the group to be able to delete!',
+        'Este grupo de permissões contém usuários adicionados. Para excluir remova os usuários do grupo!',
       );
     }
     await this._permissionGroupRepository.delete(id);

@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import { UpdateUserUseCaseProps, User } from '../DTOs/user';
-import { UnprocessableError } from '../../../error/unprocessable.error';
 import { UserRepositoryInterface } from '../repositories/interfaces/user.repository.interface';
 import { UserPermissionGroupRepositoryInterface } from '../repositories/interfaces/user.permission.group.repository.interface';
 import { UpdateUserUseCaseInterface } from './interfaces/update.user.use.case.interface';
@@ -18,14 +17,12 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
   public async execute({
     id,
     name,
+    email,
     expiredAt,
     phone,
     address,
     permissionGroupsId,
   }: UpdateUserUseCaseProps): Promise<User> {
-    if (!id) {
-      throw new UnprocessableError('O id do usuário é obrigatório!');
-    }
     const savedUser = await this._userRepository.findOne({ filter: { id } });
     if (!savedUser) {
       throw new NotFoundError('Usuário não encontrado!');
@@ -34,6 +31,7 @@ export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
     const user = await this._userRepository.update({
       id,
       name,
+      email,
       password: savedUser.password,
       expired_at,
       phone,

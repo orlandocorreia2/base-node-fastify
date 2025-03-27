@@ -30,6 +30,7 @@ export class UpdateUserProfileUseCase
     return await this._userRepository.update({
       id,
       name,
+      email: authUser.email,
       password: newPassword,
       expired_at: authUser.expired_at,
       phone,

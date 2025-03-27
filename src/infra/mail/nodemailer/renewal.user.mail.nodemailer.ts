@@ -5,9 +5,11 @@ import { CreateUserMailProps } from '../../../types/email';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { sendMail } from '.';
 
-export class CreateUserMailNodemailer implements MailInterface {
+export class RenewalUserMailNodemailer implements MailInterface {
   async send({ name, email, link }: CreateUserMailProps) {
-    const fileTemplatePath = path.resolve(`${__dirname}/views/create.user.hbs`);
+    const fileTemplatePath = path.resolve(
+      `${__dirname}/views/renewal.user.hbs`,
+    );
     const templateFileContent = await fs.promises.readFile(fileTemplatePath, {
       encoding: 'utf-8',
     });
@@ -15,9 +17,9 @@ export class CreateUserMailNodemailer implements MailInterface {
     const html = parseTemplate({ name, link });
     sendMail({
       to: email,
-      subject: 'Usuário criado na plataforma Meu Leilão Online',
+      subject: 'Usuário renovado na plataforma Meu Leilão Online',
       html,
-      text: `Parabéns ${name}, seu cadastro foi criado com sucesso. Acesse o link para criar uma nova senha: ${link}`,
+      text: `Parabéns ${name}, seu cadastro foi renovado com sucesso. Acesse o link para acessar a plataforma: ${link}`,
     });
   }
 }

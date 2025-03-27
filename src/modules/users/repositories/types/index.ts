@@ -11,8 +11,10 @@ export type CreateUserRepositoryProps = {
 export type UpdateUserRepositoryProps = {
   id: string;
   name: string;
-  password: string;
+  email: string;
+  password?: string;
   expired_at: Date;
+  deleted_at?: Date | null;
   phone?: string;
   address?: string;
 };

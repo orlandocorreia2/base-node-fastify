@@ -5,7 +5,6 @@ export type EnvProps = {
     | 'HOST'
     | 'ENVIRONMENT'
     | 'JWT_SECRET'
-    | 'TOKEN_EXPIRES_IN'
     | 'DATABASE_URL'
     | 'MAIL_SERVICE'
     | 'MAIL_AUTH_USER'

@@ -33,15 +33,11 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     address,
     permissionGroupsId,
   }: CreateUserUseCaseProps): Promise<User> {
-    await this.verifyUserAlreadyRegistered(email);
-    const password = await this.generatePassword();
-    const expired_at = generateExpiredAtDate(expiredAt);
-    const user = await this._userRepository.create({
-      created_by_id: createdById,
+    const user = await this.createOrUpdateUser({
+      createdById,
       name,
       email,
-      password,
-      expired_at,
+      expiredAt,
       phone,
       address,
     });
@@ -51,14 +47,43 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
     return user;
   }
 
-  private async verifyUserAlreadyRegistered(email: string) {
+  private async createOrUpdateUser({
+    createdById,
+    name,
+    email,
+    expiredAt,
+    phone,
+    address,
+  }: CreateUserUseCaseProps): Promise<User> {
     const userAlreadyRegistered = await this._userRepository.findOne({
       filter: { email },
       withDeleted: true,
     });
-    if (userAlreadyRegistered) {
-      throw new UnprocessableError('User already registered!');
+    if (userAlreadyRegistered && !userAlreadyRegistered.deleted_at) {
+      throw new UnprocessableError('Usuário já está cadastrado na plataforma.');
     }
+    const expired_at = generateExpiredAtDate(expiredAt);
+    if (userAlreadyRegistered) {
+      return await this._userRepository.update({
+        id: userAlreadyRegistered.id,
+        name,
+        email,
+        expired_at,
+        phone,
+        address,
+        deleted_at: null,
+      });
+    }
+    const password = await this.generatePassword();
+    return await this._userRepository.create({
+      created_by_id: createdById,
+      name,
+      email,
+      password,
+      expired_at,
+      phone,
+      address,
+    });
   }
 
   private async generatePassword() {
@@ -79,8 +104,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
   }
 
   private async generatePasswordLink(user: User) {
-    const expiresIn = env({ key: 'TOKEN_EXPIRES_IN' });
-    const jwt = app.jwt.sign(user, { expiresIn });
+    const jwt = app.jwt.sign(user, { expiresIn: '24h' });
     const { token } = await this._tokenRepository.create(jwt);
     return `${env({ key: 'FRONT_URL' })}/reset-password/${token}`;
   }

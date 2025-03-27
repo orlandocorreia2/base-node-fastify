@@ -31,8 +31,7 @@ export class CreateUserForgotPasswordUseCase
   }
 
   private async generatePasswordLink(user: User) {
-    const expiresIn = env({ key: 'TOKEN_EXPIRES_IN' });
-    const jwt = app.jwt.sign(user, { expiresIn });
+    const jwt = app.jwt.sign(user, { expiresIn: '24h' });
     const { token } = await this._tokenRepository.create(jwt);
     return `${env({ key: 'FRONT_URL' })}/reset-password/${token}`;
   }

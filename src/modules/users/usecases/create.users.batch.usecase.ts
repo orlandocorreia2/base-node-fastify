@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { randomBytes } from 'crypto';
 import { MultipartFile } from '@fastify/multipart';
 import { CreateUserRequestProps, User } from '../DTOs/user';
 import { generateHash } from '../../../utils/hash';
@@ -6,27 +7,50 @@ import { UserRepositoryInterface } from '../repositories/interfaces/user.reposit
 import { CreateUsersBatchUseCaseInterface } from './interfaces/create.users.batch.use.case.interface';
 import { getRows } from '../../../utils/xlsx';
 import { UnprocessableError } from '../../../error/unprocessable.error';
-
 import { body } from '../routes/schemas/create.user.schema/body';
 import { generateExpiredAtDate } from '../../../utils/date';
+import { env } from '../../../utils/env';
+import {
+  UserCreateBatchMessagesProps,
+  UserCreateOrUpdateBatchProps,
+} from './types';
+import { app } from '../../../app';
+import { TokenRepositoryInterface } from '../../../shared/interfaces/token.repository.interface';
+import { MailInterface } from '../../../shared/email/mail.interface';
 
 @injectable()
 export class CreateUsersBatchUseCase
   implements CreateUsersBatchUseCaseInterface
 {
+  private _returnMessages: UserCreateBatchMessagesProps =
+    {} as UserCreateBatchMessagesProps;
+
   constructor(
     @inject('UserRepository') private _userRepository: UserRepositoryInterface,
+    @inject('TokenRepository')
+    private _tokenRepository: TokenRepositoryInterface,
+    @inject('CreateUserMail')
+    private _createUserMail: MailInterface,
+    @inject('RenewalUserMail')
+    private _renewalUserMail: MailInterface,
   ) {}
 
   public async execute(
     createdById: string,
     multipartData: MultipartFile,
-  ): Promise<User[]> {
+  ): Promise<UserCreateBatchMessagesProps> {
+    this._returnMessages = {
+      totalRegisteredUsers: 0,
+      totalRenewalUsers: 0,
+      totalNotRegisteredUsers: 0,
+      notRegisteredUsers: [],
+    };
     this.validateMultipartDataForm(multipartData);
     const { value: expiredAtValue } = multipartData?.fields?.expiredAt as any;
-    const users: User[] = [];
+    let rowNumber = 0;
     const rows = await getRows(multipartData);
     for (let row of rows) {
+      rowNumber++;
       const {
         Cliente: name,
         Email: email,
@@ -40,33 +64,36 @@ export class CreateUsersBatchUseCase
         CEP,
         País,
       } = row;
-      const userAlreadyRegisteredByEmail =
-        await this.userAlreadyRegistered(email);
-      if (!userAlreadyRegisteredByEmail) {
-        const password = await this.generatePassword(email);
-        let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
-        address = address.substring(0, address.length - 2);
-        const validateUser = this.validateUserData({
-          name: name || email,
+      const validateUser = this.validateUserData({
+        name: name || email,
+        email,
+        expiredAt: expiredAtValue,
+      });
+      if (!validateUser) {
+        this._returnMessages.totalNotRegisteredUsers++;
+        this._returnMessages.notRegisteredUsers.push(
+          `Erro na linha: ${rowNumber}. Usuário(a): com nome: ${name} e email: ${email} não cadastrado devido a falha de validação.`,
+        );
+      }
+      if (validateUser) {
+        await this.createOrUpdateUser({
+          Endereço,
+          Numero,
+          Complemento,
+          Bairro,
+          Cidade,
+          Estado,
+          País,
+          CEP,
+          expiredAtValue,
           email,
-          expiredAt: expiredAtValue,
+          name: name || email,
+          phone,
+          createdById,
         });
-        if (validateUser) {
-          const expired_at = generateExpiredAtDate(expiredAtValue);
-          const user = await this._userRepository.create({
-            created_by_id: createdById,
-            name: name || email,
-            email,
-            password,
-            expired_at,
-            phone,
-            address,
-          });
-          users.push(user);
-        }
       }
     }
-    return users;
+    return this._returnMessages;
   }
 
   private validateMultipartDataForm(multipartData: MultipartFile) {
@@ -89,15 +116,75 @@ export class CreateUsersBatchUseCase
     return body.safeParse(user).success;
   }
 
-  private async userAlreadyRegistered(email: string) {
-    return await this._userRepository.findOne({
+  private async createOrUpdateUser({
+    Endereço,
+    Numero,
+    Complemento,
+    Bairro,
+    Cidade,
+    Estado,
+    País,
+    CEP,
+    expiredAtValue,
+    email,
+    name,
+    phone,
+    createdById,
+  }: UserCreateOrUpdateBatchProps) {
+    let user: User = {} as User;
+    let link: string = '';
+    let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
+    const expired_at = generateExpiredAtDate(expiredAtValue);
+    const userAlreadyRegistered = await this._userRepository.findOne({
       filter: { email },
       withDeleted: true,
     });
+    const isActive = userAlreadyRegistered && !userAlreadyRegistered.deleted_at;
+    if (userAlreadyRegistered) {
+      user = await this._userRepository.update({
+        id: userAlreadyRegistered.id,
+        name,
+        email,
+        expired_at,
+        phone,
+        address,
+        deleted_at: null,
+      });
+      this._returnMessages.totalRenewalUsers++;
+      link = await this.generateEmailLink({ user, isActive });
+      this._renewalUserMail.send({ name, email, link });
+      return;
+    }
+    const password = await this.generatePassword();
+    user = await this._userRepository.create({
+      created_by_id: createdById,
+      name,
+      email,
+      password,
+      expired_at,
+      phone,
+      address,
+    });
+    this._returnMessages.totalRegisteredUsers++;
+    link = await this.generateEmailLink({ user, isActive });
+    this._createUserMail.send({ name, email, link });
   }
 
-  private async generatePassword(email: string) {
-    const password = email.split('@')[0];
+  private async generatePassword() {
+    const password = randomBytes(8).toString('base64url');
     return await generateHash(password);
+  }
+
+  private async generateEmailLink({
+    user,
+    isActive,
+  }: {
+    user: User;
+    isActive: boolean;
+  }) {
+    if (isActive) return `${env({ key: 'FRONT_URL' })}`;
+    const jwt = app.jwt.sign(user, { expiresIn: '24h' });
+    const { token } = await this._tokenRepository.create(jwt);
+    return `${env({ key: 'FRONT_URL' })}/reset-password/${token}`;
   }
 }

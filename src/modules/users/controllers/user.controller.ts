@@ -81,11 +81,12 @@ export class UserController {
   async update(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { id } = request.params as ParamRequestProps;
-      const { name, expiredAt, phone, address, permissionGroupsId } =
+      const { name, email, expiredAt, phone, address, permissionGroupsId } =
         request.body as UpdateUserRequestProps;
       const result = await this._updateUserUseCase.execute({
         id,
         name,
+        email,
         expiredAt,
         phone,
         address,

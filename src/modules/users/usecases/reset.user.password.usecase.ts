@@ -35,6 +35,7 @@ export class ResetUserPasswordUseCase
       await this._userRepository.update({
         id,
         name,
+        email,
         password: passwordHashed,
         expired_at,
       });

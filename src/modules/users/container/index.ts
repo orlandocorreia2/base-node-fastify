@@ -28,6 +28,7 @@ import { CreateUserForgotPasswordUseCaseInterface } from '../usecases/interfaces
 import { CreateUserForgotPasswordMailNodemailer } from '../../../infra/mail/nodemailer/create.user.forgot.password.mail.nodemailer';
 import { UpdateUserProfileUseCase } from '../usecases/update.user.profile.usecase';
 import { UpdateUserProfileUseCaseInterface } from '../usecases/interfaces/update.user.profile.use.case.interface';
+import { RenewalUserMailNodemailer } from '../.../../../../infra/mail/nodemailer/renewal.user.mail.nodemailer';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -102,4 +103,9 @@ container.registerSingleton<MailInterface>(
 container.registerSingleton<MailInterface>(
   'CreateUserForgotPasswordMail',
   CreateUserForgotPasswordMailNodemailer,
+);
+
+container.registerSingleton<MailInterface>(
+  'RenewalUserMail',
+  RenewalUserMailNodemailer,
 );

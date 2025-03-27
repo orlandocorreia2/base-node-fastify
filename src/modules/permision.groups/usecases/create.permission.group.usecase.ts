@@ -26,7 +26,9 @@ export class CreatePermissionGroupUseCase
     const permissionGroupAlreadyRegistered =
       await this._permissionGroupRepository.findOne({ filter: { name } });
     if (permissionGroupAlreadyRegistered) {
-      throw new UnprocessableError('Permission Group already registered!');
+      throw new UnprocessableError(
+        'Grupo de permissão já está cadastrado na plataforma!',
+      );
     }
     const permissionGroup =
       await this._permissionGroupRepository.create<PermissionGroup>({

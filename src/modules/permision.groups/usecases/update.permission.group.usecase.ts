@@ -35,7 +35,7 @@ export class UpdatePermissionGroupUseCase
       });
     if (anotherPermissionGroupWithSameName) {
       throw new UnprocessableError(
-        `Permission group with this name: ${name} has already registered!`,
+        `Já existe outro grupo de permissões com este nome: ${name}.`,
       );
     }
     const permissionGroupUpdated =

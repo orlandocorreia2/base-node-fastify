@@ -1,6 +1,9 @@
 import { MultipartFile } from '@fastify/multipart';
-import { User } from '../../DTOs/user';
+import { UserCreateBatchMessagesProps } from '../types';
 
 export interface CreateUsersBatchUseCaseInterface {
-  execute(createdById: string, multipartData: MultipartFile): Promise<User[]>;
+  execute(
+    createdById: string,
+    multipartData: MultipartFile,
+  ): Promise<UserCreateBatchMessagesProps>;
 }
