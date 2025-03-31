@@ -23,6 +23,7 @@ export const canMiddleware = async (
       'PATCH/permission-groups/:id': 'editPermissionGroup',
       'DELETE/permission-groups/:id': 'deletePermissionGroup',
       'GET/permission-rules': 'editPermissionGroup',
+      'POST/auction-properties/batch': 'createAuctionProperties',
     };
     const requestKey = `${request.routeOptions.method}${request.routeOptions.url}`;
     const findOneUserCase = container.resolve(FindOneUserUseCase);

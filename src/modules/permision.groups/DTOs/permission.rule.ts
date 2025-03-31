@@ -1,7 +1,7 @@
 export type PermissionRuleProps = {
   id: string;
   rule: string;
-  type: 'user' | 'permissionGroup';
+  type: 'user' | 'permissionGroup' | 'auctionProperties';
   description?: string;
 };
 
