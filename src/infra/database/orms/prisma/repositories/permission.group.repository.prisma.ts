@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 import { prisma } from '../client';
 import { PermissionGroupRepositoryInterface } from '../../../../../modules/permision.groups/repositories/interfaces/permission.group.repository.interface';
 import {
-  DBFindOneUserRepositoryProps,
+  DBFindOneRepositoryProps,
   DBPaginateParametersProps,
 } from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
@@ -19,7 +19,7 @@ export class PermissionGroupRepositoryPrisma
   async findOne<T>({
     filter,
     relationships,
-  }: DBFindOneUserRepositoryProps): Promise<T> {
+  }: DBFindOneRepositoryProps): Promise<T> {
     const include: any = {};
     if (relationships?.rules) {
       include.rules = {

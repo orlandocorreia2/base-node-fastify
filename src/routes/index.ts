@@ -1,4 +1,4 @@
-import { auctionPropertyRoutesModule } from 'modules/auction.properties/routes';
+import { auctionPropertyRoutesModule } from '../modules/auction.properties/routes';
 import { permissionGroupRoutesModule } from '../modules/permision.groups/routes';
 import { sessionRoutesModule } from '../modules/sessions/routes';
 import { userRoutesModule } from '../modules/users/routes';

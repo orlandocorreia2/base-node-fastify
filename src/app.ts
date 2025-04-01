@@ -10,6 +10,8 @@ import {
 
 const app: FastifyInstance = fastify({
   logger: false,
+  requestTimeout: 1000000,
+  pluginTimeout: 1000000,
 }).withTypeProvider<ZodTypeProvider>();
 
 (() => {

@@ -48,7 +48,7 @@ export type DBRelationships = {
   permissionGroups?: boolean;
 };
 
-export type DBFindOneUserRepositoryProps = {
+export type DBFindOneRepositoryProps = {
   filter: KeyValueProps;
   relationships?: DBRelationships;
   withDeleted?: boolean;

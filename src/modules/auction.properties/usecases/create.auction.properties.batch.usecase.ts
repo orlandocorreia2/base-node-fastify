@@ -1,71 +1,78 @@
 import { MultipartFile } from '@fastify/multipart';
-import { injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { UnprocessableError } from '../../../error/unprocessable.error';
 import { getRows } from '../../../utils/xlsx';
-import { AuctionProperty } from '../DTOs/auction.properties';
 import { CreateAuctionPropertiesBatchUseCaseInterface } from './interfaces/create.auction.properties.batch.usecase.interface';
+import { AuctionPropertyRepositoryInterface } from '../repositories/interfaces/auction.property.repository.interface';
+import { CreateAuctionPropertiesBatchUseCaseExecuteResponseProps } from './types';
 
 @injectable()
 export class CreateAuctionPropertiesBatchUseCase
   implements CreateAuctionPropertiesBatchUseCaseInterface
 {
+  constructor(
+    @inject('AuctionPropertyRepository')
+    private _auctionPropertyRepository: AuctionPropertyRepositoryInterface,
+  ) {}
+
   public async execute(
     createdById: string,
     multipartData: MultipartFile,
-  ): Promise<AuctionProperty[]> {
+  ): Promise<CreateAuctionPropertiesBatchUseCaseExecuteResponseProps> {
     this.validateMultipartDataForm(multipartData);
-    let rowNumber = 0;
+    await this._auctionPropertyRepository.deleteAll();
+    let auctionPropertiesBatch: any[] = [];
+    let total = 0;
     const rows = await getRows(multipartData);
     for (let row of rows) {
-      rowNumber++;
-      console.log('>>>>>>>', {
-        row,
-        createdById,
-      });
-      // const {
-      //   Cliente: name,
-      //   Email: email,
-      //   Celular: phone,
-      //   Endereço,
-      //   Numero,
-      //   Complemento,
-      //   Bairro,
-      //   Cidade,
-      //   Estado,
-      //   CEP,
-      //   País,
-      // } = row;
-      // const validateUser = this.validateUserData({
-      //   name: name || email,
-      //   email,
-      //   expiredAt: expiredAtValue,
-      // });
-      // if (!validateUser) {
-      //   this._returnMessages.totalNotRegisteredUsers++;
-      //   this._returnMessages.notRegisteredUsers.push(
-      //     `Erro na linha: ${rowNumber}. Usuário(a): com nome: ${name} e email: ${email} não cadastrado devido a falha de validação.`,
-      //   );
-      // }
-      // if (validateUser) {
-      //   await this.createOrUpdateUser({
-      //     Endereço,
-      //     Numero,
-      //     Complemento,
-      //     Bairro,
-      //     Cidade,
-      //     Estado,
-      //     País,
-      //     CEP,
-      //     expiredAtValue,
-      //     email,
-      //     name: name || email,
-      //     phone,
-      //     createdById,
-      //   });
-      // }
+      const {
+        __EMPTY: number_property,
+        __EMPTY_1: uf,
+        __EMPTY_2: city,
+        __EMPTY_3: neighborhood,
+        __EMPTY_4: address,
+        __EMPTY_5: price,
+        __EMPTY_6: appraisal_value,
+        __EMPTY_7: discount,
+        __EMPTY_8: description,
+        __EMPTY_9: sale_method,
+        __EMPTY_10: access_link,
+      } = row;
+      if (typeof number_property === 'number') {
+        total++;
+        if (auctionPropertiesBatch.length <= 1000) {
+          auctionPropertiesBatch.push({
+            created_by_id: createdById,
+            number_property,
+            uf,
+            city,
+            neighborhood,
+            address,
+            price: parseFloat(price),
+            appraisal_value: parseFloat(appraisal_value),
+            discount: parseFloat(discount),
+            description,
+            sale_method,
+            access_link,
+          });
+        }
+        if (auctionPropertiesBatch.length > 999) {
+          await this._auctionPropertyRepository.createMany(
+            auctionPropertiesBatch,
+          );
+          auctionPropertiesBatch = [];
+          console.log('Created auction properties batch', { total });
+        }
+      }
     }
-
-    return [];
+    if (auctionPropertiesBatch.length > 0) {
+      await this._auctionPropertyRepository.createMany(auctionPropertiesBatch);
+      console.log('Created auction properties batch', {
+        total,
+        rest: auctionPropertiesBatch.length,
+      });
+    }
+    return { message: `Total saved auction properties batch: ${total}` };
   }
 
   private validateMultipartDataForm(multipartData: MultipartFile) {
@@ -75,62 +82,4 @@ export class CreateAuctionPropertiesBatchUseCase
       );
     }
   }
-
-  // private validateUserData(user: CreateUserRequestProps): boolean {
-  //   return body.safeParse(user).success;
-  // }
-
-  // private async createOrUpdateUser({
-  //   Endereço,
-  //   Numero,
-  //   Complemento,
-  //   Bairro,
-  //   Cidade,
-  //   Estado,
-  //   País,
-  //   CEP,
-  //   expiredAtValue,
-  //   email,
-  //   name,
-  //   phone,
-  //   createdById,
-  // }: UserCreateOrUpdateBatchProps) {
-  //   let user: User = {} as User;
-  //   let link: string = '';
-  //   let address = `${Endereço ? `${Endereço}, ` : ''}${Numero ? `${Numero}, ` : ''}${Complemento ? `${Complemento}, ` : ''}${Bairro ? `${Bairro}, ` : ''}${Cidade ? `${Cidade}, ` : ''}${Estado ? `${Estado}, ` : ''}${País ? `${País}, ` : ''}${CEP ? `${CEP}, ` : ''}`;
-  //   const expired_at = generateExpiredAtDate(expiredAtValue);
-  //   const userAlreadyRegistered = await this._userRepository.findOne({
-  //     filter: { email },
-  //     withDeleted: true,
-  //   });
-  //   const isActive = userAlreadyRegistered && !userAlreadyRegistered.deleted_at;
-  //   if (userAlreadyRegistered) {
-  //     user = await this._userRepository.update({
-  //       id: userAlreadyRegistered.id,
-  //       name,
-  //       email,
-  //       expired_at,
-  //       phone,
-  //       address,
-  //       deleted_at: null,
-  //     });
-  //     this._returnMessages.totalRenewalUsers++;
-  //     link = await this.generateEmailLink({ user, isActive });
-  //     this._renewalUserMail.send({ name, email, link });
-  //     return;
-  //   }
-  //   const password = await this.generatePassword();
-  //   user = await this._userRepository.create({
-  //     created_by_id: createdById,
-  //     name,
-  //     email,
-  //     password,
-  //     expired_at,
-  //     phone,
-  //     address,
-  //   });
-  //   this._returnMessages.totalRegisteredUsers++;
-  //   link = await this.generateEmailLink({ user, isActive });
-  //   this._createUserMail.send({ name, email, link });
-  // }
 }

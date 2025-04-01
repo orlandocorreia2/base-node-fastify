@@ -1,5 +1,5 @@
 import {
-  DBFindOneUserRepositoryProps,
+  DBFindOneRepositoryProps,
   DBPaginateParametersProps,
 } from '../../../../types/db';
 import {
@@ -10,7 +10,7 @@ import {
 export interface PermissionGroupRepositoryInterface {
   create<T>(data: CreatePermissionGroupRepositoryProps): Promise<T>;
   paginate<T>(data: DBPaginateParametersProps): Promise<T>;
-  findOne<T>(data: DBFindOneUserRepositoryProps): Promise<T>;
+  findOne<T>(data: DBFindOneRepositoryProps): Promise<T>;
   update<T>(data: UpdatePermissionGroupRepositoryProps): Promise<T>;
   delete(id: string): Promise<void>;
 }

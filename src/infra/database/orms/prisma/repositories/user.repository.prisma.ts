@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 import { prisma } from '../client';
 import { UserRepositoryInterface } from '../../../../../modules/users/repositories/interfaces/user.repository.interface';
 import {
-  DBFindOneUserRepositoryProps,
+  DBFindOneRepositoryProps,
   DBPaginateParametersProps,
 } from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
@@ -18,7 +18,7 @@ export class UserRepositoryPrisma implements UserRepositoryInterface {
     filter,
     relationships,
     withDeleted,
-  }: DBFindOneUserRepositoryProps): Promise<T> {
+  }: DBFindOneRepositoryProps): Promise<T> {
     const where = { ...filter };
     if (!withDeleted) where.deleted_at = null;
     const include: any = {};

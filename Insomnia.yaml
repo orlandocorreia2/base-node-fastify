@@ -1,21 +1,21 @@
 type: collection.insomnia.rest/5.0
 name: Leiloes
 meta:
-  id: wrk_5885ec7d733b4ee9951b4bd6888bb962
-  created: 1743379063774
-  modified: 1743379063774
+  id: wrk_4ec747cdeeec413583c9aa8edd6099c9
+  created: 1743378883913
+  modified: 1743378883913
 collection:
   - name: Users
     meta:
-      id: fld_6f066f557c2f4755bf1af311074083be
+      id: fld_cde2116efec34c84b07df7591ed1043c
       created: 1741013479788
       modified: 1741013479788
       sortKey: -1741013479788
     children:
-      - url: '{{ _.baseURL }}/users'
+      - url: "{{ _.baseURL }}/users"
         name: Create
         meta:
-          id: req_498fb89022ef4e14a49f9c64ed6cdc1c
+          id: req_2bfca2181ec54baf9dba47a59cd21b9d
           created: 1741013492516
           modified: 1742653724903
           isPrivate: false
@@ -54,10 +54,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users?filter=&qtdItemsPerPage=5&page=1'
+      - url: "{{ _.baseURL }}/users?filter=&qtdItemsPerPage=5&page=1"
         name: FindAll
         meta:
-          id: req_b97c270b056f4992b64319b298c5ce95
+          id: req_fd237e7e070f4b4ab08cdc5742955934
           created: 1741924453681
           modified: 1742772509899
           isPrivate: false
@@ -80,10 +80,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2'
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: FindOne
         meta:
-          id: req_dd8923c399b047e4b2287166bc9fdde1
+          id: req_b172857f451a4ca7aef012337bfa9634
           created: 1742228628969
           modified: 1742772421483
           isPrivate: false
@@ -106,10 +106,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2'
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: Update
         meta:
-          id: req_81dee0ddcade42afaa35c723b6c7641f
+          id: req_785b993899064484845915e58d566b64
           created: 1742251400612
           modified: 1742772455238
           isPrivate: false
@@ -147,10 +147,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2'
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: Delete
         meta:
-          id: req_bc78f6067bd440e3b3442275b79857e6
+          id: req_69323dd3adcf4776b0676a0467830ef1
           created: 1742254260656
           modified: 1742772472864
           isPrivate: false
@@ -173,10 +173,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/batch'
+      - url: "{{ _.baseURL }}/users/batch"
         name: Batch Create
         meta:
-          id: req_a1f6bb23d40e47aa90a6aa4b41670953
+          id: req_06bda561a9bf427aa6ff97bb43f0ab9b
           created: 1742342632475
           modified: 1742512611013
           isPrivate: false
@@ -216,10 +216,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/profile'
+      - url: "{{ _.baseURL }}/users/profile"
         name: Profile
         meta:
-          id: req_3971a7bb0dfe43c2bb14021e263f5f28
+          id: req_dc52ff01a8a447acb24e529c9a22b3e2
           created: 1742509257162
           modified: 1742509277758
           isPrivate: false
@@ -242,10 +242,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/reset-password'
+      - url: "{{ _.baseURL }}/users/reset-password"
         name: Reset Password
         meta:
-          id: req_79fb3567378c4a8ab991ee9ecf8d5f5c
+          id: req_26eefaba5a51490bb055d636e4aafcf8
           created: 1742601921152
           modified: 1742660005317
           isPrivate: false
@@ -275,10 +275,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/forgot-password'
+      - url: "{{ _.baseURL }}/users/forgot-password"
         name: Forgot Password
         meta:
-          id: req_abbdf2766cf54edcb2162134d5cd8c82
+          id: req_43a9134a38824c0c9f44bcdc55b929ee
           created: 1742749090699
           modified: 1742749137983
           isPrivate: false
@@ -307,10 +307,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/users/profile'
+      - url: "{{ _.baseURL }}/users/profile"
         name: Update Profile
         meta:
-          id: req_2cfe91e63a254169a50e10ad959aa619
+          id: req_25fd66f0ea9b40e89ac8e812cd04a8eb
           created: 1742752295746
           modified: 1742771121532
           isPrivate: false
@@ -346,17 +346,17 @@ collection:
           rebuildPath: true
   - name: Sessions
     meta:
-      id: fld_cb67ccb605cc49b0abf42331999309fa
+      id: fld_7ee47f9ae73349a5ab4d07d0fd172b3e
       created: 1741118881977
       modified: 1741309570589
       sortKey: -1741013479738
     children:
-      - url: '{{ _.baseURL }}/login'
+      - url: "{{ _.baseURL }}/login"
         name: Create
         meta:
-          id: req_aea91aa3d0bc4969b4b1d3cb20637bcd
+          id: req_0215860b211b427f8d59b9a31f4171fb
           created: 1741118881983
-          modified: 1743379096162
+          modified: 1742752931673
           isPrivate: false
           sortKey: -1741013492516
         method: POST
@@ -364,7 +364,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"email": "marcelo.fatecpoa@gmail.com",
+            	"email": "ocnascimento2@gmail.com",
             	"password": "01020304"
             }
         headers:
@@ -388,15 +388,15 @@ collection:
           rebuildPath: true
   - name: Permission Groups
     meta:
-      id: fld_6050b73246a14c02aebaf4b25c78d837
+      id: fld_c89a57fa79444806ac6f0f134bd78138
       created: 1741307731083
       modified: 1741307731083
       sortKey: -1741013479763
     children:
-      - url: '{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547'
+      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
         name: Update
         meta:
-          id: req_c8a9f0fd6c7d484684252c5dcd4965d4
+          id: req_461d0b00110d4399bf9466ad26e23fa2
           created: 1741310132548
           modified: 1742772212815
           isPrivate: false
@@ -432,10 +432,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/permission-groups?page=1&qtdItemsPerPage=10&filter='
+      - url: "{{ _.baseURL }}/permission-groups?page=1&qtdItemsPerPage=10&filter="
         name: FindAll
         meta:
-          id: req_ead41cfc64124230948e185ae664596c
+          id: req_6250757328ee4d30bf0d3ddb1181e496
           created: 1741447278559
           modified: 1742508178934
           isPrivate: false
@@ -461,10 +461,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547'
+      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
         name: FindOne
         meta:
-          id: req_75afabba0a734415a378dbdd247d0305
+          id: req_28d0c78b065b41d59f274bcf5ac04c10
           created: 1742061689994
           modified: 1742771734393
           isPrivate: false
@@ -490,10 +490,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/permission-groups'
+      - url: "{{ _.baseURL }}/permission-groups"
         name: Create
         meta:
-          id: req_b6f0c8b8fa4846a1a680720407c1cc57
+          id: req_b4488045f4e94701a71821e31e9389a4
           created: 1742070780497
           modified: 1742771696949
           isPrivate: false
@@ -531,10 +531,10 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: '{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547'
+      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
         name: Delete
         meta:
-          id: req_b6e8ffb9e6444c90b609c9c0803e908b
+          id: req_effb3f1267b14d7d9b6c1fb7effe2027
           created: 1742074302157
           modified: 1742771776345
           isPrivate: false
@@ -562,15 +562,15 @@ collection:
           rebuildPath: true
   - name: Permission Rules
     meta:
-      id: fld_f8f257fa07f14b7a8bf43506997ccd77
+      id: fld_522b3f465e4249fb89d22d69b9537e7e
       created: 1741385167037
       modified: 1741385167037
       sortKey: -1741013479750.5
     children:
-      - url: '{{ _.baseURL }}/permission-rules'
+      - url: "{{ _.baseURL }}/permission-rules"
         name: FindAll
         meta:
-          id: req_2b36d45829c34923ba12ce9056d1f252
+          id: req_2ddd565c8f664117bb1882e035f7147d
           created: 1741385167054
           modified: 1741385196327
           isPrivate: false
@@ -595,19 +595,19 @@ collection:
           rebuildPath: true
   - name: Auction Properties
     meta:
-      id: fld_08ff4535671145fda5d6fbff78a5166c
-      created: 1743379232346
-      modified: 1743379305150
-      sortKey: -1741013479744.25
+      id: fld_be3a08cebee743d19863db11d33161ab
+      created: 1743459476343
+      modified: 1743459476343
+      sortKey: -1743459476343
     children:
-      - url: '{{ _.baseURL }}/auction-properties/batch'
+      - url: "{{ _.baseURL }}/auction-properties/batch"
         name: Batch Create
         meta:
-          id: req_897e4b90a48a436dbe397c875f013fa2
-          created: 1743379210576
-          modified: 1743379693375
+          id: req_2204429b74a542dfb5b2d3ae57890376
+          created: 1743459453267
+          modified: 1743459556625
           isPrivate: false
-          sortKey: -1743379282543
+          sortKey: -1743459484467
         method: POST
         body:
           mimeType: multipart/form-data
@@ -616,8 +616,7 @@ collection:
               name: file
               disabled: false
               type: file
-              fileName: C:\Users\marce\OneDrive\Área de
-                Trabalho\PROJECTS\SOLIMEO-LEILOES\Lista_imoveis_geral.csv
+              fileName: /Users/orlandonascimento/Documents/Projects/leiloes/src/docs/Lista_imoveis_geral.csv
         parameters:
           - id: pair_13d2b31f5d6f47db8025a0cffdf536df
             disabled: false
@@ -629,7 +628,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_aea91aa3d0bc4969b4b1d3cb20637bcd',
+          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -643,34 +642,34 @@ collection:
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_01b709364fd5436380ddac7088a7c473
+    id: jar_99814e68b7eb41e989cc7024aed86bfd
     created: 1741013257345
     modified: 1741013257345
 environments:
   name: Base Environment
   meta:
-    id: env_1fafe2d00b574b87b4c8c959580bb29e
+    id: env_dc1ec21583804c9581ec0a40501cf7af
     created: 1741013257341
     modified: 1741013403293
     isPrivate: false
   subEnvironments:
     - name: local
       meta:
-        id: env_f54a10e6be6544c6a14f5d2d7dfba72c
+        id: env_faee9ebc9e354c98bf2cd59ae8dcf832
         created: 1741013413007
         modified: 1741626114311
         isPrivate: false
         sortKey: 1741013413007
       data:
         baseURL: http://localhost:3000
-      color: '#29c750'
+      color: "#29c750"
     - name: Dev
       meta:
-        id: env_60b8ce351b02425189c3cdf55b5880fe
+        id: env_015e84c8ce9f4ee78e9cdf130ca38cb4
         created: 1741626085927
         modified: 1741626133025
         isPrivate: false
         sortKey: 1741013413057
       data:
         baseURL: https://jarvis-api-develop.onrender.com
-      color: '#4a7fe8'
+      color: "#4a7fe8"

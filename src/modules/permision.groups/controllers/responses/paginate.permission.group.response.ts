@@ -4,8 +4,8 @@ import {
   PermissionGroup,
 } from '../../DTOs/permission.group';
 import { BaseResponse } from '../../../../shared/response/base.response';
-import { User } from 'modules/users/DTOs/user';
-import { PermissionRule } from 'modules/permision.groups/DTOs/permission.rule';
+import { User } from '../../../../modules/users/DTOs/user';
+import { PermissionRule } from '../../../../modules/permision.groups/DTOs/permission.rule';
 
 type PaginatePermissionGroupResponseProps = {
   result: PaginatePermissionGroupProps<PermissionGroup>;
