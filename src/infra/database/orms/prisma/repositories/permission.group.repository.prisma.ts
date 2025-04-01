@@ -10,7 +10,7 @@ import {
   CreatePermissionGroupRepositoryProps,
   UpdatePermissionGroupRepositoryProps,
 } from '../../../../../modules/permision.groups/repositories/types';
-import { KeyValueProps } from 'types/types';
+import { KeyValueProps } from '../../../../../types/types';
 
 @injectable()
 export class PermissionGroupRepositoryPrisma

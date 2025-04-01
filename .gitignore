@@ -6,3 +6,5 @@ coverage
 .env
 yarn.lock
 package-lock.json
+
+src/.DS_Store

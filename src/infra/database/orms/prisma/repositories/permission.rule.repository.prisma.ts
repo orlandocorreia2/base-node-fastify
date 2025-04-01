@@ -1,7 +1,7 @@
 import { injectable } from 'tsyringe';
 import { prisma } from '../client';
 import { PermissionRuleRepositoryInterface } from '../../../../../modules/permision.groups/repositories/interfaces/permission.rule.repository.interface';
-import { DBFindOneRepositoryProps } from 'types/db';
+import { DBFindOneRepositoryProps } from '../../../../../types/db';
 
 @injectable()
 export class PermissionRuleRepositoryPrisma
