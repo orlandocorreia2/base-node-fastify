@@ -8,3 +8,6 @@ yarn.lock
 package-lock.json
 
 src/.DS_Store
+
+src/temp/*
+!src/temp/.gitkeep

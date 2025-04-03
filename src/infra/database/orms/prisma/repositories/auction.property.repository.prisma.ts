@@ -10,6 +10,7 @@ import { AuctionPropertyRepositoryInterface } from '../../../../../modules/aucti
 import {
   CreateAuctionPropertyRepositoryProps,
   UpdateAuctionPropertyRepositoryProps,
+  UpsertAuctionPropertyRepositoryProps,
 } from '../../../../../modules/auction.properties/repositories/types';
 
 @injectable()
@@ -56,9 +57,22 @@ export class AuctionPropertyRepositoryPrisma
   }
 
   async update<T>(data: UpdateAuctionPropertyRepositoryProps): Promise<T> {
+    prisma.auctionProperty.upsert;
     return (await prisma.auctionProperty.update({
       where: { id: data.id },
       data,
+    })) as T;
+  }
+
+  async upsert<T>({
+    filter,
+    create,
+    update,
+  }: UpsertAuctionPropertyRepositoryProps): Promise<T> {
+    return (await prisma.auctionProperty.upsert({
+      where: filter,
+      create,
+      update,
     })) as T;
   }
 

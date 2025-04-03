@@ -7,6 +7,7 @@ import {
   CreateAuctionPropertyRepositoryProps,
   PaginateAuctionPropertiesProps,
   UpdateAuctionPropertyRepositoryProps,
+  UpsertAuctionPropertyRepositoryProps,
 } from '../types';
 
 export interface AuctionPropertyRepositoryInterface {
@@ -17,6 +18,7 @@ export interface AuctionPropertyRepositoryInterface {
   ): Promise<PaginateAuctionPropertiesProps<AuctionProperty>>;
   findOne(data: DBFindOneRepositoryProps): Promise<AuctionProperty>;
   update(data: UpdateAuctionPropertyRepositoryProps): Promise<AuctionProperty>;
+  upsert(data: UpsertAuctionPropertyRepositoryProps): Promise<AuctionProperty>;
   delete(id: string): Promise<void>;
   deleteAll(): Promise<void>;
 }

@@ -17,7 +17,7 @@ collection:
         meta:
           id: req_2bfca2181ec54baf9dba47a59cd21b9d
           created: 1741013492516
-          modified: 1742653724903
+          modified: 1743511338389
           isPrivate: false
           sortKey: -1741013492666
         method: POST
@@ -43,7 +43,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -59,7 +59,7 @@ collection:
         meta:
           id: req_fd237e7e070f4b4ab08cdc5742955934
           created: 1741924453681
-          modified: 1742772509899
+          modified: 1743511325004
           isPrivate: false
           sortKey: -1741013492566
         method: GET
@@ -69,7 +69,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -85,7 +85,7 @@ collection:
         meta:
           id: req_b172857f451a4ca7aef012337bfa9634
           created: 1742228628969
-          modified: 1742772421483
+          modified: 1743511319093
           isPrivate: false
           sortKey: -1741013492541
         method: GET
@@ -95,7 +95,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -111,7 +111,7 @@ collection:
         meta:
           id: req_785b993899064484845915e58d566b64
           created: 1742251400612
-          modified: 1742772455238
+          modified: 1743511311201
           isPrivate: false
           sortKey: -1741013492341
         method: PATCH
@@ -136,7 +136,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -152,7 +152,7 @@ collection:
         meta:
           id: req_69323dd3adcf4776b0676a0467830ef1
           created: 1742254260656
-          modified: 1742772472864
+          modified: 1743511304353
           isPrivate: false
           sortKey: -1741013492291
         method: DELETE
@@ -162,7 +162,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -178,7 +178,7 @@ collection:
         meta:
           id: req_06bda561a9bf427aa6ff97bb43f0ab9b
           created: 1742342632475
-          modified: 1742512611013
+          modified: 1743511331645
           isPrivate: false
           sortKey: -1741013492616
         method: POST
@@ -205,7 +205,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -221,7 +221,7 @@ collection:
         meta:
           id: req_dc52ff01a8a447acb24e529c9a22b3e2
           created: 1742509257162
-          modified: 1742509277758
+          modified: 1743511295652
           isPrivate: false
           sortKey: -1741013492191
         method: GET
@@ -231,7 +231,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -312,7 +312,7 @@ collection:
         meta:
           id: req_25fd66f0ea9b40e89ac8e812cd04a8eb
           created: 1742752295746
-          modified: 1742771121532
+          modified: 1743511284451
           isPrivate: false
           sortKey: -1741013492141
         method: PATCH
@@ -333,7 +333,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -393,12 +393,12 @@ collection:
       modified: 1741307731083
       sortKey: -1741013479763
     children:
-      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: Update
         meta:
           id: req_461d0b00110d4399bf9466ad26e23fa2
           created: 1741310132548
-          modified: 1742772212815
+          modified: 1743512080726
           isPrivate: false
           sortKey: -1741310136024
         method: PATCH
@@ -406,7 +406,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"name": "aaaaaaaaa",
+            	"name": "bbbbbbbbbbbbbbbbbbbbb",
             	"description": "Grupo com acesso parcial",
             	"permissionRulesId": [
             		"63b33f45-568a-4415-874f-b04a7bc39645"
@@ -421,7 +421,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -437,7 +437,7 @@ collection:
         meta:
           id: req_6250757328ee4d30bf0d3ddb1181e496
           created: 1741447278559
-          modified: 1742508178934
+          modified: 1743511247481
           isPrivate: false
           sortKey: -1741310136174
         method: GET
@@ -450,7 +450,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -461,12 +461,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: FindOne
         meta:
           id: req_28d0c78b065b41d59f274bcf5ac04c10
           created: 1742061689994
-          modified: 1742771734393
+          modified: 1743512059038
           isPrivate: false
           sortKey: -1741310136124
         method: GET
@@ -479,7 +479,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -495,7 +495,7 @@ collection:
         meta:
           id: req_b4488045f4e94701a71821e31e9389a4
           created: 1742070780497
-          modified: 1742771696949
+          modified: 1743512007327
           isPrivate: false
           sortKey: -1741310136224
         method: POST
@@ -503,7 +503,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"name": "zzzzzz",
+            	"name": "zzzzzzaaaaa",
             	"description": "Grupo com acesso parcial",
             	"permissionRulesId": [
             		"63b33f45-568a-4415-874f-b04a7bc39645",
@@ -520,7 +520,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -531,12 +531,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.baseURL }}/permission-groups/b26ddf12-6242-4601-87f3-a61e88b2d547"
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: Delete
         meta:
           id: req_effb3f1267b14d7d9b6c1fb7effe2027
           created: 1742074302157
-          modified: 1742771776345
+          modified: 1743512099957
           isPrivate: false
           sortKey: -1741310135924
         method: DELETE
@@ -549,7 +549,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -572,7 +572,7 @@ collection:
         meta:
           id: req_2ddd565c8f664117bb1882e035f7147d
           created: 1741385167054
-          modified: 1741385196327
+          modified: 1743511189897
           isPrivate: false
           sortKey: -1741310136074
         method: GET
@@ -582,7 +582,7 @@ collection:
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -605,7 +605,7 @@ collection:
         meta:
           id: req_2204429b74a542dfb5b2d3ae57890376
           created: 1743459453267
-          modified: 1743459556625
+          modified: 1743641206602
           isPrivate: false
           sortKey: -1743459484467
         method: POST
@@ -623,12 +623,82 @@ collection:
         headers:
           - name: Content-Type
             value: multipart/form-data
+            id: pair_1150795f02034c10bd32a58e29803e5b
           - name: User-Agent
             value: insomnia/10.3.1
             id: pair_4fbfb20d454345a8a397d5a5fc181318
         authentication:
           type: bearer
-          token: "{% response 'body', 'req_a84dde1a038346c487757318c389d025',
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+          disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://venda-imoveis.caixa.gov.br/sistema/detalhe-imovel.asp?hdnOrigem=index&hdnimovel=10176203
+        name: Detail Page
+        meta:
+          id: req_6e54dfacae5f4fb89a748b46109fbb0f
+          created: 1743545426570
+          modified: 1743556655382
+          isPrivate: false
+          sortKey: -1742384810345.5
+        method: GET
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_c19193ce23a24f4386e2ef2c7e55f79d
+              name: file
+              disabled: false
+              type: file
+              fileName: /Users/orlandonascimento/Documents/Projects/leiloes/src/docs/Lista_imoveis_geral.csv
+        parameters:
+          - id: pair_13d2b31f5d6f47db8025a0cffdf536df
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+            id: pair_1150795f02034c10bd32a58e29803e5b
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_4fbfb20d454345a8a397d5a5fc181318
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+          disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseURL }}/auction-properties/batch"
+        name: Batch Create Without File
+        meta:
+          id: req_9604c07624ae40a0990b0cb002bbcddb
+          created: 1743641219841
+          modified: 1743641466846
+          isPrivate: false
+          sortKey: -1743459484567
+        method: POST
+        parameters:
+          - id: pair_13d2b31f5d6f47db8025a0cffdf536df
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_4fbfb20d454345a8a397d5a5fc181318
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_0215860b211b427f8d59b9a31f4171fb',
             'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
           disabled: false
         settings:
@@ -644,7 +714,89 @@ cookieJar:
   meta:
     id: jar_99814e68b7eb41e989cc7024aed86bfd
     created: 1741013257345
-    modified: 1741013257345
+    modified: 1743556661622
+  cookies:
+    - key: __uzma
+      value: 72cd21b8-4a8c-4ac3-83ce-6c33e8f4db64
+      maxAge: 15724800
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.335Z
+      lastAccessed: 2025-04-01T21:57:09.335Z
+      sameSite: lax
+      id: 6eac9781-89fe-4a3e-8fa2-ad88b22533f5
+    - key: __uzmb
+      value: "1743544628"
+      maxAge: 15724800
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.339Z
+      lastAccessed: 2025-04-01T21:57:09.339Z
+      sameSite: lax
+      id: 092797d4-f23d-4935-aca8-cc507d4ab6c9
+    - key: __uzme
+      value: "9486"
+      maxAge: 15724800
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.341Z
+      lastAccessed: 2025-04-01T21:57:09.341Z
+      sameSite: lax
+      id: ceca8457-3ba7-4d58-8c12-4417a18885a6
+    - key: __uzmc
+      value: "829541350706"
+      maxAge: 15724800
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.341Z
+      lastAccessed: 2025-04-02T01:17:41.621Z
+      sameSite: lax
+      id: 960c8cd5-5612-49ec-9bf4-dd15ead078e7
+    - key: __uzmd
+      value: "1743556657"
+      maxAge: 15724800
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.341Z
+      lastAccessed: 2025-04-02T01:17:41.621Z
+      sameSite: lax
+      id: 6f572895-d175-437a-9552-6c8429543819
+    - key: ASPSESSIONIDSCTBSDAS
+      value: LLMAMECCOGIDHHDCFCJGPDAB
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.341Z
+      lastAccessed: 2025-04-01T21:57:09.341Z
+      id: 8df687fb-628d-4747-a37f-d31beb4829f3
+    - key: SIMOV
+      value: ffffffff09ca9ecb45525d5f4f58455e445a4a423660
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-01T21:57:09.341Z
+      lastAccessed: 2025-04-02T01:17:41.621Z
+      id: 35ca3f91-7cd6-4da2-be87-8a65357f5085
+    - key: ASPSESSIONIDCCTBTBDR
+      value: HJCMNECCHBNFPOJGOIDEGNIP
+      domain: venda-imoveis.caixa.gov.br
+      path: /
+      hostOnly: true
+      creation: 2025-04-02T01:17:41.621Z
+      lastAccessed: 2025-04-02T01:17:41.621Z
+      id: 88c8f072-dcca-48d0-97a6-f863aaeee790
 environments:
   name: Base Environment
   meta:

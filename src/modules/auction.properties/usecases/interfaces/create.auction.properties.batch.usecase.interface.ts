@@ -4,6 +4,6 @@ import { CreateAuctionPropertiesBatchUseCaseExecuteResponseProps } from '../type
 export interface CreateAuctionPropertiesBatchUseCaseInterface {
   execute(
     createdById: string,
-    multipartData: MultipartFile,
+    multipartData?: MultipartFile,
   ): Promise<CreateAuctionPropertiesBatchUseCaseExecuteResponseProps>;
 }

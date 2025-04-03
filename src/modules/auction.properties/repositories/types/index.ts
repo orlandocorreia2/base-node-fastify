@@ -15,6 +15,7 @@ export type CreateAuctionPropertyRepositoryProps = {
   description: string;
   sale_method: string;
   access_link: string;
+  accept_financing?: boolean;
 };
 
 export type UpdateAuctionPropertyRepositoryProps = {
@@ -30,4 +31,10 @@ export type UpdateAuctionPropertyRepositoryProps = {
   description: string;
   sale_method: string;
   access_link: string;
+};
+
+export type UpsertAuctionPropertyRepositoryProps = {
+  filter: any;
+  create: CreateAuctionPropertyRepositoryProps;
+  update: Omit<UpdateAuctionPropertyRepositoryProps, 'id'>;
 };
