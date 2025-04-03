@@ -97,7 +97,7 @@ model Token {
 model AuctionProperty {
   id               String   @id @default(uuid())
   created_by_id    String
-  number_property  BigInt   @unique
+  number_property  BigInt
   uf               String
   city             String
   neighborhood     String

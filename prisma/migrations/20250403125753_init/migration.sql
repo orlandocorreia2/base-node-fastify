@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "PermissionRuleTypes" AS ENUM ('permissionGroup', 'user');
+CREATE TYPE "PermissionRuleTypes" AS ENUM ('permissionGroup', 'user', 'auctionProperties');
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -64,6 +64,28 @@ CREATE TABLE "tokens" (
     CONSTRAINT "tokens_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "auction_properties" (
+    "id" TEXT NOT NULL,
+    "created_by_id" TEXT NOT NULL,
+    "number_property" BIGINT NOT NULL,
+    "uf" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "neighborhood" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "appraisal_value" DOUBLE PRECISION NOT NULL,
+    "discount" DOUBLE PRECISION NOT NULL,
+    "description" TEXT NOT NULL,
+    "sale_method" TEXT NOT NULL,
+    "access_link" TEXT NOT NULL,
+    "accept_financing" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "auction_properties_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -96,3 +118,6 @@ ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_pe
 
 -- AddForeignKey
 ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_permission_rule_id_fkey" FOREIGN KEY ("permission_rule_id") REFERENCES "permission_rules"("id") ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "auction_properties" ADD CONSTRAINT "auction_properties_created_by_id_fkey" FOREIGN KEY ("created_by_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
