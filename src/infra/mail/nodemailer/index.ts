@@ -6,8 +6,8 @@ import path from 'path';
 
 export const transport = nodemailer.createTransport({
   host: 'smtp.kinghost.net',
-  port: 587,
-  secure: false, // true for port 465, false for other ports
+  port: 465,
+  secure: true, // true for port 465, false for other ports
   auth: {
     user: 'no-reply@meuleilaoonline.com',
     pass: 'J@rvi2025',
@@ -17,8 +17,8 @@ export const transport = nodemailer.createTransport({
 export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
   console.log('Valor das variaveis de ambiente', {
     host: 'smtp.kinghost.net',
-    port: 587,
-    secure: false, // true for port 465, false for other ports
+    port: 465,
+    secure: true, // true for port 465, false for other ports
     auth: {
       user: 'no-reply@meuleilaoonline.com',
       pass: 'J@rvi2025',

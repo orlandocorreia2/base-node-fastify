@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files && node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "build": "rm -rf node_modules dist package-lock.json && npm install && npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files",
+    "build": "npm install && npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files",
     "prepare": "husky",
     "test": "echo test",
     "copy:files": "cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer",
