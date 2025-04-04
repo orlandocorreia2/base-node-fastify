@@ -12,12 +12,12 @@ collection:
       modified: 1743719719931
       sortKey: -1743719719931
     children:
-      - url: http://localhost:3000/login
+      - url: "{{ _.baseURL }}/login"
         name: Create
         meta:
           id: req_313b6878e7b34b2c80cd932600eab04e
           created: 1743719592333
-          modified: 1743726416627
+          modified: 1743735044981
           isPrivate: false
           sortKey: -1743719774298
         method: POST
@@ -43,12 +43,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/reset-password
+      - url: "{{ _.baseURL }}/users/reset-password"
         name: Reset Password
         meta:
           id: req_68ec5bb5c6a044d4aedaa4670ce86645
           created: 1743719592343
-          modified: 1743719793262
+          modified: 1743735032412
           isPrivate: false
           sortKey: -1743719774498
         method: PATCH
@@ -72,12 +72,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/forgot-password
+      - url: "{{ _.baseURL }}/users/forgot-password"
         name: Forgot Password
         meta:
           id: req_4bb71ff7b6354a68a38b20db5dda59d9
           created: 1743719592345
-          modified: 1743719790227
+          modified: 1743735038166
           isPrivate: false
           sortKey: -1743719774398
         method: POST
@@ -107,12 +107,12 @@ collection:
       modified: 1743719817939
       sortKey: -1743719731654
     children:
-      - url: http://localhost:3000/users
+      - url: "{{ _.baseURL }}/users"
         name: Create
         meta:
           id: req_ae805d57c8fb4ef0817c33285528bc0b
           created: 1743719592325
-          modified: 1743733966620
+          modified: 1743734504127
           isPrivate: false
           sortKey: -1743719828687
         method: POST
@@ -148,12 +148,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/batch
+      - url: "{{ _.baseURL }}/users/batch"
         name: Batch Create
         meta:
           id: req_ed2820ac00d941a4bda5f7efbe94cfc9
           created: 1743719592327
-          modified: 1743719984147
+          modified: 1743735170593
           isPrivate: false
           sortKey: -1743719828637
         method: POST
@@ -167,11 +167,14 @@ collection:
         headers:
           - name: Content-Type
             value: multipart/form-data
+            id: pair_d82328fd80cb45ffbfc17413c89e1724
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_4d3cf29db6f347b4aad4c1873357857c
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -180,21 +183,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users?filter&qtdItemsPerPage=5&page=1
+      - url: "{{ _.baseURL }}/users?filter&qtdItemsPerPage=5&page=1"
         name: FindAll
         meta:
           id: req_17abcbd542af4604bbe0ee58a597d494
           created: 1743719592330
-          modified: 1743719866022
+          modified: 1743735182758
           isPrivate: false
           sortKey: -1743719828587
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_9cd86053315c49c19ab1b42d4dec0108
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -203,21 +208,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: FindOne
         meta:
           id: req_2b38aec0f71443b5b3f80a0ec9402e3f
           created: 1743719592332
-          modified: 1743719860288
+          modified: 1743735193970
           isPrivate: false
           sortKey: -1743719828487
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_7673679d09e643cf94430b3e9b55a833
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -226,12 +233,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: Update
         meta:
           id: req_fad67c51ca794513866dd9e3043d7f9f
           created: 1743719592335
-          modified: 1743719855665
+          modified: 1743735204751
           isPrivate: false
           sortKey: -1743719828387
         method: PATCH
@@ -250,11 +257,14 @@ collection:
         headers:
           - name: Content-Type
             value: application/json
+            id: pair_dca0af728e2c4302b48afc1a2ee42f8c
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_7c01fd95b9aa440a8ada51987adff5b7
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -263,21 +273,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+      - url: "{{ _.baseURL }}/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2"
         name: Delete
         meta:
           id: req_edc483361e0f4975b7a07d246d6ad318
           created: 1743719592338
-          modified: 1743719847043
+          modified: 1743735215602
           isPrivate: false
           sortKey: -1743719828287
         method: DELETE
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_6d3fecea8fef4b24a338d75591000304
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -286,21 +298,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/profile
+      - url: "{{ _.baseURL }}/users/profile"
         name: Profile
         meta:
           id: req_7fa554ca4d624c7797d714c9be28b79a
           created: 1743719592339
-          modified: 1743719828270
+          modified: 1743735238483
           isPrivate: false
           sortKey: -1743719828087
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_8b1405542fba4b4d8ac75644c60e00e6
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -309,12 +323,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/users/profile
+      - url: "{{ _.baseURL }}/users/profile"
         name: Update Profile
         meta:
           id: req_a1ed82382fc64abe8da8c3f79e71ca45
           created: 1743719592341
-          modified: 1743719831126
+          modified: 1743735228228
           isPrivate: false
           sortKey: -1743719828187
         method: PATCH
@@ -330,11 +344,14 @@ collection:
         headers:
           - name: Content-Type
             value: application/json
+            id: pair_4f4ef49e76ac4bdfaa36211443cdf1db
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_ccfb1f24a9f8421ab62ad5c3b236f753
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -350,12 +367,12 @@ collection:
       modified: 1743719742443
       sortKey: -1743719742443
     children:
-      - url: http://localhost:3000/permission-groups
+      - url: "{{ _.baseURL }}/permission-groups"
         name: Create
         meta:
           id: req_5c9fdd7f2f674b1bbe10fdabe3ee9c84
           created: 1743719592310
-          modified: 1743719953261
+          modified: 1743734609249
           isPrivate: false
           sortKey: -1743719910160
         method: POST
@@ -387,21 +404,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/permission-groups?page=1&qtdItemsPerPage=10&filter
+      - url: "{{ _.baseURL }}/permission-groups?page=1&qtdItemsPerPage=10&filter"
         name: FindAll
         meta:
           id: req_7cd577cfc7244ebbab37c3d204010bb7
           created: 1743719592314
-          modified: 1743719949670
+          modified: 1743735113714
           isPrivate: false
           sortKey: -1743719910060
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_afdb675bff794754aec812b88076eb5a
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -410,21 +429,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: FindOne
         meta:
           id: req_199190a4ebbd41438e01ba96504a2573
           created: 1743719592317
-          modified: 1743719945933
+          modified: 1743735127460
           isPrivate: false
           sortKey: -1743719909960
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_36f79c6f7ce743d5ad6b0bef49803758
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -433,12 +454,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: Update
         meta:
           id: req_d0970ff970ea4ab3b0ba51fb6709211a
           created: 1743719592322
-          modified: 1743719920179
+          modified: 1743735142393
           isPrivate: false
           sortKey: -1743719909860
         method: PATCH
@@ -455,11 +476,14 @@ collection:
         headers:
           - name: Content-Type
             value: application/json
+            id: pair_7026740600654b6aa6281381ea4fecdb
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_a81ebb06a84d440c84d6f923a1624f71
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -468,21 +492,23 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+      - url: "{{ _.baseURL }}/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83"
         name: Delete
         meta:
           id: req_f89dc16d05c349e6867f3df5e12e6f96
           created: 1743719592324
-          modified: 1743719909887
+          modified: 1743735152764
           isPrivate: false
           sortKey: -1743719909760
         method: DELETE
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_74955f41f0ea4bb6917ff76096633e66
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -498,21 +524,23 @@ collection:
       modified: 1743719752087
       sortKey: -1743719752087
     children:
-      - url: http://localhost:3000/permission-rules
+      - url: "{{ _.baseURL }}/permission-rules"
         name: FindAll
         meta:
           id: req_d297e79af5f84b8599e40e842c1edf5b
           created: 1743719592319
-          modified: 1743719936445
+          modified: 1743735101496
           isPrivate: false
           sortKey: -1743719929961
         method: GET
         headers:
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+            id: pair_0b6cd87c2fd14143b82455ed5fff75f8
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -528,12 +556,12 @@ collection:
       modified: 1743719763873
       sortKey: -1743719763873
     children:
-      - url: http://localhost:3000/auction-properties/batch
+      - url: "{{ _.baseURL }}/auction-properties/batch"
         name: Batch Create Without File
         meta:
           id: req_79a4b6e9f1d844a3881148adb8cf3f65
           created: 1743719592300
-          modified: 1743727074717
+          modified: 1743735069012
           isPrivate: false
           sortKey: -1743719991117
         method: POST
@@ -541,13 +569,10 @@ collection:
           - name: User-Agent
             value: insomnia/10.3.1
             id: pair_e1d46d2020e341c39da0ccec2a8199f4
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzI2OTI0fQ.rbSFzB4q30tzCqSXTvKBJCtZ7TuSIo4x-mSvaS77HBM
-            id: pair_a05b55f2a44b453ebdc7c29fedb09fb0
-            disabled: false
         authentication:
-          type: none
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -556,12 +581,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:3000/auction-properties/batch
+      - url: "{{ _.baseURL }}/auction-properties/batch"
         name: Batch Create
         meta:
           id: req_78b9cc4c97ab4e59b6c9bc4608b4816f
           created: 1743719592306
-          modified: 1743719991117
+          modified: 1743735087794
           isPrivate: false
           sortKey: -1743719991017
         method: POST
@@ -573,30 +598,14 @@ collection:
         headers:
           - name: Content-Type
             value: multipart/form-data
+            id: pair_2075b7fb7cd84cc3a6cb2d4bbf0d5ecb
           - name: User-Agent
             value: insomnia/10.3.1
-          - name: Authorization
-            value: Bearer
-              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
-        settings:
-          renderRequestBody: true
-          encodeUrl: true
-          followRedirects: global
-          cookies:
-            send: true
-            store: true
-          rebuildPath: true
-      - name: New Request
-        meta:
-          id: req_020d39a6240d49bd95d4880eca96a9e2
-          created: 1743720325934
-          modified: 1743720325934
-          isPrivate: false
-          sortKey: -1743720325934
-        method: GET
-        headers:
-          - name: User-Agent
-            value: insomnia/11.0.2
+            id: pair_1e86d530910346ad99cb50278a445375
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -629,3 +638,13 @@ environments:
       data:
         baseURL: http://localhost.com.br:3000
       color: "#40e762"
+    - name: dev
+      meta:
+        id: env_717b8d375b004d6eb4ca9effa20f1f3e
+        created: 1743734338196
+        modified: 1743734486728
+        isPrivate: true
+        sortKey: 1743726125220
+      data:
+        baseURL: https://jarvis-api-develop.onrender.com
+      color: "#7240e7"
