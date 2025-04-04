@@ -1,11 +1,13 @@
 import nodemailer from 'nodemailer';
-import { env } from '../../../utils/env';
+import { env, envBoolean, envNumber } from '../../../utils/env';
 import { SendMailProps } from '../../../types/email';
 import { isEnvironmentProduction } from '../../../utils/helper';
 import path from 'path';
 
 export const transport = nodemailer.createTransport({
-  service: env({ key: 'MAIL_SERVICE' }),
+  host: env({ key: 'MAIL_HOST' }),
+  port: envNumber({ key: 'MAIL_PORT' }),
+  secure: envBoolean({ key: 'MAIL_SECURE' }), // true for port 465, false for other ports
   auth: {
     user: env({ key: 'MAIL_AUTH_USER' }),
     pass: env({ key: 'MAIL_AUTH_PASS' }),

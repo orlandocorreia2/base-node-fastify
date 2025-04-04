@@ -1,0 +1,631 @@
+type: collection.insomnia.rest/5.0
+name: Auction Properties
+meta:
+  id: wrk_047b9c9ea8b94c2baac5f543cba72902
+  created: 1743719592288
+  modified: 1743719640179
+collection:
+  - name: Session
+    meta:
+      id: fld_29315a09d81741b3b800f65e2ada1b3a
+      created: 1743719719931
+      modified: 1743719719931
+      sortKey: -1743719719931
+    children:
+      - url: http://localhost:3000/login
+        name: Create
+        meta:
+          id: req_313b6878e7b34b2c80cd932600eab04e
+          created: 1743719592333
+          modified: 1743726416627
+          isPrivate: false
+          sortKey: -1743719774298
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "ocnascimento2@gmail.com",
+            	"password": "01020304"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_4b071290ec1d491483fc8e417e150934
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_644bd7b8437849dca43d4d0a39c49031
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/reset-password
+        name: Reset Password
+        meta:
+          id: req_68ec5bb5c6a044d4aedaa4670ce86645
+          created: 1743719592343
+          modified: 1743719793262
+          isPrivate: false
+          sortKey: -1743719774498
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: >-
+            {
+            	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI4OGZjMzE1LTQ3N2EtNDBjMi04MzBhLTA2ZGY0NTljZWZjNSIsImNyZWF0ZWRfYnlfaWQiOiJmM2VhNDgxOS0wOTU1LTQ4MzktODE1Zi1hOTJlMTNhYWRiYjMiLCJuYW1lIjoiQnJlbmRhIFBhZGJlcmciLCJlbWFpbCI6IkxvbGl0YS5MYXJzb25AaG90bWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRrU2lzb2ViUUlCbDYvNUxUcUtUS2tlVHRZWEQ2UWtoYjRIbkE1eWhXbm4zUFdJUmVXRzdpVyIsImV4cGlyZWRfYXQiOiIyMDI1LTExLTEzVDIyOjI5OjQzLjIwNloiLCJwaG9uZSI6IjExOTQ4MTk5ODgiLCJhZGRyZXNzIjoiQXZlbmlkYSBQYXVsaXN0YSwgMTAwMCIsImNyZWF0ZWRfYXQiOiIyMDI1LTAzLTIyVDE2OjEyOjQ2LjM3NloiLCJ1cGRhdGVkX2F0IjoiMjAyNS0wMy0yMlQxNjoxMjo0Ni4zNzZaIiwiZGVsZXRlZF9hdCI6bnVsbCwiaWF0IjoxNzQyNjU5OTY2LCJleHAiOjE3NDI2NjM1NjZ9.Zbl5Wxkv0vNcJsTrExrB4iqnBQtiHEN5RRqYYdZ6H1s",
+            	"password": "22222222"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/forgot-password
+        name: Forgot Password
+        meta:
+          id: req_4bb71ff7b6354a68a38b20db5dda59d9
+          created: 1743719592345
+          modified: 1743719790227
+          isPrivate: false
+          sortKey: -1743719774398
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "ocnascimento2@gmail.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: User
+    meta:
+      id: fld_2c2a856c7de142fbb1f0f8951715ac8a
+      created: 1743719731654
+      modified: 1743719817939
+      sortKey: -1743719731654
+    children:
+      - url: http://localhost:3000/users
+        name: Create
+        meta:
+          id: req_ae805d57c8fb4ef0817c33285528bc0b
+          created: 1743719592325
+          modified: 1743733966620
+          isPrivate: false
+          sortKey: -1743719828687
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "{% faker 'randomFullName' %}",
+            	"email": "{% faker 'randomEmail' %}",
+            	"phone": "{% faker 'randomPhoneNumber' %}",
+            	"address": "{% faker 'randomStreetName' %}",
+            	"expiredAt": "2025-11-09T01:04:35.792Z",
+            	"permissionGroupsId": [
+            		"5bfb5ea5-4b04-49c7-b74d-0364af40aba7"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_3affba849f7f409982132fc5fed6a2fc
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_b60fe38505c74348b5a14a2c9d5d671f
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/batch
+        name: Batch Create
+        meta:
+          id: req_ed2820ac00d941a4bda5f7efbe94cfc9
+          created: 1743719592327
+          modified: 1743719984147
+          isPrivate: false
+          sortKey: -1743719828637
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: expiredAt
+              value: 2025-12-15T19:14:13.648Z
+            - name: file
+              fileName: /Users/orlandonascimento/Documents/cadastro_em_massa2.xlsx
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users?filter&qtdItemsPerPage=5&page=1
+        name: FindAll
+        meta:
+          id: req_17abcbd542af4604bbe0ee58a597d494
+          created: 1743719592330
+          modified: 1743719866022
+          isPrivate: false
+          sortKey: -1743719828587
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+        name: FindOne
+        meta:
+          id: req_2b38aec0f71443b5b3f80a0ec9402e3f
+          created: 1743719592332
+          modified: 1743719860288
+          isPrivate: false
+          sortKey: -1743719828487
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+        name: Update
+        meta:
+          id: req_fad67c51ca794513866dd9e3043d7f9f
+          created: 1743719592335
+          modified: 1743719855665
+          isPrivate: false
+          sortKey: -1743719828387
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "vvvvvvvv",
+            	"phone": "1194819988x",
+            	"address": "Avenida Paulista, 1000x",
+            	"expiredAt": "2099-03-22",
+            	"permissionGroupsId": [
+            		"4c223da4-1af9-40ee-a1b9-dac27f6d3f69"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/368e811f-d88f-4478-82c4-7e8c7f98b9d2
+        name: Delete
+        meta:
+          id: req_edc483361e0f4975b7a07d246d6ad318
+          created: 1743719592338
+          modified: 1743719847043
+          isPrivate: false
+          sortKey: -1743719828287
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/profile
+        name: Profile
+        meta:
+          id: req_7fa554ca4d624c7797d714c9be28b79a
+          created: 1743719592339
+          modified: 1743719828270
+          isPrivate: false
+          sortKey: -1743719828087
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/users/profile
+        name: Update Profile
+        meta:
+          id: req_a1ed82382fc64abe8da8c3f79e71ca45
+          created: 1743719592341
+          modified: 1743719831126
+          isPrivate: false
+          sortKey: -1743719828187
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Orlando Nascimentox",
+            	"phone": "1194819988",
+            	"password": "01020304",
+            	"address": "Avenida Paulista, 1000"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Permission Group
+    meta:
+      id: fld_3103f7f464564e17a569a97f1a2dba49
+      created: 1743719742443
+      modified: 1743719742443
+      sortKey: -1743719742443
+    children:
+      - url: http://localhost:3000/permission-groups
+        name: Create
+        meta:
+          id: req_5c9fdd7f2f674b1bbe10fdabe3ee9c84
+          created: 1743719592310
+          modified: 1743719953261
+          isPrivate: false
+          sortKey: -1743719910160
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "zzzzzzaaaaa",
+            	"description": "Grupo com acesso parcial",
+            	"permissionRulesId": [
+            		"63b33f45-568a-4415-874f-b04a7bc39645",
+            		"e0721b89-de65-4c02-ac3f-db9ad29ddb40",
+            		"2bb1c581-1738-483e-bf93-c46afd12f972"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/permission-groups?page=1&qtdItemsPerPage=10&filter
+        name: FindAll
+        meta:
+          id: req_7cd577cfc7244ebbab37c3d204010bb7
+          created: 1743719592314
+          modified: 1743719949670
+          isPrivate: false
+          sortKey: -1743719910060
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+        name: FindOne
+        meta:
+          id: req_199190a4ebbd41438e01ba96504a2573
+          created: 1743719592317
+          modified: 1743719945933
+          isPrivate: false
+          sortKey: -1743719909960
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+        name: Update
+        meta:
+          id: req_d0970ff970ea4ab3b0ba51fb6709211a
+          created: 1743719592322
+          modified: 1743719920179
+          isPrivate: false
+          sortKey: -1743719909860
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "bbbbbbbbbbbbbbbbbbbbb",
+            	"description": "Grupo com acesso parcial",
+            	"permissionRulesId": [
+            		"63b33f45-568a-4415-874f-b04a7bc39645"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/permission-groups/5cf75815-1ce9-44cd-aa9c-cd44d78d7a83
+        name: Delete
+        meta:
+          id: req_f89dc16d05c349e6867f3df5e12e6f96
+          created: 1743719592324
+          modified: 1743719909887
+          isPrivate: false
+          sortKey: -1743719909760
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Permission Rule
+    meta:
+      id: fld_bab620fa19fb47e783956e61cf6d8d23
+      created: 1743719752087
+      modified: 1743719752087
+      sortKey: -1743719752087
+    children:
+      - url: http://localhost:3000/permission-rules
+        name: FindAll
+        meta:
+          id: req_d297e79af5f84b8599e40e842c1edf5b
+          created: 1743719592319
+          modified: 1743719936445
+          isPrivate: false
+          sortKey: -1743719929961
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Auction Property
+    meta:
+      id: fld_63bca10758f2439dbe7194d5dd8f26ce
+      created: 1743719763873
+      modified: 1743719763873
+      sortKey: -1743719763873
+    children:
+      - url: http://localhost:3000/auction-properties/batch
+        name: Batch Create Without File
+        meta:
+          id: req_79a4b6e9f1d844a3881148adb8cf3f65
+          created: 1743719592300
+          modified: 1743727074717
+          isPrivate: false
+          sortKey: -1743719991117
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_e1d46d2020e341c39da0ccec2a8199f4
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzI2OTI0fQ.rbSFzB4q30tzCqSXTvKBJCtZ7TuSIo4x-mSvaS77HBM
+            id: pair_a05b55f2a44b453ebdc7c29fedb09fb0
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/auction-properties/batch
+        name: Batch Create
+        meta:
+          id: req_78b9cc4c97ab4e59b6c9bc4608b4816f
+          created: 1743719592306
+          modified: 1743719991117
+          isPrivate: false
+          sortKey: -1743719991017
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: file
+              fileName: /Users/orlandonascimento/Documents/Projects/leiloes/src/docs/Lista_imoveis_geral.csv
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/10.3.1
+          - name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzZWE0ODE5LTA5NTUtNDgzOS04MTVmLWE5MmUxM2FhZGJiMyIsImVtYWlsIjoib2NuYXNjaW1lbnRvMkBnbWFpbC5jb20iLCJuYW1lIjoiT3JsYW5kbyBOYXNjaW1lbnRvIiwiZXhwaXJlZEF0IjoiMjI5OS0wMS0xN1QxMjo1ODozNy43MDVaIiwicGhvbmUiOiIxMTk0ODEwODg1NSIsImFkZHJlc3MiOiJSdWEgU29sYXIgZG9zIFF1ZXZlZG9zLCAwNiIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInVwZGF0ZWRBdCI6IjIwMjUtMDQtMDNUMTI6NTg6MzkuNzUyWiIsInBlcm1pc3Npb25Hcm91cHMiOlt7ImlkIjoiNGMyMjNkYTQtMWFmOS00MGVlLWExYjktZGFjMjdmNmQzZjY5IiwibmFtZSI6IkFkbWluaXN0cmFkb3IifV0sInBlcm1pc3Npb25SdWxlcyI6W3siaWQiOiI2M2IzM2Y0NS01NjhhLTQ0MTUtODc0Zi1iMDRhN2JjMzk2NDUiLCJydWxlIjoiY3JlYXRlVXNlciJ9LHsiaWQiOiJlMDcyMWI4OS1kZTY1LTRjMDItYWMzZi1kYjlhZDI5ZGRiNDAiLCJydWxlIjoibGlzdFVzZXJzIn0seyJpZCI6IjJiYjFjNTgxLTE3MzgtNDgzZS1iZjkzLWM0NmFmZDEyZjk3MiIsInJ1bGUiOiJlZGl0VXNlciJ9LHsiaWQiOiI0Y2MwMjA5OC1lNjIzLTQ2OTAtYTE1NS0xMDk4MmFiYzU3ZmEiLCJydWxlIjoiZGVsZXRlVXNlciJ9LHsiaWQiOiJlYTExNmMyNC0yNWNmLTQ5YzctOWQ1MS00YmVkOTNiN2Q4NmUiLCJydWxlIjoiY3JlYXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjU4MTg0ZTViLWZjMWUtNDMxMC1iZjY4LTgzYjA5ZjJiNzRlYyIsInJ1bGUiOiJsaXN0UGVybWlzc2lvbkdyb3VwcyJ9LHsiaWQiOiI3NDg0YjE2Yy0xMjMyLTRkZWItYTg0Ni1jZDVlMTZkMjJlMDIiLCJydWxlIjoiZWRpdFBlcm1pc3Npb25Hcm91cCJ9LHsiaWQiOiIzYWM4ZTIyYS0zYzBkLTQ0NmMtOTU2Ni01MTc0NGI1NmYyNTgiLCJydWxlIjoiZGVsZXRlUGVybWlzc2lvbkdyb3VwIn0seyJpZCI6IjA4MDIyZTE1LTU4NDYtNDk3ZS1hYmVhLTc2NzU0OWVkZTk1OSIsInJ1bGUiOiJjcmVhdGVBdWN0aW9uUHJvcGVydGllcyJ9XSwiaWF0IjoxNzQzNzA4MzQ0LCJleHAiOjE3NDM3MTE5NDR9.qZ3rIuUfqfSayWcDh5JZYyzouzjM-12BnvVJhYZHl7s
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: New Request
+        meta:
+          id: req_020d39a6240d49bd95d4880eca96a9e2
+          created: 1743720325934
+          modified: 1743720325934
+          isPrivate: false
+          sortKey: -1743720325934
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_fd51fe617d09dd6889aac137fbfc5f5f10d1b14a
+    created: 1743719592354
+    modified: 1743719592354
+environments:
+  name: Base Environment
+  meta:
+    id: env_fd51fe617d09dd6889aac137fbfc5f5f10d1b14a
+    created: 1743719592350
+    modified: 1743719592350
+    isPrivate: false
+  subEnvironments:
+    - name: local
+      meta:
+        id: env_807b039c512742b8a07ef64918707b54
+        created: 1743726125170
+        modified: 1743726184211
+        isPrivate: true
+        sortKey: 1743726125170
+      data:
+        baseURL: http://localhost.com.br:3000
+      color: "#40e762"

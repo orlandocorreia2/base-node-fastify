@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import puppeteer from 'puppeteer';
+import { exec } from 'child_process';
+import path from 'path';
 import { CreateAuctionPropertiesBatchUseCaseInterface } from './interfaces/create.auction.properties.batch.usecase.interface';
 import { AuctionPropertyRepositoryInterface } from '../repositories/interfaces/auction.property.repository.interface';
 import { CreateAuctionPropertiesBatchUseCaseExecuteResponseProps } from './types';
@@ -28,32 +29,12 @@ export class CreateAuctionPropertiesBatchUseCase
   public async execute(
     createdById: string,
   ): Promise<CreateAuctionPropertiesBatchUseCaseExecuteResponseProps> {
-    console.log('Start download file...');
-    const browser = await puppeteer.launch({
-      headless: true,
-      downloadBehavior: {
-        downloadPath: `./src/temp`,
-        policy: 'allow',
-      },
-    });
-    const page = await browser.newPage();
-    const ua =
-      'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3';
-    await page.setUserAgent(ua);
-    await page.goto(
-      'https://venda-imoveis.caixa.gov.br/sistema/download-lista.asp',
-    );
-    await page.waitForSelector('#cmb_estado');
-    page.click('#cmb_estado');
-    await page.select('#cmb_estado', 'geral');
-    page.click('#btn_next1');
-    await sleep(3);
-    browser.close();
-    console.log('Finish download file');
+    await this.downloadFile();
+    console.log('Deleted all auction properties...');
     await this._auctionPropertyRepository.deleteAll();
-    console.log('Deleted all auction properties');
+    console.log('Start rows file...');
     await getDataExtraction({
-      filePath: './src/temp/Lista_imoveis_geral.csv',
+      filePath: './src/temp/auction_properties.csv',
       fn: (data: any) => {
         const {
           _1: uf,
@@ -93,7 +74,7 @@ export class CreateAuctionPropertiesBatchUseCase
     });
     console.log('Waiting finish add data...');
     await this.finishFillAllData();
-    console.log('Finished add data');
+    console.log('Finish added data...');
     this._auctionPropertyRepository.createMany(this._allData);
     console.log(
       `Total saved auction properties batch: ${this._totalRowsAddedAllData}`,
@@ -101,6 +82,26 @@ export class CreateAuctionPropertiesBatchUseCase
     return {
       message: `Total saved auction properties batch: ${this._totalRowsAddedAllData}`,
     };
+  }
+
+  private downloadFile() {
+    console.log('Start download file...');
+    return new Promise(async resolve => {
+      exec(
+        `npx playwright test ${path.resolve(process.cwd())}`,
+        (error, _, stderr) => {
+          if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+          }
+          if (stderr) {
+            console.log(`stderr: ${stderr}`);
+          }
+          console.log('Finish download file...');
+          resolve(true);
+        },
+      );
+    });
   }
 
   private async addAllData({

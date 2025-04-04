@@ -7,7 +7,11 @@ coverage
 yarn.lock
 package-lock.json
 
+.DS_Store
 src/.DS_Store
 
 src/temp/*
 !src/temp/.gitkeep
+
+test-results
+playwright-report
