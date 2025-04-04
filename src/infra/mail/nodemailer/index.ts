@@ -4,25 +4,33 @@ import { SendMailProps } from '../../../types/email';
 import { isEnvironmentProduction } from '../../../utils/helper';
 import path from 'path';
 
-export const transport = nodemailer.createTransport({
+// export const transport = nodemailer.createTransport({
+//   host: 'smtp.kinghost.net',
+//   port: 465,
+//   secure: true, // true for port 465, false for other ports
+//   auth: {
+//     user: 'no-reply@meuleilaoonline.com',
+//     pass: 'J@rvi2025',
+//   },
+// });
+
+const transport = nodemailer.createTransport({
+  service: 'kinghost',
   host: 'smtp.kinghost.net',
-  port: 465,
-  secure: true, // true for port 465, false for other ports
-  auth: {
-    user: 'no-reply@meuleilaoonline.com',
-    pass: 'J@rvi2025',
-  },
+  port: 587,
+  secure: false,
+  pool: true,
+  auth: { user: 'no-reply@meuleilaoonline.com', pass: 'J@rvi2025' },
 });
 
 export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
   console.log('Valor das variaveis de ambiente', {
+    service: 'kinghost',
     host: 'smtp.kinghost.net',
-    port: 465,
-    secure: true, // true for port 465, false for other ports
-    auth: {
-      user: 'no-reply@meuleilaoonline.com',
-      pass: 'J@rvi2025',
-    },
+    port: 587,
+    secure: false,
+    pool: true,
+    auth: { user: 'no-reply@meuleilaoonline.com', pass: 'J@rvi2025' },
   });
   const sendTo = isEnvironmentProduction ? to : env({ key: 'MAIL_FROM_DEVS' });
   transport
