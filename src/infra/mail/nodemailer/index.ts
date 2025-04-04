@@ -15,6 +15,15 @@ export const transport = nodemailer.createTransport({
 });
 
 export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
+  console.log('Valor das variaveis de ambiente', {
+    host: env({ key: 'MAIL_HOST' }),
+    port: envNumber({ key: 'MAIL_PORT' }),
+    secure: envBoolean({ key: 'MAIL_SECURE' }), // true for port 465, false for other ports
+    auth: {
+      user: env({ key: 'MAIL_AUTH_USER' }),
+      pass: env({ key: 'MAIL_AUTH_PASS' }),
+    },
+  });
   const sendTo = isEnvironmentProduction ? to : env({ key: 'MAIL_FROM_DEVS' });
   transport
     .sendMail({

@@ -1,8 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { exec } from 'child_process';
-import path from 'path';
+import playwright from 'playwright';
 import { CreateAuctionPropertiesBatchUseCaseInterface } from './interfaces/create.auction.properties.batch.usecase.interface';
 import { AuctionPropertyRepositoryInterface } from '../repositories/interfaces/auction.property.repository.interface';
 import { CreateAuctionPropertiesBatchUseCaseExecuteResponseProps } from './types';
@@ -84,24 +83,27 @@ export class CreateAuctionPropertiesBatchUseCase
     };
   }
 
-  private downloadFile() {
+  private async downloadFile() {
     console.log('Start download file...');
-    return new Promise(async resolve => {
-      exec(
-        `npx playwright test ${path.resolve(process.cwd())}`,
-        (error, _, stderr) => {
-          if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-          }
-          if (stderr) {
-            console.log(`stderr: ${stderr}`);
-          }
-          console.log('Finish download file...');
-          resolve(true);
-        },
-      );
+    const browser = await playwright.chromium.launch({
+      headless: false,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
+    const context = await browser.newContext({
+      acceptDownloads: true,
+    });
+    const page = await context.newPage();
+    await page.goto(
+      'https://venda-imoveis.caixa.gov.br/sistema/download-lista.asp',
+    );
+    const waitForDownloadEvent = page.waitForEvent('download');
+    await page.waitForSelector('#cmb_estado');
+    await page.selectOption('#cmb_estado', { value: 'geral' });
+    await page.click('#btn_next1');
+    const download = await waitForDownloadEvent;
+    await download.saveAs('./src/temp/auction_properties.csv');
+    browser.close();
+    console.log('Finish download file...');
   }
 
   private async addAllData({
