@@ -14,24 +14,19 @@ import path from 'path';
 //   },
 // });
 
-const transport = nodemailer.createTransport({
+const transportConfig = {
   service: 'kinghost',
   host: 'smtp.kinghost.net',
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   pool: true,
   auth: { user: 'no-reply@meuleilaoonline.com', pass: 'J@rvi2025' },
-});
+};
+
+const transport = nodemailer.createTransport(transportConfig);
 
 export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
-  console.log('Valor das variaveis de ambiente', {
-    service: 'kinghost',
-    host: 'smtp.kinghost.net',
-    port: 587,
-    secure: false,
-    pool: true,
-    auth: { user: 'no-reply@meuleilaoonline.com', pass: 'J@rvi2025' },
-  });
+  console.log('Valor das variaveis de ambiente', transportConfig);
   const sendTo = isEnvironmentProduction ? to : env({ key: 'MAIL_FROM_DEVS' });
   transport
     .sendMail({
