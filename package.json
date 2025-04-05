@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files && node dist/server.js",
     "dev": "tsx watch src/server.ts",
-    "build": "npm install && npx prisma generate && sh ./playright && tsc -p tsconfig.json && sh ./build-copy-files",
+    "build": "npm install && npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files",
     "prepare": "husky",
     "test": "echo test",
     "copy:files": "cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer",
@@ -30,6 +30,7 @@
     "fastify-plugin": "^5.0.1",
     "fastify-type-provider-zod": "^4.0.2",
     "handlebars": "^4.7.8",
+    "mailtrap": "^4.0.0",
     "nodemailer": "^6.10.0",
     "playwright": "^1.51.1",
     "puppeteer": "^24.5.0",
