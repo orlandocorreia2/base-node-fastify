@@ -1,34 +1,56 @@
-FROM node:22.12
+FROM ubuntu:noble
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ=America/Los_Angeles
+ARG DOCKER_IMAGE_NAME_TEMPLATE="mcr.microsoft.com/playwright:v%version%-noble"
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 LABEL maintainer 'Orlando Nascimento <ocnasicmento2@gmail.com>'
 
 WORKDIR /usr/src
 
-RUN apt-get update \
-  && apt-get install -yq --no-install-recommends \
-  # TOOLS
-  curl \
-  git \
-  unzip \
-  # CLEAR
-  && apt-get clean
+# === INSTALL Node.js ===
 
-  # Instalação das dependências do sistema
-RUN apt-get update && apt-get install -y \
-  libx11-xcb1 \
-  libxcomposite1 \
-  libxcursor1 \
-  libxdamage1 \
-  libxi6 \
-  libxtst6 \
-  libnss3 \
-  fonts-liberation \
-  libasound2 \
-  xdg-utils \
-  --no-install-recommends && \
-  rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    # Install Node.js
+    apt-get install -y curl wget gpg ca-certificates && \
+    mkdir -p /etc/apt/keyrings && \
+    curl -sL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" >> /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    # Feature-parity with node.js base images.
+    apt-get install -y --no-install-recommends git openssh-client && \
+    npm install -g yarn && \
+    # clean apt cache
+    rm -rf /var/lib/apt/lists/* && \
+    # Create the pwuser
+    adduser pwuser
 
-RUN npx playwright install --with-deps
+# === BAKE BROWSERS INTO IMAGE ===
+
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+# 1. Add tip-of-tree Playwright package to install its browsers.
+#    The package should be built beforehand from tip-of-tree Playwright.
+# COPY ./playwright-core.tar.gz /tmp/playwright-core.tar.gz
+
+# 2. Bake in browsers & deps.
+#    Browsers will be downloaded in `/ms-playwright`.
+#    Note: make sure to set 777 to the registry so that any user can access
+#    registry.
+RUN mkdir /ms-playwright && \
+    mkdir /ms-playwright-agent && \
+    cd /ms-playwright-agent && npm init -y && \
+    npm i /tmp/playwright-core.tar.gz && \
+    npm exec --no -- playwright-core mark-docker-image "${DOCKER_IMAGE_NAME_TEMPLATE}" && \
+    npm exec --no -- playwright-core install --with-deps && rm -rf /var/lib/apt/lists/* && \
+    rm /tmp/playwright-core.tar.gz && \
+    rm -rf /ms-playwright-agent && \
+    rm -rf ~/.npm/ && \
+    chmod -R 777 /ms-playwright
 
 EXPOSE 80
 

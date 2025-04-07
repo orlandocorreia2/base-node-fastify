@@ -111,10 +111,7 @@ export class CreateAuctionPropertiesBatchUseCase
       }
       try {
         console.log('Start download file...');
-        const browser = await playwright.chromium.launch({
-          headless: false,
-          args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        });
+        const browser = await playwright.chromium.launch();
         const context = await browser.newContext({
           acceptDownloads: true,
           ignoreHTTPSErrors: true,

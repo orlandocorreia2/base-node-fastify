@@ -7,6 +7,9 @@ services:
       - ./:/usr/src:delegated
     ports:
       - 80:80
+    environment:
+      - PORT=80
+      - DATABASE_URL=postgresql://postgres:iHafw90jeUpbspngaW8Mufh4WVd7RT5f@db/jarvis_postgresql_local
     depends_on:
       db:
         condition: service_healthy
