@@ -1,0 +1,37 @@
+services:
+  api:
+    container_name: auction_properties_api
+    command: tcp db:5432 -t 30s -i 250ms
+    build: .
+    volumes:
+      - ./:/usr/src:delegated
+    ports:
+      - 80:80
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+  db:
+    container_name: auction_properties_db
+    image: postgres
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=iHafw90jeUpbspngaW8Mufh4WVd7RT5f
+      - POSTGRES_DB=jarvis_postgresql_local
+      - PGUSER=postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready', '-d', 'db_prod']
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

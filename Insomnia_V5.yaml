@@ -557,51 +557,28 @@ collection:
       sortKey: -1743719763873
     children:
       - url: "{{ _.baseURL }}/auction-properties/batch"
-        name: Batch Create Without File
+        name: Batch Create
         meta:
           id: req_79a4b6e9f1d844a3881148adb8cf3f65
           created: 1743719592300
-          modified: 1743735069012
+          modified: 1743984245824
           isPrivate: false
           sortKey: -1743719991117
-        method: POST
-        headers:
-          - name: User-Agent
-            value: insomnia/10.3.1
-            id: pair_e1d46d2020e341c39da0ccec2a8199f4
-        authentication:
-          type: bearer
-          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
-            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
-        settings:
-          renderRequestBody: true
-          encodeUrl: true
-          followRedirects: global
-          cookies:
-            send: true
-            store: true
-          rebuildPath: true
-      - url: "{{ _.baseURL }}/auction-properties/batch"
-        name: Batch Create
-        meta:
-          id: req_78b9cc4c97ab4e59b6c9bc4608b4816f
-          created: 1743719592306
-          modified: 1743735087794
-          isPrivate: false
-          sortKey: -1743719991017
         method: POST
         body:
           mimeType: multipart/form-data
           params:
-            - name: file
-              fileName: /Users/orlandonascimento/Documents/Projects/leiloes/src/docs/Lista_imoveis_geral.csv
+            - id: pair_3948ed78e26d4f22b3769e4e09bce9ab
+              name: file
+              disabled: false
+              type: file
+              fileName: /Users/orlandonascimento/Documents/auction_properties.csv
         headers:
           - name: Content-Type
             value: multipart/form-data
-            id: pair_2075b7fb7cd84cc3a6cb2d4bbf0d5ecb
           - name: User-Agent
             value: insomnia/10.3.1
-            id: pair_1e86d530910346ad99cb50278a445375
+            id: pair_e1d46d2020e341c39da0ccec2a8199f4
         authentication:
           type: bearer
           token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
@@ -632,11 +609,11 @@ environments:
       meta:
         id: env_807b039c512742b8a07ef64918707b54
         created: 1743726125170
-        modified: 1743726184211
+        modified: 1743841430616
         isPrivate: true
         sortKey: 1743726125170
       data:
-        baseURL: http://localhost.com.br:3000
+        baseURL: http://localhost:3000
       color: "#40e762"
     - name: dev
       meta:

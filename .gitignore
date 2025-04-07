@@ -13,3 +13,5 @@ src/.DS_Store
 src/temp/*
 !src/temp/.gitkeep
 
+.docker/dbdata
+

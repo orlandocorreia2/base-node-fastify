@@ -15,8 +15,6 @@ export const transport = nodemailer.createTransport({
   tls: {
     rejectUnauthorized: false,
   },
-  logger: true,
-  debug: true,
 });
 
 export const sendMail = ({ to, subject, html, text }: SendMailProps) => {

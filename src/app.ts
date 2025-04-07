@@ -7,6 +7,7 @@ import {
   validatorCompiler,
   ZodTypeProvider,
 } from 'fastify-type-provider-zod';
+import path from 'path';
 
 const app: FastifyInstance = fastify({
   logger: false,
@@ -25,4 +26,6 @@ const app: FastifyInstance = fastify({
   app.register(appRoutes);
 })();
 
-export { app };
+const __basepath = path.resolve('..');
+
+export { app, __basepath };
