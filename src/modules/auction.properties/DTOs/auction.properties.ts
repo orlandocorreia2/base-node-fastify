@@ -12,4 +12,5 @@ export type AuctionProperty = {
   description: string;
   sale_method: string;
   access_link: string;
+  accept_financing: boolean;
 };

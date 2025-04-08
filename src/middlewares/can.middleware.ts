@@ -9,7 +9,6 @@ export const canMiddleware = async (
   _: FastifyReply,
 ) => {
   try {
-    let hasPermission = false;
     const permissionKeys: KeyValueProps = {
       'POST/users': 'createUser',
       'POST/users/batch': 'createUser',
@@ -24,8 +23,10 @@ export const canMiddleware = async (
       'DELETE/permission-groups/:id': 'deletePermissionGroup',
       'GET/permission-rules': 'editPermissionGroup',
       'POST/auction-properties/batch': 'createAuctionProperties',
+      'GET/auction-properties': true,
     };
     const requestKey = `${request.routeOptions.method}${request.routeOptions.url}`;
+    let hasPermission = permissionKeys[requestKey] === true;
     const findOneUserCase = container.resolve(FindOneUserUseCase);
     const requestUser = request.user as any;
     const user = await findOneUserCase.execute({

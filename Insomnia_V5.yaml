@@ -561,7 +561,7 @@ collection:
         meta:
           id: req_79a4b6e9f1d844a3881148adb8cf3f65
           created: 1743719592300
-          modified: 1743984245824
+          modified: 1744080622774
           isPrivate: false
           sortKey: -1743719991117
         method: POST
@@ -576,6 +576,31 @@ collection:
         headers:
           - name: Content-Type
             value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/10.3.1
+            id: pair_e1d46d2020e341c39da0ccec2a8199f4
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_313b6878e7b34b2c80cd932600eab04e',
+            'b64::JC50b2tlbg==::46b', 'when-expired', 3600 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseURL }}/auction-properties"
+        name: Find All
+        meta:
+          id: req_ddb3ec2599264292b158440772c3e642
+          created: 1744077533599
+          modified: 1744080198046
+          isPrivate: false
+          sortKey: -1743719960539
+        method: GET
+        headers:
           - name: User-Agent
             value: insomnia/10.3.1
             id: pair_e1d46d2020e341c39da0ccec2a8199f4
@@ -625,3 +650,13 @@ environments:
       data:
         baseURL: https://jarvis-api-develop.onrender.com
       color: "#7240e7"
+    - name: local (Docker)
+      meta:
+        id: env_cdde5332fd80475387cf145d0490fbd1
+        created: 1743987279440
+        modified: 1743988401058
+        isPrivate: true
+        sortKey: 1743726125195
+      data:
+        baseURL: http://localhost
+      color: "#eab33e"
