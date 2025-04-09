@@ -28,7 +28,8 @@ RUN apt-get update && apt-get install -y \
   --no-install-recommends && \
   rm -rf /var/lib/apt/lists/*
 
-RUN npx playwright install
+RUN npx -y playwright@1.51.1 install --with-deps
+
 
 EXPOSE 80
 

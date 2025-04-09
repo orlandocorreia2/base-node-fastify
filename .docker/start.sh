@@ -1,11 +1,13 @@
 #!/bin/bash
 yarn install
 
-yarn prisma:migrate
+# yarn prisma:migrate
 
-yarn prisma:seed
+# yarn prisma:seed
 
-npx playwright install
+npx playwright install chromium
+
+yarn playwright install chromium
 
 # yarn dev
 

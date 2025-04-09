@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { env, envBoolean, envNumber } from '../../../utils/env';
+import { env } from '../../../utils/env';
 import { SendMailProps } from '../../../types/email';
 import { isEnvironmentProduction } from '../../../utils/helper';
 import path from 'path';
