@@ -15,19 +15,28 @@ export const response = {
           address: z.string({
             description: 'ESTRADA DOS MIRANDAS, N. 315 E 32, Apto 102, BL-02',
           }),
-          price: z.number({ description: '229' }),
-          appraisalValue: z.number({ description: '229' }),
+          price: z.number({ description: '51090900' }),
+          appraisalValue: z.number({ description: '50700000' }),
           discount: z.number({ description: '0' }),
+          propertyType: z.string({ description: 'Apartamento' }),
           description: z.string({
             description:
-              'Apartamento, 0.00 de área total, 42.10 de área privativa, 0.00 de área do terreno,  2 qto(s), WC, 1 sala(s), cozinha.',
+              '0.00 de área total, 42.10 de área privativa, 0.00 de área do terreno,  2 qto(s), WC, 1 sala(s), cozinha.',
           }),
           saleMethod: z.string({ description: 'Leilão SFI - Edital único' }),
           accessLink: z.string({
             description:
               'https://venda-imoveis.caixa.gov.br/sistema/detalhe-imovel.asp?hdnOrigem=index&hdnimovel=8787709298777',
           }),
-          acceptFinancing: z.string({ description: 'NÀO' }),
+          acceptFinancing: z.boolean({ description: 'true' }),
+          photo_link: z.string({
+            description:
+              'https://venda-imoveis.caixa.gov.br//fotos/F144442069944121.jpg',
+          }),
+          registration_property_link: z.string({
+            description:
+              'https://venda-imoveis.caixa.gov.br/editais/matricula/AC/1444420699441.pdf',
+          }),
         }),
       ),
       page: z.number({ description: '1' }),

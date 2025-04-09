@@ -12,10 +12,13 @@ export type CreateAuctionPropertyRepositoryProps = {
   price: number;
   appraisal_value: number;
   discount: number;
+  property_type: string;
   description: string;
   sale_method: string;
   access_link: string;
   accept_financing?: boolean;
+  photo_link?: string;
+  registration_property_link?: string;
 };
 
 export type UpdateAuctionPropertyRepositoryProps = {
@@ -28,9 +31,13 @@ export type UpdateAuctionPropertyRepositoryProps = {
   price: number;
   appraisal_value: number;
   discount: number;
+  property_type: string;
   description: string;
   sale_method: string;
   access_link: string;
+  accept_financing?: boolean;
+  photo_link?: string;
+  registration_property_link?: string;
 };
 
 export type UpsertAuctionPropertyRepositoryProps = {

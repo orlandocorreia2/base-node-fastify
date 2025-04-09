@@ -9,8 +9,11 @@ export type AuctionProperty = {
   price: string;
   appraisal_value: string;
   discount: string;
+  property_type: string;
   description: string;
   sale_method: string;
   access_link: string;
   accept_financing: boolean;
+  photo_link?: string;
+  registration_property_link?: string;
 };

@@ -95,22 +95,25 @@ model Token {
 }
 
 model AuctionProperty {
-  id               String   @id @default(uuid())
-  created_by_id    String
-  number_property  BigInt
-  uf               String
-  city             String
-  neighborhood     String
-  address          String
-  price            Float
-  appraisal_value  Float
-  discount         Float
-  description      String
-  sale_method      String
-  access_link      String
-  accept_financing Boolean  @default(false)
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
+  id                         String   @id @default(uuid())
+  created_by_id              String
+  number_property            BigInt
+  uf                         String
+  city                       String
+  neighborhood               String
+  address                    String
+  price                      BigInt
+  appraisal_value            BigInt
+  discount                   BigInt
+  property_type              String
+  description                String
+  sale_method                String
+  access_link                String
+  accept_financing           Boolean  @default(false)
+  photo_link                 String?
+  registration_property_link String?
+  created_at                 DateTime @default(now())
+  updated_at                 DateTime @updatedAt
 
   createdBy User @relation("UserCreatedAuctionProperties", fields: [created_by_id], references: [id])
 

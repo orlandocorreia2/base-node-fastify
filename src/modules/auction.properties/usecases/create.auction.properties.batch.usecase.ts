@@ -10,7 +10,8 @@ import { CreateAuctionPropertyRepositoryProps } from '../repositories/types';
 import { sleep } from '../../../utils/util';
 import { getDataExtraction } from '../../../utils/csv';
 import { UnprocessableError } from '../../../error/unprocessable.error';
-import { deleteFile, writeFile } from '../../../utils/file';
+import { writeFile } from '../../../utils/file';
+import { convertInteger } from '../../../utils/number';
 
 @injectable()
 export class CreateAuctionPropertiesBatchUseCase
@@ -38,7 +39,7 @@ export class CreateAuctionPropertiesBatchUseCase
     console.log('Start rows file...');
     await getDataExtraction({
       filePath: './src/temp/auction_properties.csv',
-      fn: (data: any) => {
+      fn: async (data: any) => {
         const {
           _1: uf,
           _2: city,
@@ -58,17 +59,19 @@ export class CreateAuctionPropertiesBatchUseCase
           number_property > 0
         ) {
           this._totalRows++;
-          this.addAllData({
+          const property_type = description.split(',')[0];
+          await this.addAllData({
             created_by_id: createdById,
             number_property,
             uf,
             city,
             neighborhood,
             address,
-            price: parseFloat(price),
-            appraisal_value: parseFloat(appraisal_value),
-            discount: parseFloat(discount),
-            description,
+            price: convertInteger(price),
+            appraisal_value: convertInteger(appraisal_value),
+            discount: convertInteger(discount),
+            property_type: property_type || 'N/A',
+            description: description.split(',')[1],
             sale_method,
             access_link,
           });
@@ -90,7 +93,6 @@ export class CreateAuctionPropertiesBatchUseCase
   private saveFileOnDisk(multipartData?: MultipartFile) {
     return new Promise(async resolve => {
       const fileWritePath = './src/temp/auction_properties.csv';
-      deleteFile(fileWritePath);
       if (multipartData) {
         console.log('Send file from body...');
         this.validateMultipartDataForm(multipartData);
@@ -146,6 +148,8 @@ export class CreateAuctionPropertiesBatchUseCase
     }
   }
 
+  private totalErrors = 0;
+
   private async addAllData({
     created_by_id,
     number_property,
@@ -156,17 +160,31 @@ export class CreateAuctionPropertiesBatchUseCase
     price,
     appraisal_value,
     discount,
+    property_type,
     description,
     sale_method,
     access_link,
   }: CreateAuctionPropertyRepositoryProps) {
     let accept_financing = false;
+    let registration_property_link = '';
+    let photo_link = '';
     try {
       const { data } = await axios.get(access_link);
+      const baseLinkCaixa = 'https://venda-imoveis.caixa.gov.br';
       const $ = cheerio.load(data);
+      const photo_link_src = $('#preview').attr('src');
+      photo_link = photo_link_src ? `${baseLinkCaixa}/${photo_link_src}` : '';
       const p = $('.related-box > p');
       accept_financing =
-        $(p[2]).text().indexOf('NÃO aceita financiamento') == -1;
+        p && p.length >= 3
+          ? $(p[2]).text().indexOf('NÃO aceita financiamento') == -1
+          : false;
+
+      const a = $('.related-box > span > a');
+      const aOnClick = $(a).attr('onclick');
+      registration_property_link = aOnClick
+        ? `${baseLinkCaixa}${aOnClick?.split("('")[1].replace("')", '')}`
+        : '';
     } catch {
     } finally {
       this._allData.push({
@@ -179,10 +197,13 @@ export class CreateAuctionPropertiesBatchUseCase
         price,
         appraisal_value,
         discount,
+        property_type,
         description,
         sale_method,
         access_link,
         accept_financing,
+        photo_link,
+        registration_property_link,
       });
       this._totalRowsAddedAllData++;
     }
