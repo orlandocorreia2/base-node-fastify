@@ -1,6 +1,6 @@
 FROM node:22.12
 
-LABEL maintainer 'Orlando Nascimento <ocnasicmento2@gmail.com>'
+LABEL maintainer="Orlando Nascimento <ocnasicmento2@gmail.com>"
 
 WORKDIR /usr/src
 
@@ -13,7 +13,7 @@ RUN apt-get update \
   # CLEAR
   && apt-get clean
 
-  # Instalação das dependências do sistema
+# Instalação das dependências do sistema
 RUN apt-get update && apt-get install -y \
   libx11-xcb1 \
   libxcomposite1 \
@@ -30,8 +30,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN npx -y playwright@1.51.1 install --with-deps
 
+RUN npx playwright install 
 
 EXPOSE 80
 
+COPY . .
 
-ENTRYPOINT [".docker/start.sh"]
+ENTRYPOINT ["./.docker/start.sh"]

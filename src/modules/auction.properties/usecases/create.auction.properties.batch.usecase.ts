@@ -21,7 +21,7 @@ export class CreateAuctionPropertiesBatchUseCase
 
   constructor(
     @inject('AuctionPropertyRepository')
-    private _auctionPropertyRepository: AuctionPropertyRepositoryInterface,
+    private readonly _auctionPropertyRepository: AuctionPropertyRepositoryInterface,
   ) {}
 
   public async execute(
@@ -68,7 +68,7 @@ export class CreateAuctionPropertiesBatchUseCase
             price: convertInteger(price),
             appraisal_value: convertInteger(appraisal_value),
             discount: convertInteger(discount),
-            property_type: property_type || 'N/A',
+            property_type: property_type ?? 'N/A',
             description: description.split(',')[1],
             sale_method,
             access_link,

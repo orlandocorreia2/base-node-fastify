@@ -1,16 +1,10 @@
 #!/bin/bash
-yarn install
+# npx playwright install chromium
 
-# yarn prisma:migrate
+# npx playwright install 
 
-# yarn prisma:seed
+# yarn playwright install chromium
 
-npx playwright install chromium
+yarn start
 
-yarn playwright install chromium
-
-# yarn dev
-
-# yarn start
-
-tail -f /dev/null
+# tail -f /dev/null
