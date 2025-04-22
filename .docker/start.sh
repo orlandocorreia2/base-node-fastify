@@ -1,4 +1,6 @@
 #!/bin/bash
+
+npm install -g typescript
 # npx playwright install chromium
 
 # npx playwright install 
