@@ -5,6 +5,6 @@
 
 # yarn playwright install chromium
 
-yarn start
+npm run start
 
 # tail -f /dev/null
