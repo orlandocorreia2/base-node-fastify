@@ -30,6 +30,7 @@
     "fastify-plugin": "^5.0.1",
     "fastify-type-provider-zod": "^4.0.2",
     "handlebars": "^4.7.8",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
     "playwright": "^1.51.1",
     "reflect-metadata": "^0.2.2",

@@ -12,6 +12,7 @@ import { writeFile } from '../../../utils/file';
 import { convertInteger } from '../../../utils/number';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import fetch from 'node-fetch';
 
 const httpClient = axios.create();
 httpClient.defaults.timeout = 3000;
@@ -236,10 +237,14 @@ export class CreateAuctionPropertiesBatchUseCase
     for (let item of this._allData) {
       try {
         index++;
-        const { data } = await httpClient.get(`${item.access_link}`, {
-          withCredentials: true,
-        });
-        const $ = cheerio.load(data);
+
+        const response = await fetch(item.access_link);
+        const body = await response.text();
+
+        // const { data } = await httpClient.get(`${item.access_link}`, {
+        //   withCredentials: true,
+        // });
+        const $ = cheerio.load(body);
         item.photo_link = $('#preview').attr('src');
         console.log(`Foto: ${item.photo_link}, Index: ${index}`);
 
