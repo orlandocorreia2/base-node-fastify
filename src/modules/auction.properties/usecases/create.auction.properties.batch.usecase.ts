@@ -239,7 +239,10 @@ export class CreateAuctionPropertiesBatchUseCase
         index++;
 
         const response = await fetch(item.access_link);
+        console.log(response);
         const body = await response.text();
+
+        console.log(body);
 
         // const { data } = await httpClient.get(`${item.access_link}`, {
         //   withCredentials: true,
