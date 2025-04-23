@@ -12,10 +12,11 @@ import { writeFile } from '../../../utils/file';
 import { convertInteger } from '../../../utils/number';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import fetch from 'node-fetch';
+import https from 'https';
 
-const httpClient = axios.create();
-httpClient.defaults.timeout = 3000;
+const httpsAgent = new https.Agent({ rejectUnauthorized: false });
+axios.defaults.httpsAgent = httpsAgent;
+axios.defaults.timeout = 3000;
 
 @injectable()
 export class CreateAuctionPropertiesBatchUseCase
@@ -237,17 +238,8 @@ export class CreateAuctionPropertiesBatchUseCase
     for (let item of this._allData) {
       try {
         index++;
-
-        const response = await fetch(item.access_link);
-
-        const body = await response.text();
-
-        console.log('Boooooooooooooooooodyyyyyyyyyyyyyyyy', body);
-
-        // const { data } = await httpClient.get(`${item.access_link}`, {
-        //   withCredentials: true,
-        // });
-        const $ = cheerio.load(body);
+        const { data } = await axios.get(`${item.access_link}`);
+        const $ = cheerio.load(data);
         item.photo_link = $('#preview').attr('src');
         console.log(`Foto: ${item.photo_link}, Index: ${index}`);
 
