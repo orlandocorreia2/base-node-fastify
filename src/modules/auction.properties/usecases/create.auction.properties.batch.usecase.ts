@@ -232,10 +232,22 @@ export class CreateAuctionPropertiesBatchUseCase
     //   playwright.devices['Desktop Chrome'],
     // );
     // const page = await context.newPage();
+    let headers = {
+      Accept:
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+      'Accept-Encoding': 'gzip, deflate',
+      'Accept-Language': 'en-US,en;q=0.9,ms;q=0.8,te;q=0.7',
+      'Cache-Control': 'max-age=0',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Upgrade-Insecure-Requests': '1',
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)',
+    };
+
     for (let item of this._allData) {
       try {
         index++;
-        const { data } = await axios(item.access_link);
+        const { data } = await axios(item.access_link, { headers: headers });
         console.log('Body..............................', data);
         // const $ = cheerio.load(data);
         // item.photo_link = $('#preview').attr('src');
