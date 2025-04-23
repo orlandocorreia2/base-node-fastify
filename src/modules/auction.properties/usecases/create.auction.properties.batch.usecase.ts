@@ -235,14 +235,13 @@ export class CreateAuctionPropertiesBatchUseCase
     for (let item of this._allData) {
       try {
         index++;
-        const response = await fetch(item.access_link);
-        const body = await response.text();
-        console.log('Body..............................', body);
-        const $ = cheerio.load(`<html>${body}</html>`);
-        item.photo_link = $('#preview').attr('src');
-        console.log(`Foto: ${item.photo_link}, Index: ${index}`);
+        const { data } = await axios('https://viacep.com.br/ws/01001000/json/');
+        console.log('Body..............................', data);
+        // const $ = cheerio.load(data);
+        // item.photo_link = $('#preview').attr('src');
+        // console.log(`Foto: ${item.photo_link}, Index: ${index}`);
 
-        if (!item.photo_link) photosUndefined.push({ link: item.access_link });
+        // if (!item.photo_link) photosUndefined.push({ link: item.access_link });
 
         // await page.goto(item.access_link);
         // const photo_link_src = await page
