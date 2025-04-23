@@ -13,6 +13,8 @@ import { convertInteger } from '../../../utils/number';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+import fetch from 'node-fetch';
+
 axios.defaults.timeout = 3000;
 
 @injectable()
@@ -235,12 +237,10 @@ export class CreateAuctionPropertiesBatchUseCase
     for (let item of this._allData) {
       try {
         index++;
-        const { data } = await axios.get(`${item.access_link}`, {
-          responseType: 'text',
-          allowAbsoluteUrls: true,
-          withCredentials: false,
-        });
-        const $ = cheerio.load(data);
+        const response = await fetch(item.access_link);
+        const body = await response.text();
+        console.log('Body..............................', body);
+        const $ = cheerio.load(`<html>${body}</html>`);
         item.photo_link = $('#preview').attr('src');
         console.log(`Foto: ${item.photo_link}, Index: ${index}`);
 
