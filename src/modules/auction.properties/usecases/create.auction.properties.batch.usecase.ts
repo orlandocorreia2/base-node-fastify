@@ -13,8 +13,6 @@ import { convertInteger } from '../../../utils/number';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-import fetch from 'node-fetch';
-
 axios.defaults.timeout = 3000;
 
 @injectable()
