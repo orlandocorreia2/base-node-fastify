@@ -236,7 +236,9 @@ export class CreateAuctionPropertiesBatchUseCase
     for (let item of this._allData) {
       try {
         index++;
-        const { data } = await httpClient.get(`${item.access_link}`);
+        const { data } = await httpClient.get(`${item.access_link}`, {
+          withCredentials: true,
+        });
         const $ = cheerio.load(data);
         item.photo_link = $('#preview').attr('src');
         console.log(`Foto: ${item.photo_link}, Index: ${index}`);
