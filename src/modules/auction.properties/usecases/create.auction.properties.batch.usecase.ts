@@ -10,6 +10,11 @@ import { getDataExtraction } from '../../../utils/csv';
 import { UnprocessableError } from '../../../error/unprocessable.error';
 import { writeFile } from '../../../utils/file';
 import { convertInteger } from '../../../utils/number';
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+
+const httpClient = axios.create();
+httpClient.defaults.timeout = 3000;
 
 @injectable()
 export class CreateAuctionPropertiesBatchUseCase
@@ -32,8 +37,7 @@ export class CreateAuctionPropertiesBatchUseCase
     this._totalRows = 0;
     this._totalRowsAddedAllData = 0;
     await this.saveFileOnDisk(multipartData);
-    console.log('Deleted all auction properties...');
-    await this._auctionPropertyRepository.deleteAll();
+
     console.log('Start rows file...');
     await getDataExtraction({
       filePath: './src/temp/auction_properties.csv',
@@ -58,7 +62,7 @@ export class CreateAuctionPropertiesBatchUseCase
         ) {
           this._totalRows++;
           const property_type = description.split(',')[0];
-          await this.addAllData({
+          this.addAllData({
             created_by_id: createdById,
             number_property,
             uf,
@@ -81,6 +85,8 @@ export class CreateAuctionPropertiesBatchUseCase
     console.log('Finish added data...');
     await this.setDetailsPage();
     console.log('Finish set details page...');
+    console.log('Deleted all auction properties...');
+    await this._auctionPropertyRepository.deleteAll();
     this._auctionPropertyRepository.createMany(this._allData);
     console.log(
       `Total saved auction properties batch: ${this._totalRowsAddedAllData}`,
@@ -176,10 +182,7 @@ export class CreateAuctionPropertiesBatchUseCase
       // await page.goto(access_link);
       // const photo_link_src = await page.locator('#preview').getAttribute('src');
       // browser.close();
-      // const { data } = await axios.get(access_link);
       // const baseLinkCaixa = 'https://venda-imoveis.caixa.gov.br';
-      // const $ = cheerio.load(data);
-      // const photo_link_src = $('#preview').attr('src');
       // photo_link = photo_link_src ? `${baseLinkCaixa}${photo_link_src}` : '';
       // const p = $('.related-box > p');
       // accept_financing =
@@ -216,34 +219,59 @@ export class CreateAuctionPropertiesBatchUseCase
   }
 
   private async setDetailsPage() {
-    let indexData = 0;
-    console.log('Start download file...');
-    const browser = await playwright.chromium.launch({
-      headless: true,
-    });
-    const context = await browser.newContext(
-      playwright.devices['Desktop Chrome'],
-    );
-    const page = await context.newPage();
+    // let indexData = 0;
+    console.log('Start setDetailsPage...');
+    let totalErrors = 0;
+    let errors = [];
+    let photosUndefined = [];
+    let index = 0;
+    const start = new Date();
+    // const browser = await playwright.chromium.launch({
+    //   headless: true,
+    // });
+    // const context = await browser.newContext(
+    //   playwright.devices['Desktop Chrome'],
+    // );
+    // const page = await context.newPage();
     for (let item of this._allData) {
       try {
-        await page.goto(item.access_link);
-        const photo_link_src = await page
-          .locator('#preview')
-          .getAttribute('src');
-        const baseLinkCaixa = 'https://venda-imoveis.caixa.gov.br';
+        index++;
+        const { data } = await httpClient.get(`${item.access_link}`);
+        const $ = cheerio.load(data);
+        item.photo_link = $('#preview').attr('src');
+        console.log(`Foto: ${item.photo_link}, Index: ${index}`);
 
-        item.photo_link = photo_link_src
-          ? `${baseLinkCaixa}${photo_link_src}`
-          : '';
-        console.log(' 00000000', indexData, item.photo_link);
-        indexData++;
-      } catch (error) {
-        console.error(error, 'Error');
+        if (!item.photo_link) photosUndefined.push({ link: item.access_link });
+
+        // await page.goto(item.access_link);
+        // const photo_link_src = await page
+        //   .locator('#preview')
+        //   .getAttribute('src');
+        // const baseLinkCaixa = 'https://venda-imoveis.caixa.gov.br';
+
+        // item.photo_link = photo_link_src
+        //   ? `${baseLinkCaixa}${photo_link_src}`
+        //   : '';
+        // console.log(' 00000000', indexData, item.photo_link);
+        // indexData++;
+      } catch (error: any) {
+        totalErrors++;
+        errors.push({
+          line: index,
+          message: error.message,
+          link: item.access_link,
+        });
+        console.error(`Error: ${totalErrors}`, error.message);
       }
     }
-    await context.close();
-    await browser.close();
+    // await context.close();
+    // await browser.close();
+    const end = new Date();
+    console.log(
+      `Finished in startTime: ${start.toISOString()}, end: ${end.toISOString()} totalOk: ${index}, totalErrors: ${totalErrors}`,
+    );
+    console.log(`Photos Undefined`, photosUndefined);
+    console.log(`Errors`, errors);
   }
 
   private finishFillAllData() {
