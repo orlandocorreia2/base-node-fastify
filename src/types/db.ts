@@ -26,7 +26,7 @@ export type DBPaginateProps<T> = {
 };
 
 export type DBPaginateParametersProps = {
-  filter?: string;
+  filter?: string | DBAndFilterProps;
   page: number;
   qtdItemsPerPage: number;
   relationships?: DBRelationships;
@@ -53,3 +53,5 @@ export type DBFindOneRepositoryProps = {
   relationships?: DBRelationships;
   withDeleted?: boolean;
 };
+
+export type DBAndFilterProps = { AND: KeyValueProps[] };

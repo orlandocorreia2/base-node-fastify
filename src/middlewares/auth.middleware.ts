@@ -11,7 +11,7 @@ export const authMiddleware = async (
   try {
     await request.jwtVerify();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new UnauthorizedError();
   }
 };

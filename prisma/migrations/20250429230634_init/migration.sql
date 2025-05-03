@@ -67,7 +67,6 @@ CREATE TABLE "tokens" (
 -- CreateTable
 CREATE TABLE "auction_properties" (
     "id" TEXT NOT NULL,
-    "created_by_id" TEXT NOT NULL,
     "number_property" BIGINT NOT NULL,
     "uf" TEXT NOT NULL,
     "city" TEXT NOT NULL,
@@ -121,6 +120,3 @@ ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_pe
 
 -- AddForeignKey
 ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_permission_rule_id_fkey" FOREIGN KEY ("permission_rule_id") REFERENCES "permission_rules"("id") ON DELETE CASCADE ON UPDATE NO ACTION;
-
--- AddForeignKey
-ALTER TABLE "auction_properties" ADD CONSTRAINT "auction_properties_created_by_id_fkey" FOREIGN KEY ("created_by_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -7,5 +7,10 @@ export const querystring = z.object({
   qtdItemsPerPage: z
     .string({ message: 'Qtd item per page is required.', description: '10' })
     .default('10'),
-  filter: z.string().optional(),
+  uf: z.string().optional(),
+  city: z.string().optional(),
+  sale_method: z.string().optional(),
+  property_type: z.string().optional(),
+  discount: z.string().optional(),
+  appraisal_value: z.string().optional(),
 });

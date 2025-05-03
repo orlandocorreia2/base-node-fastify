@@ -1,5 +1,4 @@
 export type CreateAuctionPropertyProps = {
-  created_by_id: string;
   number_property: number;
   uf: string;
   city: string;
@@ -22,4 +21,15 @@ export type AuctionPropertiesCreateBatchMessagesProps = {
 
 export type CreateAuctionPropertiesBatchUseCaseExecuteResponseProps = {
   message: string;
+};
+
+export type PaginateAuctionPropertiesRequestProps = {
+  page: number;
+  qtdItemsPerPage: number;
+  uf?: string;
+  city?: string;
+  sale_method?: string;
+  property_type?: string;
+  discount?: string;
+  appraisal_value?: string;
 };

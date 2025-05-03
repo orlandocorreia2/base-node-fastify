@@ -46,7 +46,7 @@ export const canMiddleware = async (
       );
     }
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
     throw new UnauthorizedError(error.message);
   }
 };

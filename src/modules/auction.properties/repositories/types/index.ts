@@ -3,7 +3,6 @@ import { DBPaginateProps } from '../../../../types/db';
 export type PaginateAuctionPropertiesProps<T> = DBPaginateProps<T>;
 
 export type CreateAuctionPropertyRepositoryProps = {
-  created_by_id: string;
   number_property: number;
   uf: string;
   city: string;

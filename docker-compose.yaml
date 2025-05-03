@@ -1,20 +1,20 @@
 services:
-  api:
-    container_name: auction_properties_api
-    command: tcp db:5432 -t 30s -i 250ms
-    build: .
-    volumes:
-      - ./:/usr/src:delegated
-    ports:
-      - 80:80
-    environment:
-      - PORT=80
-      - DATABASE_URL=postgresql://postgres:iHafw90jeUpbspngaW8Mufh4WVd7RT5f@db/jarvis_postgresql_local
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - app-network
+  # api:
+  #   container_name: auction_properties_api
+  #   command: tcp db:5432 -t 30s -i 250ms
+  #   build: .
+  #   volumes:
+  #     - ./:/usr/src:delegated
+  #   ports:
+  #     - 80:80
+  #   environment:
+  #     - PORT=80
+  #     - DATABASE_URL=postgresql://postgres:iHafw90jeUpbspngaW8Mufh4WVd7RT5f@db/jarvis_postgresql_local
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   networks:
+  #     - app-network
   db:
     container_name: auction_properties_db
     image: postgres

@@ -37,7 +37,7 @@ export const sendMail = ({ to, subject, html, text }: SendMailProps) => {
       ],
     })
     .then(response => {
-      console.log('Email enviado com sucesso!', response);
+      console.warn('Email enviado com sucesso!', response);
     })
-    .catch(error => console.log('Erro ao enviar o email', error));
+    .catch(error => console.error('Erro ao enviar o email', error));
 };

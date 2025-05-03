@@ -45,7 +45,7 @@ export class UserController {
       });
       return reply.status(201).send();
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       throw error;
     }
   }
@@ -94,7 +94,7 @@ export class UserController {
       });
       return FindOneUserResponse.success({ result, reply });
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       throw error;
     }
   }
@@ -105,7 +105,7 @@ export class UserController {
       await this._deleteUserUseCase.execute(id);
       return reply.status(200).send();
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       throw error;
     }
   }

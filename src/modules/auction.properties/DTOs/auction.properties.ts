@@ -1,6 +1,5 @@
 export type AuctionProperty = {
   id: string;
-  created_by_id: string;
   number_property: string;
   uf: string;
   city: string;

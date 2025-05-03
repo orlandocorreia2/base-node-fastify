@@ -22,7 +22,7 @@ export class UsersBatchController {
       );
       return CreateUsersBatchResponse.success({ result, reply });
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       throw error;
     }
   }

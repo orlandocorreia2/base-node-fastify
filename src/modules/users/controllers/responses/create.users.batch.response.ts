@@ -14,7 +14,7 @@ export class CreateUsersBatchResponse extends BaseResponse {
   }
 
   static error(error: unknown) {
-    console.log('Error:', error);
+    console.error('Error:', error);
     throw error;
   }
 }

@@ -19,7 +19,7 @@ export class SessionController {
       });
       return reply.status(200).send(session);
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
       throw error;
     }
   }
