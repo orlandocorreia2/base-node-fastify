@@ -13,7 +13,7 @@ export class PaginatePermissionGroupsUseCase
 {
   constructor(
     @inject('PermissionGroupRepository')
-    private _permissionGroupRepository: PermissionGroupRepositoryInterface,
+    private readonly _permissionGroupRepository: PermissionGroupRepositoryInterface,
   ) {}
 
   public async execute({

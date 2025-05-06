@@ -4,16 +4,24 @@ import { SendMailProps } from '../../../types/email';
 import { isEnvironmentProduction } from '../../../utils/helper';
 import path from 'path';
 
-export const transport = nodemailer.createTransport({
-  host: 'smtp.kinghost.net',
-  port: 587,
-  secure: false, // true for port 465, false for other ports
+// export const transport = nodemailer.createTransport({
+//   host: 'smtp.kinghost.net',
+//   port: 587,
+//   secure: false, // true for port 465, false for other ports
+//   auth: {
+//     user: 'no-reply@meuleilaoonline.com',
+//     pass: 'J@rvi2025',
+//   },
+//   tls: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
+const transport = nodemailer.createTransport({
+  service: 'gmail',
   auth: {
-    user: 'no-reply@meuleilaoonline.com',
-    pass: 'J@rvi2025',
-  },
-  tls: {
-    rejectUnauthorized: false,
+    user: 'meuleilaoonlineoficial@gmail.com',
+    pass: 'clof symp sinu hbjd',
   },
 });
 

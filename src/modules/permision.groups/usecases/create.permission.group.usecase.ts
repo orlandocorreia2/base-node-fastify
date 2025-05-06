@@ -12,9 +12,9 @@ export class CreatePermissionGroupUseCase
 {
   constructor(
     @inject('PermissionGroupRepository')
-    private _permissionGroupRepository: PermissionGroupRepositoryInterface,
+    private readonly _permissionGroupRepository: PermissionGroupRepositoryInterface,
     @inject('PermissionGroupRuleRepository')
-    private _permissionGroupRuleRepository: PermissionGroupRuleRepositoryInterface,
+    private readonly _permissionGroupRuleRepository: PermissionGroupRuleRepositoryInterface,
   ) {}
 
   public async execute({

@@ -54,34 +54,46 @@ export class PaginateAuctionPropertiesBatchUseCase
     'page' | 'qtdItemsPerPage'
   >): DBAndFilterProps {
     const result: DBAndFilterProps = { AND: [] };
-    if (uf) result.AND.push({ uf: { in: uf.split('|') } });
-    if (city) result.AND.push({ city: { in: city.split('|') } });
-    if (sale_method)
-      result.AND.push({ sale_method: { in: sale_method.split('|') } });
-    if (property_type)
-      result.AND.push({ property_type: { in: property_type.split('|') } });
+    this.addFilter(result, 'uf', uf);
+    this.addFilter(result, 'city', city);
+    this.addFilter(result, 'sale_method', sale_method);
+    this.addFilter(result, 'property_type', property_type);
     if (discount) {
-      const discountGte = discount.split('|')[0].replace(/\D/g, '') ?? 0;
-      const discountLte = discount.split('|')[1].replace(/\D/g, '') ?? 0;
-      result.AND.push({
-        discount: {
-          gte: parseFloat(discountGte),
-          lte: parseFloat(discountLte),
-        },
-      });
+      this.addRangeFilter(result, 'discount', discount);
     }
     if (appraisal_value) {
-      const appraisalValueGte =
-        appraisal_value.split('|')[0].replace(/\D/g, '') ?? 0;
-      const appraisalValueLte =
-        appraisal_value.split('|')[1].replace(/\D/g, '') ?? 0;
-      result.AND.push({
-        appraisal_value: {
-          gte: parseFloat(appraisalValueGte),
-          lte: parseFloat(appraisalValueLte),
-        },
-      });
+      this.addRangeFilter(result, 'appraisal_value', appraisal_value);
     }
     return result;
+  }
+
+  private addFilter(
+    result: DBAndFilterProps,
+    field: string,
+    value?: string,
+  ): void {
+    if (value) {
+      result.AND.push({ [field]: { in: value.split('|') } });
+    }
+  }
+
+  private addRangeFilter(
+    result: DBAndFilterProps,
+    field: string,
+    range?: string,
+  ): void {
+    if (range) {
+      const rangeSplit = range.split('|');
+      if (rangeSplit && rangeSplit.length > 0) {
+        const rangeParams: { gte: number; lte?: number } = { gte: 0 };
+        const rangeGte = rangeSplit[0].replace(/\D/g, '') ?? 0;
+        rangeParams.gte = parseFloat(rangeGte);
+        if (rangeSplit.length > 1) {
+          const rangeLte = rangeSplit[1].replace(/\D/g, '') ?? 0;
+          rangeParams.lte = parseFloat(rangeLte);
+        }
+        result.AND.push({ [field]: rangeParams });
+      }
+    }
   }
 }
