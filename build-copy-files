@@ -1,0 +1,4 @@
+#!/bin/sh
+echo Copiando arquivos...
+
+cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer

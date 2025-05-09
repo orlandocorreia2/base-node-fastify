@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+.vscode
+
+.env
+yarn.lock
+package-lock.json
+
+.DS_Store
+src/.DS_Store
+
+src/temp/*
+!src/temp/.gitkeep
+
+.docker/dbdata
+
