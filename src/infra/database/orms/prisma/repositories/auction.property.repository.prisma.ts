@@ -1,6 +1,9 @@
 import { injectable } from 'tsyringe';
 import { prisma } from '../client';
-import { DBPaginateParametersProps } from '../../../../../types/db';
+import {
+  DBFindOneRepositoryProps,
+  DBPaginateParametersProps,
+} from '../../../../../types/db';
 import { positiveNumber } from '../../../../../utils/helper';
 import { KeyValueProps } from '../../../../../types/types';
 import { AuctionPropertyRepositoryInterface } from '../../../../../modules/auction.properties/repositories/interfaces/auction.property.repository.interface';
@@ -26,5 +29,9 @@ export class AuctionPropertyRepositoryPrisma
       orderBy: { created_at: 'desc' },
     });
     return { items: result, page, qtdItemsPerPage, total } as T;
+  }
+
+  async findOne<T>({ filter }: DBFindOneRepositoryProps): Promise<T> {
+    return (await prisma.auctionProperty.findFirst({ where: filter })) as T;
   }
 }

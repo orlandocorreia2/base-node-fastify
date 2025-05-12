@@ -27,8 +27,8 @@ export class PaginateAuctionPropertiesResponse extends BaseResponse {
         saleMethod: item.sale_method,
         accessLink: item.access_link,
         acceptFinancing: item.accept_financing,
-        photo_link: item.photo_link,
-        registration_property_link: item.registration_property_link,
+        photoLink: item.photo_link,
+        registrationPropertyLink: item.registration_property_link,
       };
     });
     const paginateData = this.setPaginateData<DBPaginateProps<any>>(result);

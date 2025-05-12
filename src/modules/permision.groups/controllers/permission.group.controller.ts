@@ -21,15 +21,15 @@ import {
 export class PermissionGroupController {
   constructor(
     @inject('CreatePermissionGroupUseCase')
-    private _createPermissionGroupUseCase: CreatePermissionGroupUseCaseInterface,
+    private readonly _createPermissionGroupUseCase: CreatePermissionGroupUseCaseInterface,
     @inject('PaginatePermissionGroupsUseCase')
-    private _paginatePermissionGroupsUseCase: PaginatePermissionGroupsUseCaseInterface,
+    private readonly _paginatePermissionGroupsUseCase: PaginatePermissionGroupsUseCaseInterface,
     @inject('FindOnePermissionGroupUseCase')
-    private _findOnePermissionGroupUseCase: FindOnePermissionGroupUseCaseInterface,
+    private readonly _findOnePermissionGroupUseCase: FindOnePermissionGroupUseCaseInterface,
     @inject('UpdatePermissionGroupUseCase')
-    private _updatePermissionGroupUseCase: UpdatePermissionGroupUseCaseInterface,
+    private readonly _updatePermissionGroupUseCase: UpdatePermissionGroupUseCaseInterface,
     @inject('DeletePermissionGroupUseCase')
-    private _deletePermissionGroupUseCase: DeletePermissionGroupUseCaseInterface,
+    private readonly _deletePermissionGroupUseCase: DeletePermissionGroupUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
