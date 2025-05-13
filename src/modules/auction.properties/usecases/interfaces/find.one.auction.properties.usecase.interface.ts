@@ -1,5 +1,5 @@
 import { AuctionProperty } from '../../DTOs/auction.properties';
 
-export interface FindOneAuctionPropertiesBatchUseCaseInterface {
+export interface FindOneAuctionPropertiesUseCaseInterface {
   execute(id: string): Promise<AuctionProperty>;
 }

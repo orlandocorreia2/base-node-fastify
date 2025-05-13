@@ -16,6 +16,7 @@ export class AuctionPropertyRepositoryPrisma
     filter,
     page,
     qtdItemsPerPage,
+    orderBy,
   }: DBPaginateParametersProps): Promise<T> {
     const where: KeyValueProps = filter ? (filter as KeyValueProps) : {};
     const total = await prisma.auctionProperty.count({ where });
@@ -26,7 +27,7 @@ export class AuctionPropertyRepositoryPrisma
       where,
       skip,
       take: parseInt(qtdItemsPerPage.toString()),
-      orderBy: { created_at: 'desc' },
+      orderBy,
     });
     return { items: result, page, qtdItemsPerPage, total } as T;
   }

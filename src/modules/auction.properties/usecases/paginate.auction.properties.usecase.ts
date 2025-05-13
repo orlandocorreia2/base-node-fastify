@@ -1,13 +1,14 @@
 import { inject, injectable } from 'tsyringe';
 import { AuctionPropertyRepositoryInterface } from '../repositories/interfaces/auction.property.repository.interface';
-import { PaginateAuctionPropertiesBatchUseCaseInterface } from './interfaces/paginate.auction.properties.batch.usecase.interface';
+import { PaginateAuctionPropertiesUseCaseInterface } from './interfaces/paginate.auction.properties.usecase.interface';
 import { DBAndFilterProps, DBPaginateProps } from '../../../types/db';
 import { AuctionProperty } from '../DTOs/auction.properties';
 import { PaginateAuctionPropertiesRequestProps } from './types';
+import { generateOrderBy } from 'utils/db';
 
 @injectable()
-export class PaginateAuctionPropertiesBatchUseCase
-  implements PaginateAuctionPropertiesBatchUseCaseInterface
+export class PaginateAuctionPropertiesUseCase
+  implements PaginateAuctionPropertiesUseCaseInterface
 {
   constructor(
     @inject('AuctionPropertyRepository')
@@ -19,25 +20,35 @@ export class PaginateAuctionPropertiesBatchUseCase
     qtdItemsPerPage,
     uf,
     city,
-    sale_method,
-    property_type,
-    discount,
-    appraisal_value,
+    saleMethod,
+    propertyType,
+    appraisalValue,
+    acceptFinancing,
+    orderBy,
+    orderByDirection,
   }: PaginateAuctionPropertiesRequestProps): Promise<
     DBPaginateProps<AuctionProperty>
   > {
+    const generatedOrderBy = generateOrderBy({
+      orderBy,
+      orderByDirection,
+      tableFields: ['discount'],
+      defaultTableField: 'created_at',
+    });
+
     const filter = this.generateFilter({
       uf,
       city,
-      sale_method,
-      property_type,
-      discount,
-      appraisal_value,
+      saleMethod,
+      propertyType,
+      appraisalValue,
+      acceptFinancing,
     });
     const result = await this._auctionPropertyRepository.paginate({
       page,
       qtdItemsPerPage,
       filter,
+      orderBy: generatedOrderBy,
     });
     return result;
   }
@@ -45,10 +56,10 @@ export class PaginateAuctionPropertiesBatchUseCase
   private generateFilter({
     uf,
     city,
-    sale_method,
-    property_type,
-    discount,
-    appraisal_value,
+    saleMethod,
+    propertyType,
+    appraisalValue,
+    acceptFinancing,
   }: Omit<
     PaginateAuctionPropertiesRequestProps,
     'page' | 'qtdItemsPerPage'
@@ -56,14 +67,12 @@ export class PaginateAuctionPropertiesBatchUseCase
     const result: DBAndFilterProps = { AND: [] };
     this.addFilter(result, 'uf', uf);
     this.addFilter(result, 'city', city);
-    this.addFilter(result, 'sale_method', sale_method);
-    this.addFilter(result, 'property_type', property_type);
-    if (discount) {
-      this.addRangeFilter(result, 'discount', discount);
+    this.addFilter(result, 'sale_method', saleMethod);
+    this.addFilter(result, 'property_type', propertyType);
+    if (appraisalValue) {
+      this.addRangeFilter(result, 'appraisal_value', appraisalValue);
     }
-    if (appraisal_value) {
-      this.addRangeFilter(result, 'appraisal_value', appraisal_value);
-    }
+    result.AND.push({ accept_financing: acceptFinancing === 'true' });
     return result;
   }
 

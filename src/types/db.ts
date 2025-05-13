@@ -31,6 +31,7 @@ export type DBPaginateParametersProps = {
   qtdItemsPerPage: number;
   relationships?: DBRelationships;
   withDeleted?: boolean;
+  orderBy?: { [key: string]: 'asc' | 'desc' };
 };
 
 export type DBUpdateParameterProps = {

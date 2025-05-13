@@ -1,17 +1,3 @@
-export type CreateAuctionPropertyProps = {
-  number_property: number;
-  uf: string;
-  city: string;
-  neighborhood: string;
-  address: string;
-  price: number;
-  appraisal_value: number;
-  discount: number;
-  description: string;
-  sale_method: string;
-  access_link: string;
-};
-
 export type AuctionPropertiesCreateBatchMessagesProps = {
   totalRegistered: number;
   totalRenewal: number;
@@ -28,8 +14,10 @@ export type PaginateAuctionPropertiesRequestProps = {
   qtdItemsPerPage: number;
   uf?: string;
   city?: string;
-  sale_method?: string;
-  property_type?: string;
-  discount?: string;
-  appraisal_value?: string;
+  saleMethod?: string;
+  propertyType?: string;
+  appraisalValue?: string;
+  acceptFinancing?: string;
+  orderBy?: string;
+  orderByDirection?: string;
 };

@@ -15,14 +15,16 @@ export const querystring = z.object({
     .string()
     .optional()
     .transform(value => value?.toUpperCase().trim()),
-  sale_method: z
+  saleMethod: z
     .string()
     .optional()
     .transform(value => value?.trim()),
-  property_type: z
+  propertyType: z
     .string()
     .optional()
     .transform(value => value?.trim()),
-  discount: z.string().optional(),
-  appraisal_value: z.string().optional(),
+  appraisalValue: z.string().optional(),
+  acceptFinancing: z.string().optional().default('false'),
+  orderBy: z.string().optional(),
+  orderByDirection: z.string().optional(),
 });
