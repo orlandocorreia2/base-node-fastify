@@ -18,15 +18,15 @@ import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.u
 export class UserController {
   constructor(
     @inject('CreateUserUseCase')
-    private _createUserUseCase: CreateUserUseCaseInterface,
+    private readonly _createUserUseCase: CreateUserUseCaseInterface,
     @inject('PaginateUsersUseCase')
-    private _paginateUsersUseCase: PaginateUsersUseCaseInterface,
+    private readonly _paginateUsersUseCase: PaginateUsersUseCaseInterface,
     @inject('FindOneUserUseCase')
-    private _findOneUserUseCase: FindOneUserUseCaseInterface,
+    private readonly _findOneUserUseCase: FindOneUserUseCaseInterface,
     @inject('UpdateUserUseCase')
-    private _updateUserUseCase: UpdateUserUseCaseInterface,
+    private readonly _updateUserUseCase: UpdateUserUseCaseInterface,
     @inject('DeleteUserUseCase')
-    private _deleteUserUseCase: DeleteUserUseCaseInterface,
+    private readonly _deleteUserUseCase: DeleteUserUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {

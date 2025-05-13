@@ -883,6 +883,69 @@
 			"name": "Auction Property",
 			"item": [
 				{
+					"name": "Favorite",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auction-properties/e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c/favorite",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auction-properties",
+										"e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c",
+										"favorite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auction-properties/e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c/unfavorite",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auction-properties",
+										"e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c",
+										"unfavorite"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Find All",
 					"event": [
 						{
@@ -916,12 +979,34 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/auction-properties",
+							"raw": "{{base_url}}/auction-properties?page=1&qtdItems=10&acceptFinancing=true&orderBy=discount&orderByDirection=asc",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auction-properties"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "qtdItems",
+									"value": "10"
+								},
+								{
+									"key": "acceptFinancing",
+									"value": "true"
+								},
+								{
+									"key": "orderBy",
+									"value": "discount"
+								},
+								{
+									"key": "orderByDirection",
+									"value": "asc"
+								}
 							]
 						}
 					},

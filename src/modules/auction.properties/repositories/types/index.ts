@@ -44,3 +44,8 @@ export type UpsertAuctionPropertyRepositoryProps = {
   create: CreateAuctionPropertyRepositoryProps;
   update: Omit<UpdateAuctionPropertyRepositoryProps, 'id'>;
 };
+
+export type AuctionPropertyUserFavoriteProps = {
+  auctionPropertyId: string;
+  userId: string;
+};

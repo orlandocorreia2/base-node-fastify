@@ -25,6 +25,8 @@ export const canMiddleware = async (
       'POST/auction-properties/batch': 'createAuctionProperties',
       'GET/auction-properties': true,
       'GET/auction-properties/:id': true,
+      'POST/auction-properties/:id/favorite': true,
+      'DELETE/auction-properties/:id/unfavorite': true,
     };
     const requestKey = `${request.routeOptions.method}${request.routeOptions.url}`;
     let hasPermission = permissionKeys[requestKey] === true;

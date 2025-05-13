@@ -25,6 +25,8 @@ model User {
   createdPermissionGroups PermissionGroup[]     @relation("UserCreatedPermissionGroups")
   permissionGroups        UserPermissionGroup[]
 
+  AuctionPropertyUserFavorite AuctionPropertyUserFavorite[]
+
   @@map("users")
 }
 
@@ -113,5 +115,18 @@ model AuctionProperty {
   created_at                 DateTime @default(now())
   updated_at                 DateTime @updatedAt
 
+  AuctionPropertyUserFavorite AuctionPropertyUserFavorite[]
+
   @@map("auction_properties")
+}
+
+model AuctionPropertyUserFavorite {
+  user_id             String
+  auction_property_id String
+
+  user            User            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  auctionProperty AuctionProperty @relation(fields: [auction_property_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, auction_property_id])
+  @@map("auction_propertie_user_favorites")
 }
