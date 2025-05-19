@@ -1,7 +1,7 @@
 import { FastifyReply } from 'fastify';
 import { BaseResponse } from '../../../../shared/response/base.response';
 import { AuctionProperty } from '../../DTOs/auction.properties';
-import { serializeBigInt } from 'utils/number';
+import { serializeBigInt } from '../../../../utils/number';
 
 type FindOneAuctionPropertyResponseProps = {
   result: AuctionProperty;

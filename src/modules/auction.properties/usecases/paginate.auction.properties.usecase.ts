@@ -4,7 +4,7 @@ import { PaginateAuctionPropertiesUseCaseInterface } from './interfaces/paginate
 import { DBAndFilterProps, DBPaginateProps } from '../../../types/db';
 import { AuctionProperty } from '../DTOs/auction.properties';
 import { PaginateAuctionPropertiesRequestProps } from './types';
-import { generateOrderBy } from 'utils/db';
+import { generateOrderBy } from '../../../utils/db';
 
 @injectable()
 export class PaginateAuctionPropertiesUseCase
