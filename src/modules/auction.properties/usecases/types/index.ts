@@ -18,6 +18,8 @@ export type PaginateAuctionPropertiesRequestProps = {
   propertyType?: string;
   appraisalValue?: string;
   acceptFinancing?: string;
+  favorite?: string;
   orderBy?: string;
   orderByDirection?: string;
+  authUserId?: string;
 };

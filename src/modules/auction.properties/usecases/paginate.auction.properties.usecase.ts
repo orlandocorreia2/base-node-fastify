@@ -24,8 +24,10 @@ export class PaginateAuctionPropertiesUseCase
     propertyType,
     appraisalValue,
     acceptFinancing,
+    favorite,
     orderBy,
     orderByDirection,
+    authUserId,
   }: PaginateAuctionPropertiesRequestProps): Promise<
     DBPaginateProps<AuctionProperty>
   > {
@@ -43,6 +45,8 @@ export class PaginateAuctionPropertiesUseCase
       propertyType,
       appraisalValue,
       acceptFinancing,
+      favorite,
+      authUserId,
     });
     const result = await this._auctionPropertyRepository.paginate({
       page,
@@ -60,6 +64,8 @@ export class PaginateAuctionPropertiesUseCase
     propertyType,
     appraisalValue,
     acceptFinancing,
+    favorite,
+    authUserId,
   }: Omit<
     PaginateAuctionPropertiesRequestProps,
     'page' | 'qtdItemsPerPage'
@@ -72,7 +78,14 @@ export class PaginateAuctionPropertiesUseCase
     if (appraisalValue) {
       this.addRangeFilter(result, 'appraisal_value', appraisalValue);
     }
-    result.AND.push({ accept_financing: acceptFinancing === 'true' });
+    if (acceptFinancing) {
+      result.AND.push({ accept_financing: acceptFinancing === 'true' });
+    }
+    if (favorite === 'true') {
+      result.AND.push({
+        AuctionPropertyUserFavorite: { some: { user: { id: authUserId } } },
+      });
+    }
     return result;
   }
 

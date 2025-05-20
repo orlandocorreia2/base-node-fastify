@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { PaginateAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/paginate.auction.properties.usecase.interface';
 import { PaginateAuctionPropertiesResponse } from './responses/paginate.auction.properties.response';
 import { PaginateAuctionPropertiesRequestProps } from '../usecases/types';
-import { ParamRequestProps } from '../../../types/types';
+import { FastifyAuthRequest, ParamRequestProps } from '../../../types/types';
 import { FindOneAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/find.one.auction.properties.usecase.interface';
 import { FindOneAuctionPropertyResponse } from './responses/find.one.auction.property.response';
 
@@ -16,8 +16,9 @@ export class AuctionPropertyController {
     private readonly _findOneAuctionPropertiesUseCase: FindOneAuctionPropertiesUseCaseInterface,
   ) {}
 
-  async findAll(request: FastifyRequest, reply: FastifyReply) {
+  async findAll(request: FastifyAuthRequest, reply: FastifyReply) {
     try {
+      const authUserId = request.user.id;
       const {
         page,
         qtdItemsPerPage,
@@ -27,6 +28,7 @@ export class AuctionPropertyController {
         propertyType,
         appraisalValue,
         acceptFinancing,
+        favorite,
         orderBy,
         orderByDirection,
       } = request.query as PaginateAuctionPropertiesRequestProps;
@@ -39,8 +41,10 @@ export class AuctionPropertyController {
         propertyType,
         appraisalValue,
         acceptFinancing,
+        favorite,
         orderBy,
         orderByDirection,
+        authUserId,
       });
       return PaginateAuctionPropertiesResponse.success({ result, reply });
     } catch (error) {
