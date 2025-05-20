@@ -88,6 +88,23 @@ CREATE TABLE "auction_properties" (
     CONSTRAINT "auction_properties_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "auction_property_user_favorites" (
+    "user_id" TEXT NOT NULL,
+    "auction_property_id" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "user_auction_property_filters" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "filter" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "user_auction_property_filters_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -102,6 +119,9 @@ CREATE UNIQUE INDEX "users_permission_groups_user_id_permission_group_id_key" ON
 
 -- CreateIndex
 CREATE UNIQUE INDEX "permission_groups_rules_permission_group_id_permission_rule_key" ON "permission_groups_rules"("permission_group_id", "permission_rule_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "auction_property_user_favorites_user_id_auction_property_id_key" ON "auction_property_user_favorites"("user_id", "auction_property_id");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_created_by_id_fkey" FOREIGN KEY ("created_by_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -120,3 +140,12 @@ ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_pe
 
 -- AddForeignKey
 ALTER TABLE "permission_groups_rules" ADD CONSTRAINT "permission_groups_rules_permission_rule_id_fkey" FOREIGN KEY ("permission_rule_id") REFERENCES "permission_rules"("id") ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "auction_property_user_favorites" ADD CONSTRAINT "auction_property_user_favorites_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "auction_property_user_favorites" ADD CONSTRAINT "auction_property_user_favorites_auction_property_id_fkey" FOREIGN KEY ("auction_property_id") REFERENCES "auction_properties"("id") ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "user_auction_property_filters" ADD CONSTRAINT "user_auction_property_filters_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION;

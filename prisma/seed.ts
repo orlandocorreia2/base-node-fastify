@@ -29,8 +29,17 @@ const seedUsers = async () => {
     },
     {
       id: '8e23b399-dede-47d8-aa04-3bb2885f43d8',
-      name: 'Dono Sistema',
-      email: 'dono@gmail.com',
+      name: 'Marcel',
+      email: 'marcel_guzinski@hotmail.com',
+      password: hashedPassword,
+      expired_at,
+      phone: '11911111111',
+      address: '',
+    },
+    {
+      id: '7083cc1d-b095-4b84-ab23-98a8056e5970',
+      name: 'Christian',
+      email: 'chrisgfortes@gmail.com',
       password: hashedPassword,
       expired_at,
       phone: '11911111111',
@@ -201,7 +210,7 @@ const seedPermissionGroupsRules = async () => {
     {
       permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
       permission_rule_id: '08022e15-5846-497e-abea-767549ede959',
-    }
+    },
   ];
 
   for (const permissionGroupRule of permissionGroupsRules) {
