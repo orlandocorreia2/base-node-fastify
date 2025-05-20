@@ -24,7 +24,8 @@ export const auctionPropertyRoutesModule = (app: FastifyTypedInstance) => {
       schema: paginateAuctionPropertiesSchema,
       preHandler: [authMiddleware, canMiddleware],
     },
-    (request, reply) => auctionPropertyController.findAll(request, reply),
+    (request, reply) =>
+      auctionPropertyController.findAll(request as FastifyAuthRequest, reply),
   );
 
   app.get(
