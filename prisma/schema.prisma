@@ -135,6 +135,7 @@ model AuctionPropertyUserFavorite {
 model UserAuctionPropertyFilter {
   id         String   @id @default(uuid())
   user_id    String
+  name       String
   filter     String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

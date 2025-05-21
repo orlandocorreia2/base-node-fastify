@@ -47,9 +47,4 @@ export class PaginatePermissionGroupResponse extends BaseResponse {
     paginateData.data.items = items;
     return reply.status(200).send(paginateData);
   }
-
-  static error(error: unknown) {
-    console.error('Error:', error);
-    throw error;
-  }
 }

@@ -6,14 +6,15 @@ import { GetUserProfileResponse } from './responses/get.user.profile.response';
 import { UpdateUserProfileUseCaseInterface } from '../usecases/interfaces/update.user.profile.use.case.interface';
 import { UpdateUserProfileRequestProps } from '../DTOs/user';
 import { UpdateUserProfileResponse } from './responses/update.user.profile.response';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class UserProfileController {
   constructor(
     @inject('GetUserProfileUseCase')
-    private _getUserProfileUseCase: GetUserProfileUseCaseInterface,
+    private readonly _getUserProfileUseCase: GetUserProfileUseCaseInterface,
     @inject('UpdateUserProfileUseCase')
-    private _updateUserProfileUseCase: UpdateUserProfileUseCaseInterface,
+    private readonly _updateUserProfileUseCase: UpdateUserProfileUseCaseInterface,
   ) {}
 
   async findOne(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -21,7 +22,7 @@ export class UserProfileController {
       const result = await this._getUserProfileUseCase.execute(request.user.id);
       return GetUserProfileResponse.success({ result, reply });
     } catch (error) {
-      GetUserProfileResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -39,7 +40,7 @@ export class UserProfileController {
       });
       return UpdateUserProfileResponse.success({ result, reply });
     } catch (error) {
-      UpdateUserProfileResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 }

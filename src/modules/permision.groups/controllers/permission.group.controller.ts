@@ -16,6 +16,7 @@ import {
   PaginateRequestProps,
   ParamRequestProps,
 } from '../../../types/types';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class PermissionGroupController {
@@ -45,7 +46,7 @@ export class PermissionGroupController {
       });
       return CreatePermissionGroupResponse.success({ reply });
     } catch (error) {
-      CreatePermissionGroupResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -60,7 +61,7 @@ export class PermissionGroupController {
       });
       return PaginatePermissionGroupResponse.success({ result, reply });
     } catch (error) {
-      PaginatePermissionGroupResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -70,7 +71,7 @@ export class PermissionGroupController {
       const result = await this._findOnePermissionGroupUseCase.execute(id);
       return FindOnePermissionGroupResponse.success({ result, reply });
     } catch (error) {
-      FindOnePermissionGroupResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -87,7 +88,7 @@ export class PermissionGroupController {
       });
       return UpdatePermissionGroupResponse.success({ result, reply });
     } catch (error) {
-      UpdatePermissionGroupResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -97,7 +98,7 @@ export class PermissionGroupController {
       await this._deletePermissionGroupUseCase.execute(id);
       return DeletePermissionGroupResponse.success({ reply });
     } catch (error) {
-      DeletePermissionGroupResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 }

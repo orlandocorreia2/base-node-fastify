@@ -12,9 +12,4 @@ export class CreateUsersBatchResponse extends BaseResponse {
     const defaultData = this.setDefaultData(result);
     return reply.status(200).send(defaultData);
   }
-
-  static error(error: unknown) {
-    console.error('Error:', error);
-    throw error;
-  }
 }

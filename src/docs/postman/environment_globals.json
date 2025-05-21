@@ -1,0 +1,27 @@
+{
+	"id": "c516c85c-4494-434c-816c-811eee1ff6a1",
+	"values": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "user_email",
+			"value": "ocnascimento2@gmail.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "user_name",
+			"value": "Orlando Nascimento",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-05-21T02:42:09.553Z",
+	"_postman_exported_using": "Postman/11.46.3"
+}

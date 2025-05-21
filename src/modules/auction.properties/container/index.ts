@@ -9,6 +9,14 @@ import { FavoriteAuctionPropertiesUseCase } from '../usecases/favorite.auction.p
 import { FavoriteAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/favorite.auction.properties.usecase.interface';
 import { UnFavoriteAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/unfavorite.auction.properties.usecase.interface';
 import { UnFavoriteAuctionPropertiesUseCase } from '../usecases/unfavorite.auction.properties.usecase';
+import { CreateUserAuctionPropertyFilterUseCaseInterface } from '../usecases/interfaces/create.user.auction.property.filter.usecase.interface';
+import { CreateUserAuctionPropertyFilterUseCase } from '../usecases/create.user.auction.property.filter.usecase';
+import { FindAllUserAuctionPropertyFilterUseCaseInterface } from '../usecases/interfaces/find.all.user.auction.property.filter.usecase.interface';
+import { FindAllUserAuctionPropertyFilterUseCase } from '../usecases/find.all.user.auction.property.filter.usecase';
+import { DeleteUserAuctionPropertyFilterUseCaseInterface } from '../usecases/interfaces/delete.user.auction.property.filter.usecase.interface';
+import { DeleteUserAuctionPropertyFilterUseCase } from '../usecases/delete.user.auction.property.filter.usecase';
+import { UserAuctionPropertyFilterRepositoryInterface } from '../repositories/interfaces/user.auction.property.filter.repository.interface';
+import { UserAuctionPropertyFilterRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/user.auction.property.filter.repository.prisma';
 
 container.registerSingleton<PaginateAuctionPropertiesUseCaseInterface>(
   'PaginateAuctionPropertiesUseCase',
@@ -30,7 +38,27 @@ container.registerSingleton<UnFavoriteAuctionPropertiesUseCaseInterface>(
   UnFavoriteAuctionPropertiesUseCase,
 );
 
+container.registerSingleton<CreateUserAuctionPropertyFilterUseCaseInterface>(
+  'CreateUserAuctionPropertyFilterUseCase',
+  CreateUserAuctionPropertyFilterUseCase,
+);
+
+container.registerSingleton<FindAllUserAuctionPropertyFilterUseCaseInterface>(
+  'FindAllUserAuctionPropertyFilterUseCase',
+  FindAllUserAuctionPropertyFilterUseCase,
+);
+
+container.registerSingleton<DeleteUserAuctionPropertyFilterUseCaseInterface>(
+  'DeleteUserAuctionPropertyFilterUseCase',
+  DeleteUserAuctionPropertyFilterUseCase,
+);
+
 container.registerSingleton<AuctionPropertyRepositoryInterface>(
   'AuctionPropertyRepository',
   AuctionPropertyRepositoryPrisma,
+);
+
+container.registerSingleton<UserAuctionPropertyFilterRepositoryInterface>(
+  'UserAuctionPropertyFilterRepository',
+  UserAuctionPropertyFilterRepositoryPrisma,
 );

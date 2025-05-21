@@ -6,6 +6,7 @@ import { PaginateAuctionPropertiesRequestProps } from '../usecases/types';
 import { FastifyAuthRequest, ParamRequestProps } from '../../../types/types';
 import { FindOneAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/find.one.auction.properties.usecase.interface';
 import { FindOneAuctionPropertyResponse } from './responses/find.one.auction.property.response';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class AuctionPropertyController {
@@ -48,7 +49,7 @@ export class AuctionPropertyController {
       });
       return PaginateAuctionPropertiesResponse.success({ result, reply });
     } catch (error) {
-      PaginateAuctionPropertiesResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -58,7 +59,7 @@ export class AuctionPropertyController {
       const result = await this._findOneAuctionPropertiesUseCase.execute(id);
       return FindOneAuctionPropertyResponse.success({ result, reply });
     } catch (error) {
-      FindOneAuctionPropertyResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 }

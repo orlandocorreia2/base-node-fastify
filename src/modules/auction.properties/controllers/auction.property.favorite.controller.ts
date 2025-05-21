@@ -3,6 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { FastifyAuthRequest, ParamRequestProps } from '../../../types/types';
 import { FavoriteAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/favorite.auction.properties.usecase.interface';
 import { UnFavoriteAuctionPropertiesUseCaseInterface } from '../usecases/interfaces/unfavorite.auction.properties.usecase.interface';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class AuctionPropertyFavoriteController {
@@ -22,8 +23,7 @@ export class AuctionPropertyFavoriteController {
       });
       return reply.status(201).send();
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 
@@ -36,8 +36,7 @@ export class AuctionPropertyFavoriteController {
       });
       return reply.status(200).send();
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 }

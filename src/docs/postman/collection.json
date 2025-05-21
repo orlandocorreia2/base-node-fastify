@@ -946,6 +946,111 @@
 					]
 				},
 				{
+					"name": "Filters",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Teste\",\r\n    \"filter\": \"https://dev.meuleilaoonline.com/dashboard?uf=SP&city=SAO+PAULO&page=1&qtdItemsPerPage=50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auction-properties/filter",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auction-properties",
+										"filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auction-properties/filter",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auction-properties",
+										"filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auction-properties/filter/90aecd21-0d94-4d2f-b4c7-38b410c4b3a9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auction-properties",
+										"filter",
+										"90aecd21-0d94-4d2f-b4c7-38b410c4b3a9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Find All",
 					"event": [
 						{
@@ -979,7 +1084,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/auction-properties?page=1&qtdItems=10&acceptFinancing=true&orderBy=discount&orderByDirection=asc",
+							"raw": "{{base_url}}/auction-properties?uf=SP&city=SAO+PAULO&saleMethod=xxxxxx&property_type=xxxxx&page=1&qtdItemsPerPage=1",
 							"host": [
 								"{{base_url}}"
 							],
@@ -988,24 +1093,28 @@
 							],
 							"query": [
 								{
+									"key": "uf",
+									"value": "SP"
+								},
+								{
+									"key": "city",
+									"value": "SAO+PAULO"
+								},
+								{
+									"key": "saleMethod",
+									"value": "xxxxxx"
+								},
+								{
+									"key": "property_type",
+									"value": "xxxxx"
+								},
+								{
 									"key": "page",
 									"value": "1"
 								},
 								{
-									"key": "qtdItems",
-									"value": "10"
-								},
-								{
-									"key": "acceptFinancing",
-									"value": "true"
-								},
-								{
-									"key": "orderBy",
-									"value": "discount"
-								},
-								{
-									"key": "orderByDirection",
-									"value": "asc"
+									"key": "qtdItemsPerPage",
+									"value": "1"
 								}
 							]
 						}

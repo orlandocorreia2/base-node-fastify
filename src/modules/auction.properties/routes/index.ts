@@ -8,6 +8,10 @@ import { findOneAuctionPropertySchema } from './schemas/find.one.auction.propert
 import { AuctionPropertyFavoriteController } from '../controllers/auction.property.favorite.controller';
 import { favoriteAuctionPropertySchema } from './schemas/favorite.auction.property.schema';
 import { unFavoriteAuctionPropertySchema } from './schemas/unfavorite.auction.property.schema';
+import { UserAuctionPropertyFilterController } from '../controllers/user.auction.property.filter.controller';
+import { createUserAuctionPropertyFilterSchema } from './schemas/create.user.auction.property.filter.schema';
+import { findAllUserAuctionPropertyFilterSchema } from './schemas/find.all.user.auction.property.filter.schema';
+import { deleteUserAuctionPropertyFilterSchema } from './schemas/delete.user.auction.property.filter.schema';
 
 export const auctionPropertyRoutesModule = (app: FastifyTypedInstance) => {
   const auctionPropertyController = container.resolve(
@@ -16,6 +20,10 @@ export const auctionPropertyRoutesModule = (app: FastifyTypedInstance) => {
 
   const auctionPropertyFavoriteController = container.resolve(
     AuctionPropertyFavoriteController,
+  );
+
+  const userAuctionPropertyFilterController = container.resolve(
+    UserAuctionPropertyFilterController,
   );
 
   app.get(
@@ -61,5 +69,41 @@ export const auctionPropertyRoutesModule = (app: FastifyTypedInstance) => {
         request as FastifyAuthRequest,
         reply,
       ),
+  );
+
+  app.post(
+    '/auction-properties/filter',
+    {
+      schema: createUserAuctionPropertyFilterSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
+    (request, reply) =>
+      userAuctionPropertyFilterController.create(
+        request as FastifyAuthRequest,
+        reply,
+      ),
+  );
+
+  app.get(
+    '/auction-properties/filter',
+    {
+      schema: findAllUserAuctionPropertyFilterSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
+    (request, reply) =>
+      userAuctionPropertyFilterController.findAll(
+        request as FastifyAuthRequest,
+        reply,
+      ),
+  );
+
+  app.delete(
+    '/auction-properties/filter/:id',
+    {
+      schema: deleteUserAuctionPropertyFilterSchema,
+      preHandler: [authMiddleware, canMiddleware],
+    },
+    (request, reply) =>
+      userAuctionPropertyFilterController.delete(request, reply),
   );
 };

@@ -3,12 +3,13 @@ import { inject, injectable } from 'tsyringe';
 import { ResetUserPasswordUseCaseInterface } from '../usecases/interfaces/reset.user.password.use.case.interface';
 import { ResetUserPasswordRequestProps } from '../DTOs/user';
 import { ResetUserPasswordResponse } from './responses/reset.user.password.response';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class UserPasswordController {
   constructor(
     @inject('ResetUserPasswordUseCase')
-    private _resetUserPasswordUseCase: ResetUserPasswordUseCaseInterface,
+    private readonly _resetUserPasswordUseCase: ResetUserPasswordUseCaseInterface,
   ) {}
 
   async update(request: FastifyRequest, reply: FastifyReply) {
@@ -20,7 +21,7 @@ export class UserPasswordController {
       });
       return ResetUserPasswordResponse.success({ reply });
     } catch (error) {
-      ResetUserPasswordResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 }

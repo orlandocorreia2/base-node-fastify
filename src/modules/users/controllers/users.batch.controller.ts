@@ -4,12 +4,13 @@ import { inject, injectable } from 'tsyringe';
 import { FastifyAuthRequest } from '../../../types/types';
 import { CreateUsersBatchUseCaseInterface } from '../usecases/interfaces/create.users.batch.use.case.interface';
 import { CreateUsersBatchResponse } from './responses/create.users.batch.response';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class UsersBatchController {
   constructor(
     @inject('CreateUsersBatchUseCase')
-    private _createUsersBatchUseCaseInterface: CreateUsersBatchUseCaseInterface,
+    private readonly _createUsersBatchUseCaseInterface: CreateUsersBatchUseCaseInterface,
   ) {}
 
   async create(request: FastifyAuthRequest, reply: FastifyReply) {
@@ -22,8 +23,7 @@ export class UsersBatchController {
       );
       return CreateUsersBatchResponse.success({ result, reply });
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 }

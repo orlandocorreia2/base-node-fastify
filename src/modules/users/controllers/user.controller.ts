@@ -13,6 +13,7 @@ import { FindOneUserUseCaseInterface } from '../usecases/interfaces/find.one.use
 import { FindOneUserResponse } from './responses/find.one.user.response';
 import { UpdateUserUseCaseInterface } from '../usecases/interfaces/update.user.use.case.interface';
 import { DeleteUserUseCaseInterface } from '../usecases/interfaces/delete.user.use.case.interface';
+import { UnexpectedError } from '../../../error/unexpected.error';
 
 @injectable()
 export class UserController {
@@ -45,8 +46,7 @@ export class UserController {
       });
       return reply.status(201).send();
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 
@@ -61,7 +61,7 @@ export class UserController {
       });
       return PaginateUserResponse.success({ result, reply });
     } catch (error) {
-      PaginateUserResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -74,7 +74,7 @@ export class UserController {
       });
       return FindOneUserResponse.success({ result, reply });
     } catch (error) {
-      FindOneUserResponse.error(error);
+      throw new UnexpectedError(error);
     }
   }
 
@@ -94,8 +94,7 @@ export class UserController {
       });
       return FindOneUserResponse.success({ result, reply });
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 
@@ -105,8 +104,7 @@ export class UserController {
       await this._deleteUserUseCase.execute(id);
       return reply.status(200).send();
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      throw new UnexpectedError(error);
     }
   }
 }

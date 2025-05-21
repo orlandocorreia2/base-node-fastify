@@ -27,6 +27,9 @@ export const canMiddleware = async (
       'GET/auction-properties/:id': true,
       'POST/auction-properties/:id/favorite': true,
       'DELETE/auction-properties/:id/unfavorite': true,
+      'POST/auction-properties/filter': true,
+      'GET/auction-properties/filter': true,
+      'DELETE/auction-properties/filter/:id': true,
     };
     const requestKey = `${request.routeOptions.method}${request.routeOptions.url}`;
     let hasPermission = permissionKeys[requestKey] === true;
