@@ -17,7 +17,7 @@ export type PaginateAuctionPropertiesRequestProps = {
   saleMethod?: string;
   propertyType?: string;
   discount?: string;
-  appraisalValue?: string;
+  price?: string;
   acceptFinancing?: string;
   favorite?: string;
   orderBy?: string;

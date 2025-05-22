@@ -23,7 +23,7 @@ export class PaginateAuctionPropertiesUseCase
     saleMethod,
     propertyType,
     discount,
-    appraisalValue,
+    price,
     acceptFinancing,
     favorite,
     orderBy,
@@ -45,7 +45,7 @@ export class PaginateAuctionPropertiesUseCase
       saleMethod,
       propertyType,
       discount,
-      appraisalValue,
+      price,
       acceptFinancing,
       favorite,
       authUserId,
@@ -65,7 +65,7 @@ export class PaginateAuctionPropertiesUseCase
     saleMethod,
     propertyType,
     discount,
-    appraisalValue,
+    price,
     acceptFinancing,
     favorite,
     authUserId,
@@ -90,17 +90,17 @@ export class PaginateAuctionPropertiesUseCase
       }
       this.addRangeFilter(result, 'discount', discountValue);
     }
-    if (appraisalValue) {
-      const [appraisalValueMin, appraisalValueMax] = appraisalValue.split('|');
-      let appraisalVal = appraisalValueMin ?? '0';
+    if (price) {
+      const [priceMin, priceMax] = price.split('|');
+      let priceVal = priceMin ?? '0';
       if (
-        appraisalValueMax &&
-        parseInt(appraisalValueMax) > 0 &&
-        parseInt(appraisalValueMin) < parseInt(appraisalValueMax)
+        priceMax &&
+        parseInt(priceMax) > 0 &&
+        parseInt(priceMin) < parseInt(priceMax)
       ) {
-        appraisalVal += `|${appraisalValueMax}`;
+        priceVal += `|${priceMax}`;
       }
-      this.addRangeFilter(result, 'appraisal_value', appraisalVal);
+      this.addRangeFilter(result, 'price', priceVal);
     }
     if (acceptFinancing) {
       result.AND.push({ accept_financing: acceptFinancing === 'true' });

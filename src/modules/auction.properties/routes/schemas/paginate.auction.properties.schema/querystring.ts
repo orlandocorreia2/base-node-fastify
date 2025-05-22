@@ -24,7 +24,7 @@ export const querystring = z.object({
     .optional()
     .transform(value => value?.trim()),
   discount: z.string().optional(),
-  appraisalValue: z.string().optional(),
+  price: z.string().optional(),
   acceptFinancing: z.string().optional(),
   favorite: z.string().optional(),
   orderBy: z.string().optional(),
