@@ -15,3 +15,5 @@ src/temp/*
 
 .docker/dbdata
 
+src/docs
+
