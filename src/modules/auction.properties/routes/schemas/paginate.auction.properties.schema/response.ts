@@ -29,18 +29,14 @@ export const response = {
               'https://venda-imoveis.caixa.gov.br/sistema/detalhe-imovel.asp?hdnOrigem=index&hdnimovel=8787709298777',
           }),
           acceptFinancing: z.boolean({ description: 'true' }),
-          photoLink: z
-            .string({
-              description:
-                'https://venda-imoveis.caixa.gov.br//fotos/F144442069944121.jpg',
-            })
-            .optional(),
-          registrationPropertyLink: z
-            .string({
-              description:
-                'https://venda-imoveis.caixa.gov.br/editais/matricula/AC/1444420699441.pdf',
-            })
-            .optional(),
+          photoLink: z.string({
+            description:
+              'https://venda-imoveis.caixa.gov.br//fotos/F144442069944121.jpg',
+          }),
+          registrationPropertyLink: z.string({
+            description:
+              'https://venda-imoveis.caixa.gov.br/editais/matricula/AC/1444420699441.pdf',
+          }),
         }),
       ),
       page: z.number({ description: '1' }),

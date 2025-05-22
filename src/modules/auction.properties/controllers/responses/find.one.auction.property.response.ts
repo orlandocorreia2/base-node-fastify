@@ -26,8 +26,8 @@ export class FindOneAuctionPropertyResponse extends BaseResponse {
           saleMethod: result.sale_method,
           accessLink: result.access_link,
           acceptFinancing: result.accept_financing,
-          photoLink: result.photo_link,
-          registrationPropertyLink: result.registration_property_link,
+          photoLink: result.photo_link ?? '',
+          registrationPropertyLink: result.registration_property_link ?? '',
         }
       : {};
     const defaultData = this.setDefaultData(dataResult);

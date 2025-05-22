@@ -29,7 +29,7 @@ export const auctionPropertyRoutesModule = (app: FastifyTypedInstance) => {
   app.get(
     '/auction-properties',
     {
-      // schema: paginateAuctionPropertiesSchema,
+      schema: paginateAuctionPropertiesSchema,
       preHandler: [authMiddleware, canMiddleware],
     },
     (request, reply) =>
