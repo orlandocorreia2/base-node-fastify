@@ -81,7 +81,7 @@ export class PaginateAuctionPropertiesUseCase
     if (discount) {
       const [min, max] = discount.split('|');
       let discountValue = min.replace(/\D/g, '').padEnd(4, '0');
-      if (max) {
+      if (max && parseInt(max) > 0 && parseInt(min) < parseInt(max)) {
         discountValue += `|${min.replace(/\D/g, '').padEnd(4, '0')}`;
       }
       this.addRangeFilter(result, 'discount', discountValue);
