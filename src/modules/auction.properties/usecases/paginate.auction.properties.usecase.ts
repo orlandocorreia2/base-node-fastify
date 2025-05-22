@@ -79,15 +79,28 @@ export class PaginateAuctionPropertiesUseCase
     this.addFilter(result, 'sale_method', saleMethod);
     this.addFilter(result, 'property_type', propertyType);
     if (discount) {
-      const [min, max] = discount.split('|');
-      let discountValue = min.replace(/\D/g, '').padEnd(4, '0');
-      if (max && parseInt(max) > 0 && parseInt(min) < parseInt(max)) {
-        discountValue += `|${min.replace(/\D/g, '').padEnd(4, '0')}`;
+      const [discountMin, discountMax] = discount.split('|');
+      let discountValue = discountMin.replace(/\D/g, '').padEnd(4, '0');
+      if (
+        discountMax &&
+        parseInt(discountMax) > 0 &&
+        parseInt(discountMin) < parseInt(discountMax)
+      ) {
+        discountValue += `|${discountMin.replace(/\D/g, '').padEnd(4, '0')}`;
       }
       this.addRangeFilter(result, 'discount', discountValue);
     }
     if (appraisalValue) {
-      this.addRangeFilter(result, 'appraisal_value', appraisalValue);
+      const [appraisalValueMin, appraisalValueMax] = appraisalValue.split('|');
+      let appraisalVal = appraisalValueMin.replace(/\D/g, '').padEnd(4, '0');
+      if (
+        appraisalValueMax &&
+        parseInt(appraisalValueMax) > 0 &&
+        parseInt(appraisalValueMin) < parseInt(appraisalValueMax)
+      ) {
+        appraisalVal += `|${appraisalValueMin.replace(/\D/g, '').padEnd(4, '0')}`;
+      }
+      this.addRangeFilter(result, 'appraisal_value', appraisalVal);
     }
     if (acceptFinancing) {
       result.AND.push({ accept_financing: acceptFinancing === 'true' });
