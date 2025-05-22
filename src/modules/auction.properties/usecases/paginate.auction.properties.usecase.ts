@@ -22,6 +22,7 @@ export class PaginateAuctionPropertiesUseCase
     city,
     saleMethod,
     propertyType,
+    discount,
     appraisalValue,
     acceptFinancing,
     favorite,
@@ -43,6 +44,7 @@ export class PaginateAuctionPropertiesUseCase
       city,
       saleMethod,
       propertyType,
+      discount,
       appraisalValue,
       acceptFinancing,
       favorite,
@@ -62,6 +64,7 @@ export class PaginateAuctionPropertiesUseCase
     city,
     saleMethod,
     propertyType,
+    discount,
     appraisalValue,
     acceptFinancing,
     favorite,
@@ -75,6 +78,14 @@ export class PaginateAuctionPropertiesUseCase
     this.addFilter(result, 'city', city);
     this.addFilter(result, 'sale_method', saleMethod);
     this.addFilter(result, 'property_type', propertyType);
+    if (discount) {
+      const [min, max] = discount.split('|');
+      let discountValue = min.replace(/\D/g, '').padEnd(4, '0');
+      if (max) {
+        discountValue += `|${min.replace(/\D/g, '').padEnd(4, '0')}`;
+      }
+      this.addRangeFilter(result, 'discount', discountValue);
+    }
     if (appraisalValue) {
       this.addRangeFilter(result, 'appraisal_value', appraisalValue);
     }

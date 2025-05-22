@@ -98,6 +98,7 @@ CREATE TABLE "auction_property_user_favorites" (
 CREATE TABLE "user_auction_property_filters" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "filter" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
