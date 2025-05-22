@@ -86,19 +86,19 @@ export class PaginateAuctionPropertiesUseCase
         parseInt(discountMax) > 0 &&
         parseInt(discountMin) < parseInt(discountMax)
       ) {
-        discountValue += `|${discountMin.replace(/\D/g, '').padEnd(4, '0')}`;
+        discountValue += `|${discountMax.replace(/\D/g, '').padEnd(4, '0')}`;
       }
       this.addRangeFilter(result, 'discount', discountValue);
     }
     if (appraisalValue) {
       const [appraisalValueMin, appraisalValueMax] = appraisalValue.split('|');
-      let appraisalVal = appraisalValueMin.replace(/\D/g, '').padEnd(4, '0');
+      let appraisalVal = appraisalValueMin ?? '0';
       if (
         appraisalValueMax &&
         parseInt(appraisalValueMax) > 0 &&
         parseInt(appraisalValueMin) < parseInt(appraisalValueMax)
       ) {
-        appraisalVal += `|${appraisalValueMin.replace(/\D/g, '').padEnd(4, '0')}`;
+        appraisalVal += `|${appraisalValueMax}`;
       }
       this.addRangeFilter(result, 'appraisal_value', appraisalVal);
     }
