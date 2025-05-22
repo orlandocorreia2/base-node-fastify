@@ -10,7 +10,7 @@ export const transport = isKinghost
   ? nodemailer.createTransport({
       host: 'smtp.kinghost.net',
       port: 587,
-      secure: false, // true for port 465, false for other ports
+      secure: true, // true for port 465, false for other ports
       auth: {
         user: 'no-reply@meuleilaoonline.com',
         pass: 'J@rvi2025',
