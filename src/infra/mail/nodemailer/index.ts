@@ -9,7 +9,7 @@ const isKinghost = env({ key: 'MAIL_HOST' }) === 'smtp.kinghost.net';
 export const transport = isKinghost
   ? nodemailer.createTransport({
       host: 'smtp.kinghost.net',
-      port: 587,
+      port: 465,
       secure: true, // true for port 465, false for other ports
       auth: {
         user: 'no-reply@meuleilaoonline.com',
