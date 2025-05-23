@@ -32,6 +32,7 @@ export type DBPaginateParametersProps = {
   relationships?: DBRelationships;
   withDeleted?: boolean;
   orderBy?: { [key: string]: 'asc' | 'desc' };
+  include?: { [key: string]: any };
 };
 
 export type DBUpdateParameterProps = {

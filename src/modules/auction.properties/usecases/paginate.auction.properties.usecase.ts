@@ -38,7 +38,6 @@ export class PaginateAuctionPropertiesUseCase
       tableFields: ['discount'],
       defaultTableField: 'created_at',
     });
-
     const filter = this.generateFilter({
       uf,
       city,
@@ -50,13 +49,16 @@ export class PaginateAuctionPropertiesUseCase
       favorite,
       authUserId,
     });
-    const result = await this._auctionPropertyRepository.paginate({
+    const include = {
+      AuctionPropertyUserFavorite: { select: { user_id: true } },
+    };
+    return await this._auctionPropertyRepository.paginate({
       page,
       qtdItemsPerPage,
       filter,
       orderBy: generatedOrderBy,
+      include,
     });
-    return result;
   }
 
   private generateFilter({

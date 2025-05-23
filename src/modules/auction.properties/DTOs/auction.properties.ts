@@ -1,3 +1,5 @@
+import { KeyValueProps } from 'types/types';
+
 export type AuctionProperty = {
   id: string;
   number_property: string;
@@ -15,4 +17,5 @@ export type AuctionProperty = {
   accept_financing: boolean;
   photo_link?: string;
   registration_property_link?: string;
+  AuctionPropertyUserFavorite?: KeyValueProps[];
 };

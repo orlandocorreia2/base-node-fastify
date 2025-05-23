@@ -37,6 +37,7 @@ export const response = {
             description:
               'https://venda-imoveis.caixa.gov.br/editais/matricula/AC/1444420699441.pdf',
           }),
+          favorite: z.boolean({ description: 'false' }),
         }),
       ),
       page: z.number({ description: '1' }),

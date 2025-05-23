@@ -29,6 +29,9 @@ export class PaginateAuctionPropertiesResponse extends BaseResponse {
         acceptFinancing: item.accept_financing,
         photoLink: item.photo_link ?? '',
         registrationPropertyLink: item.registration_property_link ?? '',
+        favorite:
+          item.AuctionPropertyUserFavorite &&
+          item.AuctionPropertyUserFavorite?.length > 0,
       };
     });
     const paginateData = this.setPaginateData<DBPaginateProps<any>>(result);
