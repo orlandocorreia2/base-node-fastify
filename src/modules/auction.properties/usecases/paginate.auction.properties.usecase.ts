@@ -50,7 +50,7 @@ export class PaginateAuctionPropertiesUseCase
       authUserId,
     });
     const include = {
-      AuctionPropertyUserFavorite: { select: { user_id: true } },
+      AuctionPropertyUserFavorite: { where: { user_id: authUserId } },
     };
     return await this._auctionPropertyRepository.paginate({
       page,
