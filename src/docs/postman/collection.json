@@ -1084,7 +1084,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/auction-properties?uf=SP&city=SAO+PAULO&saleMethod=xxxxxx&property_type=xxxxx&page=1&qtdItemsPerPage=1",
+							"raw": "{{base_url}}/auction-properties?uf=SP",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1095,26 +1095,6 @@
 								{
 									"key": "uf",
 									"value": "SP"
-								},
-								{
-									"key": "city",
-									"value": "SAO+PAULO"
-								},
-								{
-									"key": "saleMethod",
-									"value": "xxxxxx"
-								},
-								{
-									"key": "property_type",
-									"value": "xxxxx"
-								},
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "qtdItemsPerPage",
-									"value": "1"
 								}
 							]
 						}
@@ -1155,13 +1135,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/auction-properties/e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c",
+							"raw": "{{base_url}}/auction-properties/770ae827-3d09-493d-a107-898c76f0655e",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"auction-properties",
-								"e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c"
+								"770ae827-3d09-493d-a107-898c76f0655e"
 							]
 						}
 					},

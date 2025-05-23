@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "base_url",
-			"value": "https://jarvis-api-develop-datv.onrender.com",
+			"value": "https://jarvis-api.meuleilaoonline.com",
 			"type": "default",
 			"enabled": true
 		},
@@ -16,6 +16,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2025-05-21T02:42:44.259Z",
-	"_postman_exported_using": "Postman/11.46.3"
+	"_postman_exported_at": "2025-05-23T12:34:52.588Z",
+	"_postman_exported_using": "Postman/11.46.5"
 }
