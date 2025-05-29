@@ -901,13 +901,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/auction-properties/e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c/favorite",
+									"raw": "{{base_url}}/auction-properties/0358f8b6-0c2b-45ae-b388-a0af9274fb5e/favorite",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"auction-properties",
-										"e9b5b476-b5ea-4442-aaaa-7da9abb2ff1c",
+										"0358f8b6-0c2b-45ae-b388-a0af9274fb5e",
 										"favorite"
 									]
 								}
@@ -1190,6 +1190,23 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
