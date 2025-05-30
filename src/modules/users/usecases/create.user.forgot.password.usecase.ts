@@ -13,11 +13,12 @@ export class CreateUserForgotPasswordUseCase
   implements CreateUserForgotPasswordUseCaseInterface
 {
   constructor(
-    @inject('UserRepository') private _userRepository: UserRepositoryInterface,
+    @inject('UserRepository')
+    private readonly _userRepository: UserRepositoryInterface,
     @inject('CreateUserForgotPasswordMail')
-    private _createUserForgotPasswordMail: MailInterface,
+    private readonly _createUserForgotPasswordMail: MailInterface,
     @inject('TokenRepository')
-    private _tokenRepository: TokenRepositoryInterface,
+    private readonly _tokenRepository: TokenRepositoryInterface,
   ) {}
 
   public async execute(email: string): Promise<User> {

@@ -20,15 +20,15 @@ import { GetUserProfileUseCase } from '../usecases/get.user.profile.usecase';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { TokenRepositoryInterface } from 'shared/interfaces/token.repository.interface';
 import { TokenRepositoryPrisma } from '../../../infra/database/orms/prisma/repositories/token.repository.prisma';
-import { CreateUserMailNodemailer } from '../../../infra/mail/nodemailer/create.user.mail.nodemailer';
 import { ResetUserPasswordUseCaseInterface } from '../usecases/interfaces/reset.user.password.use.case.interface';
 import { ResetUserPasswordUseCase } from '../usecases/reset.user.password.usecase';
 import { CreateUserForgotPasswordUseCase } from '../usecases/create.user.forgot.password.usecase';
 import { CreateUserForgotPasswordUseCaseInterface } from '../usecases/interfaces/create.user.forgot.password.use.case.interface';
-import { CreateUserForgotPasswordMailNodemailer } from '../../../infra/mail/nodemailer/create.user.forgot.password.mail.nodemailer';
 import { UpdateUserProfileUseCase } from '../usecases/update.user.profile.usecase';
 import { UpdateUserProfileUseCaseInterface } from '../usecases/interfaces/update.user.profile.use.case.interface';
-import { RenewalUserMailNodemailer } from '../.../../../../infra/mail/nodemailer/renewal.user.mail.nodemailer';
+import { CreateUserMailResend } from '../.../../../../infra/mail/resend/create.user.mail.resend';
+import { CreateUserForgotPasswordMailResend } from '../.../../../../infra/mail/resend/create.user.forgot.password.mail.resend';
+import { RenewalUserMailResend } from '../.../../../../infra/mail/resend/renewal.user.mail.resend';
 
 container.registerSingleton<CreateUserUseCaseInterface>(
   'CreateUserUseCase',
@@ -97,15 +97,15 @@ container.registerSingleton<TokenRepositoryInterface>(
 
 container.registerSingleton<MailInterface>(
   'CreateUserMail',
-  CreateUserMailNodemailer,
+  CreateUserMailResend,
 );
 
 container.registerSingleton<MailInterface>(
   'CreateUserForgotPasswordMail',
-  CreateUserForgotPasswordMailNodemailer,
+  CreateUserForgotPasswordMailResend,
 );
 
 container.registerSingleton<MailInterface>(
   'RenewalUserMail',
-  RenewalUserMailNodemailer,
+  RenewalUserMailResend,
 );

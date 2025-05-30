@@ -15,5 +15,5 @@ export type SendMailProps = {
   to: string;
   subject: string;
   html: any;
-  text: string;
+  text?: string;
 };
