@@ -2,3 +2,5 @@
 echo Copiando arquivos...
 
 cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer
+
+cp -R src/infra/mail/resend/views dist/infra/mail/resend
