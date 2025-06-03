@@ -1,6 +1,6 @@
 {
   "name": "leiloes",
-  "version": "1.23.0",
+  "version": "1.23.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
