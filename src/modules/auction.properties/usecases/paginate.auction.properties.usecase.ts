@@ -35,7 +35,17 @@ export class PaginateAuctionPropertiesUseCase
     const generatedOrderBy = generateOrderBy({
       orderBy,
       orderByDirection,
-      tableFields: ['discount'],
+      tableFields: [
+        'numberProperty',
+        'uf',
+        'city',
+        'neighborhood',
+        'price',
+        'discount',
+        'appraisalValue',
+        'propertyType',
+        'saleMethod',
+      ],
       defaultTableField: 'created_at',
     });
     const filter = this.generateFilter({
