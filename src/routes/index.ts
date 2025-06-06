@@ -19,4 +19,12 @@ export const appRoutes = (app: FastifyTypedInstance) => {
     message: 'Jarvis Api is up!',
     timestamp: new Date(),
   }));
+
+  app.post('/kiwify', (req, res) => {
+    console.log('Kiwify endpoint hit', { req });
+    res.status(200).send({
+      message: 'Ok',
+      req,
+    });
+  });
 };
