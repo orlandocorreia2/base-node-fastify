@@ -3,7 +3,7 @@ import { BaseResponse } from '../../../../shared/response/base.response';
 import { DBPaginateProps } from '../../../../types/db';
 import { AuctionProperty } from '../../DTOs/auction.properties';
 import { serializeBigInt } from '../../../../utils/number';
-import { dateGMT } from 'utils/date';
+import { dateGMT } from '../../../../utils/date';
 
 type PaginateAuctionPropertiesResponseProps = {
   result: DBPaginateProps<AuctionProperty>;
