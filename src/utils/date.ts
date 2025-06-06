@@ -15,3 +15,10 @@ export const setLastHour = (date: Date): Date => {
 export const generateExpiredAtDate = (value: string): Date => {
   return new Date(`${value.split('T')[0]}T23:59:59.999Z`);
 };
+
+export const dateGMT = (date?: Date): string => {
+  if (!date) return '';
+  const gmtDate = new Date(date.toISOString());
+  gmtDate.setHours(gmtDate.getHours() - 3);
+  return gmtDate.toISOString();
+};

@@ -5,6 +5,7 @@ export const response = {
   200: z.object({
     version: z.string({ description: getVersion() }),
     data: z.object({
+      lastUpdate: z.string().optional(),
       items: z.array(
         z.object({
           id: z.string({ description: '63b33f45-568a-4415-874f-b04a7bc39645' }),

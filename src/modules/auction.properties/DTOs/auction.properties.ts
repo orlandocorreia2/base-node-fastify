@@ -18,4 +18,6 @@ export type AuctionProperty = {
   photo_link?: string;
   registration_property_link?: string;
   AuctionPropertyUserFavorite?: KeyValueProps[];
+  created_at?: Date;
+  updated_at?: Date;
 };
