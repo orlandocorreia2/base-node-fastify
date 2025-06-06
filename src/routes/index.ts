@@ -23,8 +23,11 @@ export const appRoutes = (app: FastifyTypedInstance) => {
   app.post('/webhook/kiwify', (req, res) => {
     console.log('Kiwify endpoint hit', { req });
     res.status(200).send({
+      version,
       message: 'Ok',
-      req,
+      body: req.body ?? {},
+      headers: req.headers,
+      query: req.query,
     });
   });
 };
