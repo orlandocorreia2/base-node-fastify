@@ -16,10 +16,7 @@ export const sendMail = async ({ to, subject, html }: SendMailProps) => {
       html,
     })
     .then(response => {
-      console.warn(
-        'Email enviado com sucesso com o provedor: Resend',
-        response,
-      );
+      console.log('Email enviado com sucesso com o provedor: Resend', response);
     })
     .catch(error => console.error('Erro ao enviar o email', error));
 };
