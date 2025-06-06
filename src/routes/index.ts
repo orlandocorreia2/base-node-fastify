@@ -20,7 +20,7 @@ export const appRoutes = (app: FastifyTypedInstance) => {
     timestamp: new Date(),
   }));
 
-  app.post('/kiwify', (req, res) => {
+  app.post('/webhook/kiwify', (req, res) => {
     console.log('Kiwify endpoint hit', { req });
     res.status(200).send({
       message: 'Ok',
