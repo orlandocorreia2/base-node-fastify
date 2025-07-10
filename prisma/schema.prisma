@@ -144,3 +144,12 @@ model UserAuctionPropertyFilter {
 
   @@map("user_auction_property_filters")
 }
+
+model Log {
+  id         String   @id @default(uuid())
+  type       String
+  log        Json
+  created_at DateTime @default(now())
+
+  @@map("logs")
+}

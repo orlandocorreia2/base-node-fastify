@@ -2,6 +2,7 @@ import { auctionPropertyRoutesModule } from '../modules/auction.properties/route
 import { permissionGroupRoutesModule } from '../modules/permision.groups/routes';
 import { sessionRoutesModule } from '../modules/sessions/routes';
 import { userRoutesModule } from '../modules/users/routes';
+import { kiwifyRoutesModule } from '../modules/kiwify/routes';
 import { FastifyTypedInstance } from '../types/types';
 import { version } from '../../package.json';
 
@@ -10,6 +11,7 @@ export const appRoutes = (app: FastifyTypedInstance) => {
   sessionRoutesModule(app);
   permissionGroupRoutesModule(app);
   auctionPropertyRoutesModule(app);
+  kiwifyRoutesModule(app);
 
   app.get('/health', () => ({
     status: 'Healthy',
@@ -19,18 +21,4 @@ export const appRoutes = (app: FastifyTypedInstance) => {
     message: 'Jarvis Api is up!',
     timestamp: new Date(),
   }));
-
-  app.post('/webhook/kiwify', (req, res) => {
-    console.log('Kiwify endpoint hit', {
-      bodyStringify: JSON.stringify(req.body),
-      body: req.body,
-    });
-    res.status(200).send({
-      version,
-      message: 'Ok',
-      body: req.body ?? {},
-      headers: req.headers,
-      query: req.query,
-    });
-  });
 };

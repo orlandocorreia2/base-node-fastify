@@ -8,11 +8,17 @@
     "dev": "tsx watch src/server.ts",
     "build": "npm install && npx prisma generate && tsc -p tsconfig.json && sh ./build-copy-files",
     "prepare": "husky",
-    "test": "echo test",
     "copy:files": "cp -R src/infra/mail/nodemailer/views dist/infra/mail/nodemailer",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:seed": "npx prisma db seed",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint --fix .",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage --detectOpenHandles --runInBand",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@fastify/cors": "^11.0.0",
@@ -60,7 +66,13 @@
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1",
-    "typescript-hbs-plugin": "^0.1.1"
+    "typescript-hbs-plugin": "^0.1.1",
+    "@automock/jest": "^2.1.0",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "ts-jest": "^29.2.4",
+    "ts-node": "^10.9.2"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

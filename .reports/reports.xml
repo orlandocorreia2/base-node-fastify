@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.313">
+  <testsuite name="env" errors="0" failures="0" skipped="0" timestamp="2025-06-06T14:34:45" time="1.23" tests="6">
+    <testcase classname="env should return the environment variable value if set" name="env should return the environment variable value if set" time="0.008">
+    </testcase>
+    <testcase classname="env should return the default value if the environment variable is not set" name="env should return the default value if the environment variable is not set" time="0.001">
+    </testcase>
+    <testcase classname="env should return an empty string if variable and default are not set" name="env should return an empty string if variable and default are not set" time="0.001">
+    </testcase>
+    <testcase classname="envNumber should return the number value if environment variable is a valid number" name="envNumber should return the number value if environment variable is a valid number" time="0.001">
+    </testcase>
+    <testcase classname="envNumber should return the default value if the environment variable is not set" name="envNumber should return the default value if the environment variable is not set" time="0.001">
+    </testcase>
+    <testcase classname="envNumber should return 0 for string &quot;0&quot;" name="envNumber should return 0 for string &quot;0&quot;" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>

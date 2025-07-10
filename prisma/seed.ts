@@ -107,12 +107,6 @@ const seedPermissionRules = async () => {
       type: 'permissionGroup',
       description: 'Excluir grupo de permissão',
     },
-    {
-      id: '08022e15-5846-497e-abea-767549ede959',
-      rule: 'createAuctionProperties',
-      type: 'auctionProperties',
-      description: 'Atualizar base',
-    },
   ];
 
   for (const permissionRule of permissionRules) {
@@ -206,10 +200,6 @@ const seedPermissionGroupsRules = async () => {
     {
       permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
       permission_rule_id: '3ac8e22a-3c0d-446c-9566-51744b56f258',
-    },
-    {
-      permission_group_id: '4c223da4-1af9-40ee-a1b9-dac27f6d3f69',
-      permission_rule_id: '08022e15-5846-497e-abea-767549ede959',
     },
   ];
 
