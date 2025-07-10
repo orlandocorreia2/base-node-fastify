@@ -6,8 +6,6 @@ import { LogRepositoryProps } from 'shared/repositories/types';
 @injectable()
 export class LogRepositoryPrisma implements LogRepositoryInterface {
   async create<T>(data: LogRepositoryProps): Promise<T> {
-    console.log('LogRepositoryPrisma:', data);
-
     return (await prisma.log.create({ data })) as T;
   }
 }

@@ -3,7 +3,7 @@ import { LogRepositoryInterface } from '../repositories/interfaces/log.repositor
 import { LogEntityProps } from 'shared/types/log';
 import { CreateLogUseCaseInterface } from './interfaces/create.log.use.case.interface';
 import { CreateLogUseCaseProps } from './types';
-import { LogError } from 'error/log.error';
+import { LogError } from '../../error/log.error';
 
 @injectable()
 export class CreateLogUseCase implements CreateLogUseCaseInterface {
