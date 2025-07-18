@@ -9,16 +9,16 @@ type GetUserProfileResponseProps = {
 
 export class GetUserProfileResponse extends BaseResponse {
   static success({ result, reply }: GetUserProfileResponseProps) {
-    const dataResult = {
+    const dataResult: any = {
       id: result.id,
       name: result.name,
       email: result.email,
-      phone: result.phone,
-      address: result.address,
       expiredAt: result.expired_at,
       createdAt: result.created_at,
       updatedAt: result.updated_at,
     };
+    if (result.phone) dataResult.phone = result.phone;
+    if (result.address) dataResult.address = result.address;
     const defaultData = this.setDefaultData(dataResult);
     return reply.status(200).send(defaultData);
   }
