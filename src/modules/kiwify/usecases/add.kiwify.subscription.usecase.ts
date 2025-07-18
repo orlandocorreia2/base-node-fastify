@@ -8,6 +8,7 @@ import { UpdateUserUseCaseInterface } from '../../../modules/users/usecases/inte
 import { validateEmail } from '../../../utils/util';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { env } from '../../../utils/env';
+import { User } from 'modules/users/DTOs/user';
 
 @injectable()
 export class AddKiwifySubscriptionUseCase
@@ -57,10 +58,14 @@ export class AddKiwifySubscriptionUseCase
     console.log('Before validating email');
     validateEmail(Customer.email);
     console.log('Validated email:', Customer.email);
-    const user = await this._findOneUserUseCaseInterface.execute({
-      filter: { email: Customer.email },
-    });
-    console.log('User found?', user);
+    let user: User = {} as User;
+    try {
+      user = await this._findOneUserUseCaseInterface.execute({
+        filter: { email: Customer.email },
+      });
+    } catch (error) {
+      console.log('User not found', error);
+    }
     if (!user) {
       console.log('User not found, creating new user');
       await this._createUserUseCaseInterface.execute({
