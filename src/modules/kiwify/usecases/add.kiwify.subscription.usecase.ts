@@ -58,7 +58,7 @@ export class AddKiwifySubscriptionUseCase
     console.log('Before validating email');
     validateEmail(Customer.email);
     console.log('Validated email:', Customer.email);
-    let user: User = {} as User;
+    let user: User | null = null;
     try {
       user = await this._findOneUserUseCaseInterface.execute({
         filter: { email: Customer.email },
