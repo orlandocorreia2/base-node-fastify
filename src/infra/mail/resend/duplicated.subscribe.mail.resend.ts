@@ -21,6 +21,11 @@ export class DuplicatedSubscribeMailResend implements MailInterface {
     const to = isEnvironmentProduction
       ? env({ key: 'MAIL_FROM_OWNER' })
       : env({ key: 'MAIL_FROM_DEVS' });
+    console.log('Sending duplicated subscribe mail to:', {
+      to,
+      owner: env({ key: 'MAIL_FROM_OWNER' }),
+      devs: env({ key: 'MAIL_FROM_DEVS' }),
+    });
     sendMail({
       to,
       subject: 'Assinatura duplicada na Kiwify',

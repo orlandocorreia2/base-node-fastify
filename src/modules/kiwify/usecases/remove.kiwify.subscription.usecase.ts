@@ -5,6 +5,7 @@ import { FindOneUserUseCaseInterface } from '../../users/usecases/interfaces/fin
 import { UpdateUserUseCaseInterface } from '../../users/usecases/interfaces/update.user.use.case.interface';
 import { validateEmail } from '../../../utils/util';
 import { RemoveKiwifySubscriptionUseCaseInterface } from './interfaces/remove.kiwify.subscription.usecase.interface';
+import { User } from 'modules/users/DTOs/user';
 
 @injectable()
 export class RemoveKiwifySubscriptionUseCase
@@ -37,7 +38,10 @@ export class RemoveKiwifySubscriptionUseCase
       webhook_event_type,
     });
     if (
-      !Object.keys(KiwifyWebhookEventRemoveType).includes(webhook_event_type)
+      ![
+        KiwifyWebhookEventRemoveType.CHARGEBACK,
+        KiwifyWebhookEventRemoveType.ORDER_REFUNDED,
+      ].includes(webhook_event_type)
     ) {
       console.error('Invalid webhook event type:', webhook_event_type);
       return;
@@ -45,10 +49,15 @@ export class RemoveKiwifySubscriptionUseCase
     console.log('Before validating email');
     validateEmail(Customer.email);
     console.log('Validated email:', Customer.email);
-    const user = await this._findOneUserUseCaseInterface.execute({
-      filter: { email: Customer.email },
-    });
-    console.log('User found?', user);
+    let user: User | null = null;
+    try {
+      user = await this._findOneUserUseCaseInterface.execute({
+        filter: { email: Customer.email },
+      });
+    } catch (error) {
+      console.log('User not found', error);
+      return;
+    }
     if (!user) return;
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
