@@ -7,7 +7,8 @@ import { GetUserProfileUseCaseInterface } from './interfaces/get.user.profile.us
 @injectable()
 export class GetUserProfileUseCase implements GetUserProfileUseCaseInterface {
   constructor(
-    @inject('UserRepository') private _userRepository: UserRepositoryInterface,
+    @inject('UserRepository')
+    private readonly _userRepository: UserRepositoryInterface,
   ) {}
 
   async execute(id: string): Promise<User> {
