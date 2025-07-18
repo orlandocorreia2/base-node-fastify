@@ -27,7 +27,7 @@ export type CreateUser = {
 };
 
 export type CreateUserUseCaseProps = {
-  createdById: string;
+  createdById?: string;
   name: string;
   email: string;
   expiredAt: string;
