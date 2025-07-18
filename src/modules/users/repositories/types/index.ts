@@ -1,5 +1,5 @@
 export type CreateUserRepositoryProps = {
-  created_by_id: string;
+  created_by_id?: string;
   name: string;
   email: string;
   password: string;
