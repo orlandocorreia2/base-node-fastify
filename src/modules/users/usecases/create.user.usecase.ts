@@ -15,13 +15,14 @@ import { generateExpiredAtDate } from '../../../utils/date';
 @injectable()
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
   constructor(
-    @inject('UserRepository') private _userRepository: UserRepositoryInterface,
+    @inject('UserRepository')
+    private readonly _userRepository: UserRepositoryInterface,
     @inject('UserPermissionGroupRepository')
-    private _userPermissionGroupRepository: UserPermissionGroupRepositoryInterface,
+    private readonly _userPermissionGroupRepository: UserPermissionGroupRepositoryInterface,
     @inject('CreateUserMail')
-    private _createUserMail: MailInterface,
+    private readonly _createUserMail: MailInterface,
     @inject('TokenRepository')
-    private _tokenRepository: TokenRepositoryInterface,
+    private readonly _tokenRepository: TokenRepositoryInterface,
   ) {}
 
   public async execute({
