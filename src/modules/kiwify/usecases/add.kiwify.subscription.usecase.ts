@@ -46,7 +46,7 @@ export class AddKiwifySubscriptionUseCase
       webhook_event_type,
     });
     if (
-      [
+      ![
         KiwifyWebhookEventAddType.ORDER_APPROVED,
         KiwifyWebhookEventAddType.SUBSCRIPTION_RENEWED,
       ].includes(webhook_event_type)
