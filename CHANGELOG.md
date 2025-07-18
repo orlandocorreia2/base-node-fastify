@@ -7,3 +7,9 @@
 #### Added
 
 - kiwify subscription webhook
+
+### [Version - 1.30.1] - 2027-07-18
+
+#### Fix
+
+- kiwify events validation
