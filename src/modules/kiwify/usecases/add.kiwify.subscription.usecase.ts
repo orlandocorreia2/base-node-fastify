@@ -69,7 +69,6 @@ export class AddKiwifySubscriptionUseCase
     if (!user) {
       console.log('User not found, creating new user');
       await this._createUserUseCaseInterface.execute({
-        createdById: '',
         name: Customer.full_name ?? Customer.first_name ?? Customer.email,
         email: Customer.email,
         expiredAt: new Date(next_payment).toISOString(),
