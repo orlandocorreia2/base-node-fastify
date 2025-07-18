@@ -69,7 +69,7 @@ export class UserController {
     try {
       const { id } = request.params as ParamRequestProps;
       const result = await this._findOneUserUseCase.execute({
-        id,
+        filter: { id },
         relationships: { permissionGroups: true },
       });
       return FindOneUserResponse.success({ result, reply });

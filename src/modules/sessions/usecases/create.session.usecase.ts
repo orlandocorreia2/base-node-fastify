@@ -27,7 +27,7 @@ export class CreateSessionUseCase implements CreateSessionUseCaseInterface {
       throw new UnauthorizedError();
     }
     const userInfoToken = this.generateUserInfoToken(user);
-    const token = app.jwt.sign(userInfoToken, { expiresIn: '1h' });
+    const token = app.jwt.sign(userInfoToken);
     return { token };
   }
 

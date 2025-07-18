@@ -17,3 +17,9 @@ export type SendMailProps = {
   html: any;
   text?: string;
 };
+
+export type DuplicatedSubscribeMailProps = {
+  name: string;
+  email: string;
+  link: string;
+};

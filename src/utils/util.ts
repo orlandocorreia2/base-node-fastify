@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { KeyValueProps } from 'types/types';
 
 export const sleep = (time: number = 1) => {
@@ -24,3 +25,14 @@ export function trimObject<T>(obj: Record<string, any>): T {
   }
   return trimmedObj as T;
 }
+
+export const validateEmail = (email: string): boolean => {
+  // const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  // return re.test(String(email).toLowerCase());
+  try {
+    z.string().email().parse(email);
+  } catch (error) {
+    throw new Error('Invalid email format');
+  }
+  return true;
+};

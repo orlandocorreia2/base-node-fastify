@@ -36,7 +36,7 @@ export const canMiddleware = async (
     const findOneUserCase = container.resolve(FindOneUserUseCase);
     const requestUser = request.user as any;
     const user = await findOneUserCase.execute({
-      id: requestUser.id,
+      filter: { id: requestUser.id },
       relationships: { rules: true },
     });
     user.permissionGroups?.forEach(permissionGroupItem => {

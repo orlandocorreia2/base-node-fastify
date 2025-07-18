@@ -13,6 +13,7 @@ export type EnvProps = {
     | 'MAIL_AUTH_PASS'
     | 'MAIL_FROM'
     | 'MAIL_FROM_DEVS'
+    | 'MAIL_FROM_OWNER'
     | 'FRONT_URL'
     | 'MAIL_KEY';
   defaultValue?: any;

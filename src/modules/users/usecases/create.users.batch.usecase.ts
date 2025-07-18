@@ -183,7 +183,7 @@ export class CreateUsersBatchUseCase
     isActive: boolean;
   }) {
     if (isActive) return `${env({ key: 'FRONT_URL' })}`;
-    const jwt = app.jwt.sign(user, { expiresIn: '24h' });
+    const jwt = app.jwt.sign(user);
     const { token } = await this._tokenRepository.create(jwt);
     return `${env({ key: 'FRONT_URL' })}/reset-password/${token}`;
   }

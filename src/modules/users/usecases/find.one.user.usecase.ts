@@ -13,14 +13,16 @@ export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
   ) {}
 
   async execute({
-    id,
+    filter,
     relationships,
   }: FindOneUserUseCaseExecuteProps): Promise<User> {
-    if (!id) {
-      throw new UnprocessableError('O id do usuário é obrigatório!');
+    if (!filter || Object.keys(filter).length === 0) {
+      throw new UnprocessableError(
+        'É necessário informar um campo de filtro para buscar o usuário!',
+      );
     }
     const user = await this._userRepository.findOne({
-      filter: { id },
+      filter,
       relationships,
     });
     if (!user) {
