@@ -23,9 +23,9 @@ export class AddKiwifySubscriptionUseCase
     @inject('UpdateUserUseCase')
     private readonly _updateUserUseCaseInterface: UpdateUserUseCaseInterface,
     @inject('DuplicatedSubscribeMail')
-    private _duplicatedSubscribeMail: MailInterface,
+    private readonly _duplicatedSubscribeMail: MailInterface,
     @inject('RenewalUserMail')
-    private _renewalUserMail: MailInterface,
+    private readonly _renewalUserMail: MailInterface,
   ) {}
 
   public async execute(data: any): Promise<void> {
@@ -45,7 +45,12 @@ export class AddKiwifySubscriptionUseCase
       next_payment,
       webhook_event_type,
     });
-    if (!Object.keys(KiwifyWebhookEventAddType).includes(webhook_event_type)) {
+    if (
+      [
+        KiwifyWebhookEventAddType.ORDER_APPROVED,
+        KiwifyWebhookEventAddType.SUBSCRIPTION_RENEWED,
+      ].includes(webhook_event_type)
+    ) {
       console.error('Invalid webhook event type:', webhook_event_type);
       return;
     }
