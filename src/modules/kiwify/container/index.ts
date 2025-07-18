@@ -14,10 +14,17 @@ import { UpdateUserUseCase } from '../../../modules/users/usecases/update.user.u
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { DuplicatedSubscribeMailResend } from '../../../infra/mail/resend/duplicated.subscribe.mail.resend';
 import { RenewalUserMailResend } from '../../../infra/mail/resend/renewal.user.mail.resend';
+import { RemoveKiwifySubscriptionUseCaseInterface } from '../usecases/interfaces/remove.kiwify.subscription.usecase.interface';
+import { RemoveKiwifySubscriptionUseCase } from '../usecases/remove.kiwify.subscription.usecase';
 
 container.registerSingleton<AddKiwifySubscriptionUseCaseInterface>(
   'AddKiwifySubscriptionUseCase',
   AddKiwifySubscriptionUseCase,
+);
+
+container.registerSingleton<RemoveKiwifySubscriptionUseCaseInterface>(
+  'RemoveKiwifySubscriptionUseCase',
+  RemoveKiwifySubscriptionUseCase,
 );
 
 container.registerSingleton<CreateLogUseCaseInterface>(
