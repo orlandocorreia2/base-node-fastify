@@ -6,8 +6,9 @@ import { isEnvironmentProduction } from '../../../utils/helper';
 export const sendMail = async ({ to, subject, html }: SendMailProps) => {
   const resend = new Resend(env({ key: 'MAIL_KEY' }));
   const sendTo = isEnvironmentProduction
-    ? [to]
+    ? to.toString().split(',')
     : env({ key: 'MAIL_FROM_DEVS' }).split(',');
+
   resend.emails
     .send({
       from: env({ key: 'MAIL_FROM' }),
