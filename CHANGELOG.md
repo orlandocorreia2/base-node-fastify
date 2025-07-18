@@ -1,0 +1,9 @@
+### auction-properties-api
+
+### Controle de versionamento e atualizações da api:
+
+### [Version - 1.30.0] - 2027-07-18
+
+#### Added
+
+- kiwify subscription webhook

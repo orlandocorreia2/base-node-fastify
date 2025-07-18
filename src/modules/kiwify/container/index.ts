@@ -13,6 +13,7 @@ import { UpdateUserUseCaseInterface } from '../../../modules/users/usecases/inte
 import { UpdateUserUseCase } from '../../../modules/users/usecases/update.user.usecase';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { DuplicatedSubscribeMailResend } from '../../../infra/mail/resend/duplicated.subscribe.mail.resend';
+import { RenewalUserMailResend } from '../../../infra/mail/resend/renewal.user.mail.resend';
 
 container.registerSingleton<AddKiwifySubscriptionUseCaseInterface>(
   'AddKiwifySubscriptionUseCase',
@@ -47,4 +48,9 @@ container.registerSingleton<LogRepositoryInterface>(
 container.registerSingleton<MailInterface>(
   'DuplicatedSubscribeMail',
   DuplicatedSubscribeMailResend,
+);
+
+container.registerSingleton<MailInterface>(
+  'RenewalUserMail',
+  RenewalUserMailResend,
 );

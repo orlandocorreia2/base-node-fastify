@@ -24,6 +24,8 @@ export class AddKiwifySubscriptionUseCase
     private readonly _updateUserUseCaseInterface: UpdateUserUseCaseInterface,
     @inject('DuplicatedSubscribeMail')
     private _duplicatedSubscribeMail: MailInterface,
+    @inject('RenewalUserMail')
+    private _renewalUserMail: MailInterface,
   ) {}
 
   public async execute(data: any): Promise<void> {
@@ -44,7 +46,8 @@ export class AddKiwifySubscriptionUseCase
       webhook_event_type,
     });
     if (!Object.keys(KiwifyWebhookEventAddType).includes(webhook_event_type)) {
-      throw new Error('Invalid webhook event type');
+      console.error('Invalid webhook event type:', webhook_event_type);
+      return;
     }
     console.log('Before validating email');
     validateEmail(Customer.email);
@@ -52,7 +55,7 @@ export class AddKiwifySubscriptionUseCase
     const user = await this._findOneUserUseCaseInterface.execute({
       filter: { email: Customer.email },
     });
-    console.log('User found?:', user);
+    console.log('User found?', user);
     if (!user) {
       console.log('User not found, creating new user');
       await this._createUserUseCaseInterface.execute({
@@ -84,6 +87,12 @@ export class AddKiwifySubscriptionUseCase
       email: user.email,
       expiredAt: new Date(next_payment).toISOString(),
     });
-    console.log('User updated successfully and finished execution');
+    console.log('User updated successfully');
+    await this._renewalUserMail.send({
+      name: user.name,
+      email: user.email,
+      link: env({ key: 'FRONT_URL' }),
+    });
+    console.log('Renewal subscription email sent and finished execution');
   }
 }

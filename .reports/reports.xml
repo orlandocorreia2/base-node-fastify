@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.313">
-  <testsuite name="env" errors="0" failures="0" skipped="0" timestamp="2025-06-06T14:34:45" time="1.23" tests="6">
-    <testcase classname="env should return the environment variable value if set" name="env should return the environment variable value if set" time="0.008">
+<testsuites name="jest tests" tests="9" failures="0" errors="0" time="0.796">
+  <testsuite name="LogError" errors="0" failures="0" skipped="0" timestamp="2025-07-18T04:10:14" time="-9.711" tests="9">
+    <testcase classname="LogError constructor should create LogError with default message" name="LogError constructor should create LogError with default message" time="0.003">
     </testcase>
-    <testcase classname="env should return the default value if the environment variable is not set" name="env should return the default value if the environment variable is not set" time="0.001">
+    <testcase classname="LogError constructor should create LogError with custom message" name="LogError constructor should create LogError with custom message" time="0.001">
     </testcase>
-    <testcase classname="env should return an empty string if variable and default are not set" name="env should return an empty string if variable and default are not set" time="0.001">
+    <testcase classname="LogError constructor should create LogError with empty string message" name="LogError constructor should create LogError with empty string message" time="0.001">
     </testcase>
-    <testcase classname="envNumber should return the number value if environment variable is a valid number" name="envNumber should return the number value if environment variable is a valid number" time="0.001">
+    <testcase classname="LogError properties should have correct status code" name="LogError properties should have correct status code" time="0.001">
     </testcase>
-    <testcase classname="envNumber should return the default value if the environment variable is not set" name="envNumber should return the default value if the environment variable is not set" time="0.001">
+    <testcase classname="LogError properties should have correct name" name="LogError properties should have correct name" time="0.001">
     </testcase>
-    <testcase classname="envNumber should return 0 for string &quot;0&quot;" name="envNumber should return 0 for string &quot;0&quot;" time="0.002">
+    <testcase classname="LogError properties should inherit Error properties" name="LogError properties should inherit Error properties" time="0.003">
+    </testcase>
+    <testcase classname="LogError error throwing should be throwable and catchable" name="LogError error throwing should be throwable and catchable" time="0.002">
+    </testcase>
+    <testcase classname="LogError error throwing should be catchable as LogError instance" name="LogError error throwing should be catchable as LogError instance" time="0.009">
+    </testcase>
+    <testcase classname="LogError error throwing should be catchable as Error instance" name="LogError error throwing should be catchable as Error instance" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>
