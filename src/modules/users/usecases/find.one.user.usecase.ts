@@ -9,7 +9,8 @@ import { FindOneUserUseCaseExecuteProps } from './types';
 @injectable()
 export class FindOneUserUseCase implements FindOneUserUseCaseInterface {
   constructor(
-    @inject('UserRepository') private _userRepository: UserRepositoryInterface,
+    @inject('UserRepository')
+    private readonly _userRepository: UserRepositoryInterface,
   ) {}
 
   async execute({
