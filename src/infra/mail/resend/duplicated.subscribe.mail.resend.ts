@@ -30,7 +30,7 @@ export class DuplicatedSubscribeMailResend implements MailInterface {
       to,
       subject: 'COMPRA DUPLICADA na Kiwify',
       html,
-      text: `Foi identificado COMPRA DUPLICADA para o usuário: ${name} e email: ${email} na kiwify!`,
+      text: `Foi identificada uma COMPRA DUPLICADA para o usuário: ${name} e email: ${email} na kiwify!`,
     });
   }
 }
