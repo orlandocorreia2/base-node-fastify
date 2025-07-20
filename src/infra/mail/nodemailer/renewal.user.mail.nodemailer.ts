@@ -17,7 +17,7 @@ export class RenewalUserMailNodemailer implements MailInterface {
     const html = parseTemplate({ name, link });
     sendMail({
       to: email,
-      subject: 'Usuário renovado na plataforma Meu Leilão Online',
+      subject: 'Usuário renovado na plataforma JARVIS Leilões',
       html,
       text: `Parabéns ${name}, seu cadastro foi renovado com sucesso. Acesse o link para acessar a plataforma: ${link}`,
     });

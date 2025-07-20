@@ -15,7 +15,7 @@ export class CreateUserMailResend implements MailInterface {
     const html = parseTemplate({ name, link });
     sendMail({
       to: email,
-      subject: 'Usuário criado na plataforma Meu Leilão Online',
+      subject: 'Usuário criado na plataforma JARVIS Leilões',
       html,
       text: `Parabéns ${name}, seu cadastro foi criado com sucesso. Acesse o link para criar uma nova senha: ${link}`,
     });

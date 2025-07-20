@@ -17,7 +17,7 @@ export class CreateUserForgotPasswordMailResend implements MailInterface {
     const html = parseTemplate({ name, link });
     sendMail({
       to: email,
-      subject: 'Redefinir senha na plataforma Meu Leilão Online',
+      subject: 'Redefinir senha na plataforma JARVIS Leilões',
       html,
       text: `Você solicitou a redefinição de sua senha para acessar a
                   plataforma. Se você não solicitou a redefinição de senha, desconsidere

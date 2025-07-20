@@ -28,9 +28,9 @@ export class DuplicatedSubscribeMailResend implements MailInterface {
     });
     sendMail({
       to,
-      subject: 'Assinatura duplicada na Kiwify',
+      subject: 'COMPRA DUPLICADA na Kiwify',
       html,
-      text: `Foi identificado compra de assinatura duplicada para o usuário: ${name} e email: ${email} na kiwify!`,
+      text: `Foi identificado COMPRA DUPLICADA para o usuário: ${name} e email: ${email} na kiwify!`,
     });
   }
 }
