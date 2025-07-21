@@ -8,7 +8,7 @@ import { UpdateUserUseCaseInterface } from '../../../modules/users/usecases/inte
 import { validateEmail } from '../../../utils/util';
 import { MailInterface } from '../../../shared/email/mail.interface';
 import { env } from '../../../utils/env';
-import { User } from 'modules/users/DTOs/user';
+import { User } from '../../../modules/users/DTOs/user';
 
 @injectable()
 export class AddKiwifySubscriptionUseCase
@@ -77,17 +77,19 @@ export class AddKiwifySubscriptionUseCase
       console.log('User created successfully and returning');
       return;
     }
-    const userExpiredAt = new Date(user.expired_at);
-    const today = new Date();
-    if (userExpiredAt > today) {
-      console.log('User subscription is still valid, no action needed');
-      await this._duplicatedSubscribeMail.send({
-        name: user.name,
-        email: user.email,
-        link: env({ key: 'FRONT_URL' }),
-      });
-      console.log('Duplicated subscription email sent');
-      return;
+    if (webhook_event_type === KiwifyWebhookEventAddType.ORDER_APPROVED) {
+      const userExpiredAt = new Date(user.expired_at);
+      const today = new Date();
+      if (userExpiredAt > today) {
+        console.log('User subscription is still valid, no action needed');
+        await this._duplicatedSubscribeMail.send({
+          name: user.name,
+          email: user.email,
+          link: env({ key: 'FRONT_URL' }),
+        });
+        console.log('Duplicated subscription email sent');
+        return;
+      }
     }
     console.log('User already exists, updating user data');
     await this._updateUserUseCaseInterface.execute({

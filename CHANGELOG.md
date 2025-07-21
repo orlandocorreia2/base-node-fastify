@@ -13,3 +13,9 @@
 #### Fix
 
 - kiwify events validation
+
+### [Version - 1.30.2] - 2027-07-21
+
+#### Fix
+
+- validation expired_at only when order approved
