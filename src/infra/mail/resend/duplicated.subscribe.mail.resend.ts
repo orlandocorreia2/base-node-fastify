@@ -9,6 +9,7 @@ import { env } from '../../../utils/env';
 
 export class DuplicatedSubscribeMailResend implements MailInterface {
   async send({ name, email, link }: DuplicatedSubscribeMailProps) {
+    if (env({ key: 'MAIL_FROM_DEVS' })) return;
     const fileTemplatePath = path.resolve(
       `${__dirname}/views/duplicated.subscribe.hbs`,
     );

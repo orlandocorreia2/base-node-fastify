@@ -1,0 +1,213 @@
+[
+  {
+    "Product": {
+      "product_id": "16855b10-4b84-11f0-a55b-ebdbba246859",
+      "product_name": "J.A.R.V.I.S. 2.0"
+    },
+    "Customer": {
+      "ip": "2804:14d:4c6d:814a:1187:debd:301a:49dc",
+      "CPF": "97882976091",
+      "cnpj": null,
+      "email": "marcelo.fatecpoa@gmail.com",
+      "mobile": "+5551981838118",
+      "full_name": "MARCELO PEREIRA",
+      "instagram": null,
+      "first_name": "MARCELO"
+    },
+    "order_id": "25d4256c-1372-40c1-ac63-8f767e4d991c",
+    "pix_code": null,
+    "store_id": "GrTISzgb8LL5t1f",
+    "card_type": "mastercard",
+    "order_ref": "cNs23Tm",
+    "sale_type": "producer",
+    "access_url": null,
+    "boleto_URL": null,
+    "created_at": "2025-07-21 18:42",
+    "updated_at": "2025-07-21 18:58",
+    "Commissions": {
+      "currency": "BRL",
+      "kiwify_fee": 296,
+      "deposit_date": null,
+      "funds_status": "waiting",
+      "charge_amount": 500,
+      "my_commission": 204,
+      "product_base_price": 500,
+      "commissioned_stores": [
+        {
+          "id": "6c98a5d2-b6ce-45df-b54c-af45f38c35ec",
+          "type": "producer",
+          "email": "marcel_guzinski@hotmail.com",
+          "value": "204",
+          "custom_name": "solimeo engenharia ltda"
+        }
+      ],
+      "kiwify_fee_currency": "BRL",
+      "estimated_deposit_date": "2025-07-23T03:00:00.000Z",
+      "product_base_price_currency": "BRL"
+    },
+    "refunded_at": "2025-07-21 18:58",
+    "Subscription": {
+      "plan": {
+        "id": "d2a9d8e5-818d-45d1-bf20-ab9cd0bd86e8",
+        "name": "TESTE",
+        "frequency": "monthly",
+        "qty_charges": 0
+      },
+      "status": "canceled",
+      "charges": {
+        "future": [
+          { "charge_date": "2025-08-21T21:42:59.623Z" },
+          { "charge_date": "2025-09-21T21:42:59.623Z" },
+          { "charge_date": "2025-10-21T21:42:59.623Z" },
+          { "charge_date": "2025-11-21T21:42:59.623Z" },
+          { "charge_date": "2025-12-21T21:42:59.623Z" },
+          { "charge_date": "2026-01-21T21:42:59.623Z" },
+          { "charge_date": "2026-02-21T21:42:59.623Z" },
+          { "charge_date": "2026-03-21T21:42:59.623Z" },
+          { "charge_date": "2026-04-21T21:42:59.623Z" },
+          { "charge_date": "2026-05-21T21:42:59.623Z" },
+          { "charge_date": "2026-06-21T21:42:59.623Z" }
+        ],
+        "completed": []
+      },
+      "start_date": "2025-07-21T21:42:56.529Z",
+      "next_payment": "2025-08-21T21:42:59.623Z",
+      "customer_access": {
+        "has_access": false,
+        "access_until": null,
+        "active_period": false
+      }
+    },
+    "installments": 1,
+    "order_status": "refunded",
+    "product_type": "membership",
+    "approved_date": "2025-07-21 18:42",
+    "checkout_link": "83UOIAh",
+    "boleto_barcode": null,
+    "payment_method": "credit_card",
+    "pix_expiration": null,
+    "subscription_id": "02f09236-749e-4d2e-960c-07d0f4d70362",
+    "card_last4digits": "7221",
+    "TrackingParameters": {
+      "s1": null,
+      "s2": null,
+      "s3": null,
+      "sck": null,
+      "src": null,
+      "utm_term": null,
+      "utm_medium": null,
+      "utm_source": null,
+      "utm_content": null,
+      "utm_campaign": null
+    },
+    "boleto_expiry_date": null,
+    "webhook_event_type": "subscription_canceled",
+    "payment_merchant_id": "10472507211833557082"
+  },
+  {
+    "Product": {
+      "product_id": "16855b10-4b84-11f0-a55b-ebdbba246859",
+      "product_name": "J.A.R.V.I.S. 2.0"
+    },
+    "Customer": {
+      "ip": "2804:14d:4c6d:814a:1187:debd:301a:49dc",
+      "CPF": "97882976091",
+      "cnpj": null,
+      "email": "marcelo.fatecpoa@gmail.com",
+      "mobile": "+5551981838118",
+      "full_name": "MARCELO PEREIRA",
+      "instagram": null,
+      "first_name": "MARCELO"
+    },
+    "order_id": "25d4256c-1372-40c1-ac63-8f767e4d991c",
+    "pix_code": null,
+    "store_id": "GrTISzgb8LL5t1f",
+    "card_type": "mastercard",
+    "order_ref": "cNs23Tm",
+    "sale_type": "producer",
+    "access_url": null,
+    "boleto_URL": null,
+    "created_at": "2025-07-21 18:42",
+    "updated_at": "2025-07-21 18:57",
+    "Commissions": {
+      "currency": "BRL",
+      "kiwify_fee": 296,
+      "deposit_date": null,
+      "funds_status": "waiting",
+      "charge_amount": 500,
+      "my_commission": 204,
+      "product_base_price": 500,
+      "commissioned_stores": [
+        {
+          "id": "6c98a5d2-b6ce-45df-b54c-af45f38c35ec",
+          "type": "producer",
+          "email": "marcel_guzinski@hotmail.com",
+          "value": "204",
+          "custom_name": "solimeo engenharia ltda"
+        }
+      ],
+      "kiwify_fee_currency": "BRL",
+      "estimated_deposit_date": "2025-07-23T03:00:00.000Z",
+      "product_base_price_currency": "BRL"
+    },
+    "refunded_at": "2025-07-21 18:58",
+    "Subscription": {
+      "plan": {
+        "id": "d2a9d8e5-818d-45d1-bf20-ab9cd0bd86e8",
+        "name": "TESTE",
+        "frequency": "monthly",
+        "qty_charges": 0
+      },
+      "status": "canceled",
+      "charges": {
+        "future": [
+          { "charge_date": "2025-08-21T21:42:59.623Z" },
+          { "charge_date": "2025-09-21T21:42:59.623Z" },
+          { "charge_date": "2025-10-21T21:42:59.623Z" },
+          { "charge_date": "2025-11-21T21:42:59.623Z" },
+          { "charge_date": "2025-12-21T21:42:59.623Z" },
+          { "charge_date": "2026-01-21T21:42:59.623Z" },
+          { "charge_date": "2026-02-21T21:42:59.623Z" },
+          { "charge_date": "2026-03-21T21:42:59.623Z" },
+          { "charge_date": "2026-04-21T21:42:59.623Z" },
+          { "charge_date": "2026-05-21T21:42:59.623Z" },
+          { "charge_date": "2026-06-21T21:42:59.623Z" }
+        ],
+        "completed": []
+      },
+      "start_date": "2025-07-21T21:42:56.529Z",
+      "next_payment": "2025-08-21T21:42:59.623Z",
+      "customer_access": {
+        "has_access": false,
+        "access_until": null,
+        "active_period": false
+      }
+    },
+    "installments": 1,
+    "order_status": "refunded",
+    "product_type": "membership",
+    "approved_date": "2025-07-21 18:42",
+    "checkout_link": "83UOIAh",
+    "boleto_barcode": null,
+    "payment_method": "credit_card",
+    "pix_expiration": null,
+    "subscription_id": "02f09236-749e-4d2e-960c-07d0f4d70362",
+    "card_last4digits": "7221",
+    "TrackingParameters": {
+      "s1": null,
+      "s2": null,
+      "s3": null,
+      "sck": null,
+      "src": null,
+      "utm_term": null,
+      "utm_medium": null,
+      "utm_source": null,
+      "utm_content": null,
+      "utm_campaign": null
+    },
+    "boleto_expiry_date": null,
+    "webhook_event_type": "order_refunded",
+    "payment_merchant_id": "10472507211833557082",
+    "card_rejection_reason": null
+  }
+]
